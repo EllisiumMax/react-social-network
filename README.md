@@ -1,5 +1,8 @@
-** --- Social Network Project ---** 
-		build with React
-** :fa-user: Author:** Khaiuk Maksym
 
-*Works in progress..*
+# Social Network Project
+####  Build with React.js
+
+Author: Khaiuk Maksym
+
+
+Works in progress...
