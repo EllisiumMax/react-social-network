@@ -1,86 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-
-
-$header-background: rgb(234, 237, 238);
-$nav-background: rgb(4, 33, 53);
-$content-background: rgb(240, 239, 235);
-
-$header-text-color: rgb(2, 2, 2);
-$nav-text-color: white;
-$content-text-color: rgb(0, 0, 0);
-
-$nav-text-border: 1px solid white;
-$nav-text-hover: rgb(0, 140, 255);
-$nav-text-border-hover:  rgb(85, 116, 255);
-
-@mixin fontColorSize($color, $size) {
-    color: $color;
-    font-size: $size;
-}
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 body {
-    font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 .app-wrapper {
-    display: grid;
-    grid:
-        "header header"3.5em 
-        "nav content"calc(100vh - 3.5em);
-    grid-template-columns: 13% 87%;
-    justify-content: center;
-
-}
-
-.header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    grid-area: header;
-    background-color: $header-background;
-    @include fontColorSize($header-text-color, 1.2em);
-    align-self: center;
-    align-content: center;
-    img {
-        margin-left: 1.1em;
-        width: 2.4em;
-    }
-    p {
-        padding-left: 1em;
-        font-weight: 600;
-    }
-}
-
-.nav {
-    grid-area: nav;
-    background-color: $nav-background;
-    @include fontColorSize($nav-text-color, 1.1em);
-    display: flex;
-    flex-direction: column;
-
-    a:first-child {
-        margin-top: 1.4em;
-    }
-
-    a{
-        margin-left: 1.2em;
-        margin-bottom: 1.6em;
-        border-bottom: $nav-text-border;
-        padding-bottom: 0.3em;
-        width: 6em;
-        cursor: pointer;
-    }
-
-    a:hover {
-        color:$nav-text-hover;
-        border-color: $nav-text-border-hover;
-
-    }
-}
-
-.content {
-    grid-area: content;
-    background-color: $content-background;
-    @include fontColorSize($content-text-color, 1em);
-    padding: 2em;
+  display: grid;
+  grid:
+    "header header" 3.5em
+    "nav content" calc(100vh - 3.5em);
+  grid-template-columns: 13% 87%;
+  justify-content: center;
 }

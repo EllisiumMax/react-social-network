@@ -1,0 +1,55 @@
+$profile-background: rgb(240, 239, 235);
+$profile-text-color: rgb(0, 0, 0);
+$chat-bubble-border-color: rgb(177, 174, 174);
+.post {
+  display: flex;
+  max-width: 75%;
+  margin: 3em auto;
+  align-items: center;
+  img {
+    width: 6.5em;
+    border-radius: 10em;
+  }
+  .message {
+    position: relative;
+    font-style: italic;
+    margin-left: 3em;
+    border: 1px solid $chat-bubble-border-color;
+    padding: 1em 2em;
+    border-radius: 8px;
+  }
+  .message::before {
+    content: "";
+    width: 1.5em;
+    position: absolute;
+    border-top: 1px solid $chat-bubble-border-color;
+    left: -1.5em;
+    top: 50%;
+  }
+
+  .date {
+    font-size: 0.85em;
+    font-style: normal;
+    color: darken($chat-bubble-border-color, 35%);
+    letter-spacing: 2px;
+  }
+
+  .like {
+    align-self: flex-end;
+    margin: 0 0 0 0.5em;
+    width: 3em;
+    height: 1.5em;
+    background-size: 20px 30px;
+    
+  }
+  .like:active {
+    stroke: rgb(0, 168, 0);
+  }
+
+  .likesAmmount {
+    align-self: flex-end;
+    margin: 0 0 0.4em 0.5em;
+    user-select: none;
+    width: 10em;
+  }
+}

@@ -1,0 +1,26 @@
+$header-background: rgb(234, 237, 238);
+$header-text-color: rgb(2, 2, 2);
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-area: header;
+    background-color: $header-background;
+    color: $header-text-color;
+    font-size: 1.2em;
+    align-self: center;
+    align-content: center;
+    user-select: none;
+    img {
+      margin-left: 1.1em;
+      width: 2.4em;
+      
+    }
+    p {
+      padding-left: 1em;
+      font-weight: 600;
+      
+    }
+  }
+  

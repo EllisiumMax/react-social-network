@@ -1,24 +1,15 @@
-import './App.scss';
-import toucanLogo from './images/toucan.svg';
-
+import "./App.scss";
+import Header from "./components/header/header";
+import Navbar from "./components/navbar/navbar";
+import Profile from "./components/profile/profile";
 
 function App() {
   return (
     <div className="app-wrapper">
-<header className="header">
-  <img src={toucanLogo}></img>
-   <p>Toucan Social Network</p>
-</header>
-<nav className="nav">
-    <a>Profile</a>
-    <a>Messages</a>
-    <a>News</a>
-    <a>Settings</a>
-</nav>
-<main className="content">
-MAIN CONTENT
-</main>
-</div>
+      <Header />
+      <Navbar />
+      <Profile />
+    </div>
   );
 }
 
