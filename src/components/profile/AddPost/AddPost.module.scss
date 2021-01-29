@@ -1,0 +1,29 @@
+.postForm {
+  h3 {
+    text-align: center;
+  }
+
+  textarea {
+    display: block;
+    width: 70em;
+    height: 9em;
+    margin: auto;
+    resize: none;
+    outline: none;
+    border-radius: 0.4em;
+    border: 1px solid rgb(9, 76, 121);
+    padding: 1em;
+  }
+
+  button {
+    display: block;
+    height: 3em;
+    width: 6em;
+    margin: 1em auto 4em;
+    background-color: rgb(4, 33, 53);
+    color: white;
+    font-weight: 100;
+    letter-spacing: 1px;
+    border-radius: 0.4em;
+  }
+}
