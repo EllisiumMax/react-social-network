@@ -1,9 +1,10 @@
 $nav-background: rgb(4, 33, 53);
-$nav-text-color: white;
+$nav-text-color: rgb(201, 200, 200);
 $nav-text-border: 1px solid white;
 $nav-text-hover: rgb(0, 140, 255);
 $nav-text-border-hover: rgb(85, 116, 255);
-
+$nav-text-border-active: rgb(4, 230, 247);
+$nav-text-color-active: rgb(3, 208, 223);
 
 .nav {
     grid-area: nav;
@@ -24,11 +25,21 @@ $nav-text-border-hover: rgb(85, 116, 255);
       padding-bottom: 0.3em;
       width: 6em;
       cursor: pointer;
+      text-decoration: none;
+      color: $nav-text-color;
+      transition: all 150ms ease-in;
+      user-select: none;
     }
   
     a:hover {
       color: $nav-text-hover;
       border-color: $nav-text-border-hover;
+    }
+    .active {
+      transform: scale(1.6);
+      margin-left: 3em;
+      color: $nav-text-color-active;
+      border-color: $nav-text-border-active;
     }
   }
   
