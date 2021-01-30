@@ -1,4 +1,4 @@
-import c from './navbar.module.scss';
+import c from './Navbar.module.scss';
 
 function Navbar() {
   return (

@@ -1,4 +1,4 @@
-import c from './profileInfo.module.scss';
+import c from './ProfileInfo.module.scss';
 
 function ProfileInfo(props) {
     return (

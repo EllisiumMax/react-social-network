@@ -1,4 +1,4 @@
-import c from './header.module.scss';
+import c from './Header.module.scss';
 import toucanLogo from "../../images/toucan.svg";
 
 

@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
+$content-background: rgb(240, 239, 235);
+$content-text-color: rgb(0, 0, 0);
+
+
+
 :root {
   font-size: calc(0.4em + 0.5vw);
 }
@@ -15,4 +20,12 @@ body {
     "nav content";
   grid-template-columns: 13% 87%;
   justify-content: center;
+}
+
+.app-wrapper-content {
+  grid-area: content;
+  background-color: $content-background;
+  color: $content-text-color;
+  font-size: 1em;
+  padding: 0 2em;
 }

@@ -1,5 +1,5 @@
 import c from "./MyPosts.module.scss";
-import Post from "./post/post";
+import Post from "./Post/Post";
 
 function MyPosts() {
   return (

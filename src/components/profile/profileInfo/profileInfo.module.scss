@@ -16,6 +16,7 @@ $block-height: 25em;
     display: flex;
     height: $block-height;
     align-items: center;
+    justify-content: center;
     margin-bottom: 3em;
 }
 
@@ -25,7 +26,6 @@ $block-height: 25em;
     height: 18em;
     object-fit: cover;
     border-radius: 10em;
-    margin-left: 3em;
     box-shadow: 0 0 5px 0 black;
 }
 

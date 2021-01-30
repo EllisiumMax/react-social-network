@@ -1,5 +1,5 @@
-import Profile from "../../profile";
-import c from "./post.module.scss";
+import Profile from "../../Profile";
+import c from "./Post.module.scss";
 
 function Post(props) {
   return (
