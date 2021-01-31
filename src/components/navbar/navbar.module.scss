@@ -13,7 +13,6 @@ $nav-text-color-active: rgb(3, 208, 223);
     font-size: 1.1em;
     display: flex;
     flex-direction: column;
-  
     a:first-child {
       margin-top: 1.4em;
     }
@@ -37,7 +36,7 @@ $nav-text-color-active: rgb(3, 208, 223);
     }
     .active {
       transform: scale(1.6);
-      margin-left: 3em;
+      margin-left: 3.3em;
       color: $nav-text-color-active;
       border-color: $nav-text-border-active;
     }

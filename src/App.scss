@@ -11,13 +11,19 @@ $content-text-color: rgb(0, 0, 0);
 
 body {
   font-family: "Quicksand", sans-serif;
+
 }
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+ 
 
 .app-wrapper {
   display: grid;
   grid:
     "header header" 3.5em
-    "nav content";
+    "nav content" calc(100vh - 3.5em);
   grid-template-columns: 13% 87%;
   justify-content: center;
 }
@@ -27,5 +33,5 @@ body {
   background-color: $content-background;
   color: $content-text-color;
   font-size: 1em;
-  padding: 0 2em;
+  padding: 0;
 }
