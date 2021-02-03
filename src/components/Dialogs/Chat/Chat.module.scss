@@ -10,5 +10,8 @@
   height: calc(100vh - 4em - 4em);
   overflow-y: scroll !important;
   overflow-x: hidden;
+    div:last-child {
+      margin-bottom: 8em;
+    }
 }
 

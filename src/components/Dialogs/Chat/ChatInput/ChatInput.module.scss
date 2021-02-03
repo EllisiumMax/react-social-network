@@ -1,29 +1,32 @@
 .inputWindow {
-    display: flex;
-    width: 100%;
-    padding: 0.3em 0;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    margin: auto;
-    border-top: 1px solid black;
-    height: 4em;
-    input {
-        width: 80%;
-        height: 3em;
-        border: 1px solid black;
-        padding: 0 1em;
-        outline: none;
-    }
+  display: flex;
+  width: 100%;
+  padding: 0.3em 0;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+  border-top: 1px solid rgb(182, 179, 179);
+  height: 4em;
 
-    button {
-        width: 5em;
-        height: 3.23em;
-        margin-left: 0.5em;
-        border-radius: 5px;
-        background-color: rgb(4, 33, 53);
-        color: white;
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
+  input {
+    width: 80%;
+    height: 3em;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 0 1em;
+    outline: none;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+
+  button {
+    width: 5em;
+    height: 3.23em;
+    margin-left: 0.5em;
+    border-radius: 5px;
+    background-color: rgb(4, 33, 53);
+    color: white;
+    letter-spacing: 1px;
+  }
 }

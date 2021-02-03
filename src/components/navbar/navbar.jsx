@@ -1,15 +1,20 @@
 import { NavLink } from 'react-router-dom';
+import Friends from './Friends/Friends';
 import c from './Navbar.module.scss';
 
-function Navbar() {
+function Navbar(props) {
   return (
+    <div className={c.container}>
     <nav className={c.nav}>
-      <NavLink to='/profile' activeClassName={c.active}>Profile</NavLink>
-      <NavLink to='/dialogs' activeClassName={c.active}>Messages</NavLink>
-      <NavLink to='/news' activeClassName={c.active}>News</NavLink>
-      <NavLink to='/music' activeClassName={c.active}>Music</NavLink>
-      <NavLink to='/settings' activeClassName={c.active}>Settings</NavLink>
+      <NavLink to='/toucan/profile' activeClassName={c.active}>Profile</NavLink>
+      <NavLink to='/toucan/dialogs' activeClassName={c.active}>Messages</NavLink>
+      <NavLink to='/toucan/news' activeClassName={c.active}>News</NavLink>
+      <NavLink to='/toucan/music' activeClassName={c.active}>Music</NavLink>
+      <NavLink to='/toucan/settings' activeClassName={c.active}>Settings</NavLink>
     </nav>
+    <Friends state={props.state} />
+    </div>
+
   );
 }
 

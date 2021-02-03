@@ -6,10 +6,15 @@ $nav-text-border-hover: rgb(85, 116, 255);
 $nav-text-border-active: rgb(4, 230, 247);
 $nav-text-color-active: rgb(3, 208, 223);
 
+.container {
+  height: calc(100vh - 3.5em);
+}
+
 .nav {
     grid-area: nav;
     background-color: $nav-background;
     color: $nav-text-color;
+    height: 40%;
     font-size: 1.1em;
     display: flex;
     flex-direction: column;

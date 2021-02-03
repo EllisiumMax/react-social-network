@@ -3,19 +3,20 @@ import MyPosts from "./MyPosts/MyPosts";
 import c from "./Profile.module.scss";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-function Profile() {
+function Profile(props) {
+
   return (
-    <main className='app-wrapper-content'>
+    <main className="app-wrapper-content">
       <ProfileInfo
-        backgroundImg="https://wallpapercave.com/wp/wp3973340.jpg"
-        userPhoto="https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416__340.jpg"
-        userName="Khaiuk Maksym"
-        userAge="31"
-        livingAt="Odessa, Ukraine"
-        workingAt="NoWhere Inc."
+        backgroundImg={props.state.profileInfo.backgroundImg}
+        userPhoto={props.state.profileInfo.userPhoto}
+        userName={props.state.profileInfo.userName}
+        userAge={props.state.profileInfo.userAge}
+        livingAt={props.state.profileInfo.livingAt}
+        workingAt={props.state.profileInfo.workingAt}
       />
       <AddPost />
-      <MyPosts />
+      <MyPosts posts={props.state.posts} />
     </main>
   );
 }

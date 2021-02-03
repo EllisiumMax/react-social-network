@@ -1,59 +1,58 @@
-$block-height: 25em;
-
-
-.background {
-    position: absolute;
-    width: 100em;
-    height: $block-height;
-    opacity: 0.91;
-    object-fit: cover;
-    border-bottom: 1em solid rgb(4, 33, 53);
-    margin: auto;
-    
-}
+$block-height: 20em;
 
 .mainWrapper {
-    display: flex;
-    height: $block-height;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 3em;
+  display: flex;
+  height: $block-height;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3em;
+}
+
+.background {
+  width: 100%;
+  height: $block-height;
+  opacity: 0.91;
+  object-fit: cover;
+  border-bottom: 1em solid rgb(4, 33, 53);
 }
 
 .userPhoto {
-    z-index: 1;
-    width: 18em;
-    height: 18em;
-    object-fit: cover;
-    border-radius: 10em;
-    box-shadow: 0 0 5px 0 black;
+  position: relative;
+  top: -$block-height - 1.5em;
+  z-index: 1;
+  width: 15em;
+  height: 15em;
+  object-fit: cover;
+  border-radius: 10em;
+  box-shadow: 0 0 5px 0 black;
 }
 
 .infoWrapper {
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-    margin-left: 2.5em;
-    box-shadow: 0 0 5px 0 black;
-    h2 {
-        text-align: center;
-        margin: 0;
-        padding-top: 0.3em;
-        padding-bottom: 0.3em;
-    }
-    h2::after{
-        content: "";
-        display: block;
-        margin-top: 0.3em;
-        border-bottom: 1px solid white;
-    }
+  position: relative;
+  top: -$block-height - 1.5em;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  margin-left: 2.5em;
+  box-shadow: 0 0 5px 0 black;
+  h2 {
+    text-align: center;
+    margin: 0;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+  }
+  h2::after {
+    content: "";
+    display: block;
+    margin-top: 0.3em;
+    border-bottom: 1px solid white;
+  }
 }
 
 .infoWrapper * {
-    background-color:rgba(4, 33, 53, 0.726);
-    color: white;
-    padding: 0.7em 1.5em;
-    margin: 0;
-    font-weight: 400;
+  background-color: rgba(4, 33, 53, 0.726);
+  color: white;
+  padding: 0.7em 1.5em;
+  margin: 0;
+  font-weight: 400;
 }
-

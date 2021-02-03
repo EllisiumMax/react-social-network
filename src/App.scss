@@ -2,7 +2,7 @@
 
 $content-background: rgb(240, 239, 235);
 $content-text-color: rgb(0, 0, 0);
-
+$font-family: "Quicksand", sans-serif;
 
 
 :root {
@@ -10,20 +10,29 @@ $content-text-color: rgb(0, 0, 0);
 }
 
 body {
-  font-family: "Quicksand", sans-serif;
-
+  font-family: $font-family;
 }
 
-body::-webkit-scrollbar {
-  width: 0;
-}
  
+button {
+  font-family: $font-family;
+  font-weight: 700;
+}
+
+input {
+  font-family: $font-family;
+}
+
+textarea {
+  font-family: $font-family;
+}
 
 .app-wrapper {
   display: grid;
   grid:
     "header header" 3.5em
-    "nav content" calc(100vh - 3.5em);
+    "nav content" 
+    "friends content";
   grid-template-columns: 13% 87%;
   justify-content: center;
 }
@@ -34,4 +43,27 @@ body::-webkit-scrollbar {
   color: $content-text-color;
   font-size: 1em;
   padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: calc(100vh - 3.5em);
+}
+
+
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(57, 118, 209);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(13, 83, 129);   
+  border-radius: 2px;      
+  border: 1px solid rgb(255, 255, 255);  
 }
