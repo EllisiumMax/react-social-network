@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.scss";
 import Diaglos from "./components/Dialogs/Dialogs";
@@ -17,7 +18,7 @@ function App(props) {
         <div className="app-wrapper-content">
           <Route
             path="/toucan/profile"
-            render={() => <Profile state={props.state.profilePage} />}
+            render={() => <Profile state={props.state.profilePage} dispatch={props.dispatch}/>}
           />
           <Route
             path="/toucan/dialogs"

@@ -1,3 +1,4 @@
+import React from "react";
 import AddPost from "./AddPost/AddPost";
 import MyPosts from "./MyPosts/MyPosts";
 import c from "./Profile.module.scss";
@@ -15,7 +16,7 @@ function Profile(props) {
         livingAt={props.state.profileInfo.livingAt}
         workingAt={props.state.profileInfo.workingAt}
       />
-      <AddPost />
+      <AddPost tempText={props.state.tempText} dispatch={props.dispatch}/>
       <MyPosts posts={props.state.posts} />
     </main>
   );
