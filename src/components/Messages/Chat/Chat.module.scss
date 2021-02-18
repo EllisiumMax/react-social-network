@@ -1,0 +1,42 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 88vh;
+  width: 100%;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+  div:last-child {
+    margin-bottom: 9em;
+  }
+}
+
+.inputWindow {
+  display: flex;
+  width: 100%;
+  padding: 0.3em 0;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+  border-top: 1px solid rgb(182, 179, 179);
+  input {
+    width: 80%;
+    height: 3em;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 0 1em;
+    outline: none;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+
+  button {
+    width: 5em;
+    height: 3.23em;
+    margin-left: 0.5em;
+    border-radius: 5px;
+    background-color: rgb(4, 33, 53);
+    color: white;
+    letter-spacing: 1px;
+  }
+}

@@ -1,9 +1,9 @@
+import React from "react";
 import Friend from "./Friend/Friend";
 import c from "./Friends.module.scss";
 
 function Friends(props) {
-
-  const friends = props.state.map((friend) => (
+  const friends = props.state.friends.map((friend) => (
     <Friend
       id={friend.id}
       imgLink={friend.imgLink}
