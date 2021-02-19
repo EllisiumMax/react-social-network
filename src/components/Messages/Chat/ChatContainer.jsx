@@ -3,12 +3,12 @@ import {
   updateDialogsTempTextCreator,
   sendMessageCreator,
 } from "redux/messagesReducer";
-import ChatInput from "./Chat";
+import Chat from "./Chat";
 
 const ChatInputContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ChatInput);
+)(Chat);
 
 function mapStateToProps(state) {
   return {

@@ -51,7 +51,7 @@ function profileReducer(state = initialState, action) {
       newState.profileInfo = {...state.profileInfo};
       newState.posts = [...state.posts];
       if(newState.tempText) {
-        let dateNow = new Date();
+        let dateNow = new Date(); 
         let newPost = {
           imgLink:
             "https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416__340.jpg",

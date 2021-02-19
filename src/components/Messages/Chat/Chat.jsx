@@ -3,7 +3,7 @@ import React from "react";
 import AnotherUserMessage from "./AnotherUserMessage/AnotherUserMessage";
 import SelfMessage from "./SelfMessage/SelfMessage";
 
-function ChatInput(props) {
+function Chat(props) {
   const messages = props.messagesPage.messages.map((message) =>
     message.userName ? (
       <AnotherUserMessage
@@ -50,4 +50,4 @@ function ChatInput(props) {
   );
 }
 
-export default ChatInput;
+export default Chat;

@@ -1,0 +1,92 @@
+.wrapper {
+  display: grid;
+  grid-template:
+    "avatar nameAge" 40%
+    "avatar location" 20%
+    "avatar status" 40%;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  grid-template-columns: 40% 60%;
+  color: black;
+  box-shadow: 0 0 3px 0 rgb(3, 41, 59);
+  border-radius: 8px;
+  width: 32em;
+  margin: 1.3em auto;
+  p {
+    padding: 0 0.5em;
+    text-align: center;
+  }
+}
+
+.avatar {
+  grid-area: avatar;
+  width: 100%;
+  height: 100%;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-right: 9px solid rgb(2, 59, 97);
+}
+
+.subcribe {
+  position: relative;
+  top: -2.7em;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid rgb(74, 163, 163);
+  box-shadow: 0 0 5px white;
+  background-color: rgb(5, 80, 34);
+  color: white;
+  font-weight: 400;
+  font-size: 0.9em;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  outline: none;
+  padding: 0.3em 0.5em;
+}
+
+.unSubcribe {
+  position: relative;
+  top: -2.7em;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid rgb(74, 163, 163);
+  box-shadow: 0 0 5px white;
+  background-color: rgb(3, 53, 87);
+  color: white;
+  font-weight: 400;
+  font-size: 0.9em;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  outline: none;
+  padding: 0.3em 0.5em;
+}
+
+.nameAge {
+  grid-area: nameAge;
+}
+
+.name {
+  font-size: 1.4em;
+  font-weight: 700;
+  margin-bottom: 0.2em;
+}
+
+.age {
+  margin-top: 0;
+}
+
+.status {
+  grid-area: status;
+}
+
+.location {
+  grid-area: location;
+}

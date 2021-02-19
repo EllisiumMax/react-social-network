@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import Settings from "./components/Settings/Settings";
+import FindUsersContainer from "components/FindUsers/FindUsersContainer";
 
 function App(props) {
 
@@ -21,9 +22,10 @@ function App(props) {
             render={() => <Profile state={props.state.profilePage} />}
           />
           <Route
-            path="/toucan/dialogs"
+            path="/toucan/messages"
             render={() => <Messages state={props.state.messagesPage} />}
           />
+          <Route path="/toucan/find" render={() => <FindUsersContainer />} />
           <Route path="/toucan/news" render={() => <News />} />
           <Route path="/toucan/music" render={() => <Music />} />
           <Route path="/toucan/settings" render={() => <Settings />} />

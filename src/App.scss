@@ -7,10 +7,17 @@ $font-family: "Quicksand", sans-serif;
 
 :root {
   font-size: calc(0.4em + 0.5vw);
+  
 }
+
 
 body {
   font-family: $font-family;
+
+}
+
+img {
+  box-sizing: border-box;
 }
 
  
