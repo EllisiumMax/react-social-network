@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { getUsersAC, subscribeToUserAC, unSubcribeFromUserAC } from "redux/findUsers";
+import { getUsersAC, setCurrentPageAC, setTotalUsersAC, subscribeToUserAC, unSubcribeFromUserAC } from "redux/findUsers";
 import FindUsers from "./FindUsers";
 
 const FindUsersContainer = connect(
@@ -9,14 +9,17 @@ const FindUsersContainer = connect(
 
 function mapPropsToState(state) {
   return {
-    findUsersPage: state.findUsersPage,
+    users: state.findUsersPage.users,
+    currentPage: state.findUsersPage.currentPage,
+    totalCount: state.findUsersPage.totalCount,
+    usersPerPage: state.findUsersPage.usersPerPage
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUsers: () => {
-      dispatch(getUsersAC());
+    getUsers: (users) => {
+      dispatch(getUsersAC(users));
     },
     subscribe: (userID) => {
       dispatch(subscribeToUserAC(userID));
@@ -24,6 +27,12 @@ function mapDispatchToProps(dispatch) {
     unSubscribe: (userID) => {
       dispatch(unSubcribeFromUserAC(userID));
     },
+    setTotalUsers: (totalCount) => {
+      dispatch(setTotalUsersAC(totalCount));
+    },
+    setCurrentPage: (page) => {
+      dispatch(setCurrentPageAC(page));
+    }
   };
 }
 

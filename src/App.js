@@ -25,7 +25,7 @@ function App(props) {
             path="/toucan/messages"
             render={() => <Messages state={props.state.messagesPage} />}
           />
-          <Route path="/toucan/find" render={() => <FindUsersContainer />} />
+          <Route path="/toucan/users" render={() => <FindUsersContainer />} />
           <Route path="/toucan/news" render={() => <News />} />
           <Route path="/toucan/music" render={() => <Music />} />
           <Route path="/toucan/settings" render={() => <Settings />} />
