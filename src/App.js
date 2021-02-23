@@ -9,28 +9,29 @@ import News from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import Settings from "./components/Settings/Settings";
 import UsersContainer from "components/Users/UsersContainer";
+import Loader from "./images/loader.svg";
 
 function App(props) {
-
   return (
-      <div className="app-wrapper">
-        <Header />
-        <Navbar state={props.state.friendsSection} />
-        <div className="app-wrapper-content">
-          <Route
-            path="/toucan/profile"
-            render={() => <Profile state={props.state.profilePage} />}
-          />
-          <Route
-            path="/toucan/messages"
-            render={() => <Messages state={props.state.messagesPage} />}
-          />
-          <Route path="/toucan/users" render={() => <UsersContainer />} />
-          <Route path="/toucan/news" render={() => <News />} />
-          <Route path="/toucan/music" render={() => <Music />} />
-          <Route path="/toucan/settings" render={() => <Settings />} />
-        </div>
+    <div className="app-wrapper">
+      <img src={Loader} style={{ display: "none" }} /> {/* for preloading of Loader image into cache */}
+      <Header />
+      <Navbar state={props.state.friendsSection} />
+      <div className="app-wrapper-content">
+        <Route
+          path="/toucan/profile"
+          render={() => <Profile state={props.state.profilePage} />}
+        />
+        <Route
+          path="/toucan/messages"
+          render={() => <Messages state={props.state.messagesPage} />}
+        />
+        <Route path="/toucan/users" render={() => <UsersContainer />} />
+        <Route path="/toucan/news" render={() => <News />} />
+        <Route path="/toucan/music" render={() => <Music />} />
+        <Route path="/toucan/settings" render={() => <Settings />} />
       </div>
+    </div>
   );
 }
 

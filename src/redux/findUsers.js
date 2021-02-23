@@ -4,16 +4,16 @@ const initialState = {
   users: [],
   totalCount: 0,
   usersPerPage: 6,
-  currentPage: 1
+  currentPage: 1,
+  isFetching: true,
 };
 
 function findUsersReducer(state = initialState, action) {
   let newState = { ...state };
-
   switch (action.type) {
     case "GET-USERS":
-          newState.users = action.users;
-          return newState;
+      newState.users = action.users;
+      return newState;
     case "SUBSCRIBE":
       newState.users.forEach((user) => {
         if (user.id == action.userID) user.followed = true;
@@ -29,6 +29,9 @@ function findUsersReducer(state = initialState, action) {
       return newState;
     case "SET-CURRENT-PAGE":
       newState.currentPage = action.currentPage;
+      return newState;
+    case "REQUEST-IS-FETCHING":
+      newState.isFetching = action.isFetching;
       return newState;
     default:
       return state;
@@ -52,22 +55,29 @@ export function subscribeToUserAC(userID) {
 export function unSubcribeFromUserAC(userID) {
   return {
     type: "UN-SUBSCRIBE",
-    userID: userID
+    userID: userID,
   };
 }
 
 export function setTotalUsersAC(totalCount) {
   return {
     type: "SET-TOTAL-USERS",
-    totalCount: totalCount
-  }
+    totalCount: totalCount,
+  };
 }
 
 export function setCurrentPageAC(page) {
   return {
-    type: 'SET-CURRENT-PAGE',
-    currentPage: page
-  }
-};
+    type: "SET-CURRENT-PAGE",
+    currentPage: page,
+  };
+}
+
+export function requestIsFetchingAC(boolean) {
+  return {
+    type: "REQUEST-IS-FETCHING",
+    isFetching: boolean,
+  };
+}
 
 export default findUsersReducer;
