@@ -1,4 +1,3 @@
-import { act } from "@testing-library/react";
 
 const initialState = {
   users: [],
@@ -38,42 +37,42 @@ function findUsersReducer(state = initialState, action) {
   }
 }
 
-export function getUsersAC(users) {
+export function getUsers(users) {
   return {
     type: "GET-USERS",
     users: users,
   };
 }
 
-export function subscribeToUserAC(userID) {
+export function subscribe(userID) {
   return {
     type: "SUBSCRIBE",
     userID: userID,
   };
 }
 
-export function unSubcribeFromUserAC(userID) {
+export function unSubscribe(userID) {
   return {
     type: "UN-SUBSCRIBE",
     userID: userID,
   };
 }
 
-export function setTotalUsersAC(totalCount) {
+export function setTotalUsers(totalCount) {
   return {
     type: "SET-TOTAL-USERS",
     totalCount: totalCount,
   };
 }
 
-export function setCurrentPageAC(page) {
+export function setCurrentPage(page) {
   return {
     type: "SET-CURRENT-PAGE",
     currentPage: page,
   };
 }
 
-export function requestIsFetchingAC(boolean) {
+export function requestIsFetching(boolean) {
   return {
     type: "REQUEST-IS-FETCHING",
     isFetching: boolean,

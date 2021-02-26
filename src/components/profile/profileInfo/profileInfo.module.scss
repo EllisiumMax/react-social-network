@@ -1,58 +1,89 @@
-$block-height: 20em;
-
 .mainWrapper {
   display: flex;
-  height: $block-height;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 3em;
-}
-
-.background {
-  width: 100%;
-  height: $block-height;
-  opacity: 0.91;
-  object-fit: cover;
-  border-bottom: 1em solid rgb(4, 33, 53);
+  align-items: center;
 }
 
 .userPhoto {
-  position: relative;
-  top: -$block-height - 1.5em;
-  z-index: 1;
-  width: 15em;
-  height: 15em;
-  object-fit: cover;
-  border-radius: 10em;
-  box-shadow: 0 0 5px 0 black;
+  height: 21em;
+  margin-left: 0;
+  background-color: rgb(4, 33, 53);
+  padding-left: 0em;
 }
 
 .infoWrapper {
-  position: relative;
-  top: -$block-height - 1.5em;
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
-  margin-left: 2.5em;
-  box-shadow: 0 0 5px 0 black;
-  h2 {
-    text-align: center;
-    margin: 0;
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
-  }
-  h2::after {
-    content: "";
-    display: block;
-    margin-top: 0.3em;
-    border-bottom: 1px solid white;
-  }
+  display: grid;
+  grid-template:
+    "name" 30%
+    "job" 10%
+    "contacts" 60%;
+  grid-template-columns: 100%;
+  height: 21em;
+  background-color: rgb(4, 33, 53);
+  width: 100%;
+  margin-left: 0;
 }
 
 .infoWrapper * {
-  background-color: rgba(4, 33, 53, 0.726);
   color: white;
   padding: 0.7em 1.5em;
   margin: 0;
   font-weight: 400;
+}
+
+.userName {
+  grid-area: name;
+  text-align: center;
+  h1 {
+    margin-top: 0;
+    padding: 0;
+  }
+  h3 {
+    padding: 0 0 0.5em 0;
+    margin: 0.4em;
+    font-style: italic;
+
+    border-bottom: 1px solid white;
+  }
+}
+
+.job {
+  grid-area: job;
+  padding: 0;
+}
+
+.contactsList {
+  grid-area: contacts;
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 2;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.contactsHeader {
+  font-size: 1.2em;
+}
+
+.contactCell {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+  padding: 0;
+  margin-right: 2em;
+  img {
+    width: 2.5em;
+    border-radius: 5em;
+    &:hover {
+      box-shadow: 0 0 7px 0 rgb(4, 122, 168),
+       inset 0 0 7px 0  rgb(111, 155, 255);
+    }
+    padding: 0.3em;
+  }
+  h4 {
+    font-size: 0.9em;
+    font-weight: 100;
+    padding: 0;
+  }
 }

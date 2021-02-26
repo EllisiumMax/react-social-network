@@ -3,12 +3,12 @@ import Loader from "components/COMMON/Loader/Loader";
 import React from "react";
 import { connect } from "react-redux";
 import {
-  getUsersAC,
-  requestIsFetchingAC,
-  setCurrentPageAC,
-  setTotalUsersAC,
-  subscribeToUserAC,
-  unSubcribeFromUserAC,
+  getUsers,
+  requestIsFetching,
+  setCurrentPage,
+  setTotalUsers,
+  subscribe,
+  unSubscribe,
 } from "redux/findUsers";
 import Users from "./Users";
 
@@ -83,7 +83,7 @@ class UsersAPIreq extends React.Component {
       <>
         {this.props.isFetching ? <Loader /> : null}
         <Users
-          data={this.props}
+          {...this.props}
           loadPage={this.loadPage}
           loadNextPage={this.loadNextPage}
           loadPrevPage={this.loadPrevPage}
@@ -103,27 +103,11 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getUsers: (users) => {
-      dispatch(getUsersAC(users));
-    },
-    subscribe: (userID) => {
-      dispatch(subscribeToUserAC(userID));
-    },
-    unSubscribe: (userID) => {
-      dispatch(unSubcribeFromUserAC(userID));
-    },
-    setTotalUsers: (totalCount) => {
-      dispatch(setTotalUsersAC(totalCount));
-    },
-    setCurrentPage: (page) => {
-      dispatch(setCurrentPageAC(page));
-    },
-    requestIsFetching: (boolean) => {
-      dispatch(requestIsFetchingAC(boolean));
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIreq);
+export default connect(mapStateToProps, {
+  getUsers,
+  subscribe,
+  unSubscribe,
+  setTotalUsers,
+  setCurrentPage,
+  requestIsFetching,
+})(UsersAPIreq);

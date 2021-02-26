@@ -6,10 +6,10 @@ import Header from "./components/Header/Header";
 import Music from "./components/Music/Music";
 import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
-import Profile from "./components/Profile/Profile";
 import Settings from "./components/Settings/Settings";
 import UsersContainer from "components/Users/UsersContainer";
 import Loader from "./images/loader.svg";
+import ProfileContainer from "components/Profile/ProfileContainer";
 
 function App(props) {
   return (
@@ -19,8 +19,8 @@ function App(props) {
       <Navbar state={props.state.friendsSection} />
       <div className="app-wrapper-content">
         <Route
-          path="/toucan/profile"
-          render={() => <Profile state={props.state.profilePage} />}
+          path="/toucan/profile/:userId?"
+          render={() => <ProfileContainer />}
         />
         <Route
           path="/toucan/messages"

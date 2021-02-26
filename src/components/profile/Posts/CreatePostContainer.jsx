@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { updateTextCreator, addPostCreator } from "redux/profileReducer";
+import { updateText, addPost } from "redux/profileReducer";
 import CreatePost from "./CreatePost";
 
 const CreatePostContainer = connect(
@@ -15,8 +15,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    savePost: () => dispatch(addPostCreator()),
-    readSendText: (text) => dispatch(updateTextCreator(text)),
+    savePost: () => dispatch(addPost()),
+    readSendText: (text) => dispatch(updateText(text)),
   };
 }
 

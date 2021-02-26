@@ -3,13 +3,25 @@ const GET_POST_MESSAGE = "GET-POST-MESSAGE";
 
 const initialState = {
   profileInfo: {
-    backgroundImg: "https://wallpapercave.com/wp/wp3973340.jpg",
-    userPhoto:
-      "https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416__340.jpg",
-    userName: "Khaiuk Maksym",
-    userAge: "31",
-    livingAt: "Odessa, Ukraine",
-    workingAt: "NoWhere Inc.",
+    "aboutMe": "я круто чувак 1001%",
+    "contacts": {
+      "facebook": "facebook.com",
+      "website": null,
+      "vk": "vk.com/dimych",
+      "twitter": "https://twitter.com/@sdf",
+      "instagram": "instagra.com/sds",
+      "youtube": null,
+      "github": "github.com",
+      "mainLink": null
+    },
+    "lookingForAJob": true,
+    "lookingForAJobDescription": "не ищу, а дурачусь",
+    "fullName": "samurai dimych",
+    "userId": 2,
+    "photos": {
+      "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
+      "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
+    }
   },
   tempText: "",
   posts: [
@@ -45,11 +57,12 @@ const initialState = {
 };
 
 function profileReducer(state = initialState, action) {
+  let newState = {...state};
+  newState.profileInfo = {...state.profileInfo};
+  newState.posts = [...state.posts];
+
   switch (action.type) {
     case "ADD-POST": {
-      let newState = {...state};
-      newState.profileInfo = {...state.profileInfo};
-      newState.posts = [...state.posts];
       if(newState.tempText) {
         let dateNow = new Date(); 
         let newPost = {
@@ -66,8 +79,11 @@ function profileReducer(state = initialState, action) {
       
     }
     case "GET-POST-MESSAGE": {
-      let newState = {...state };
       newState.tempText = action.text;
+      return newState;
+    }
+    case "SET-PROFILE-INFO": {
+      newState.profileInfo = action.profileInfo;
       return newState;
     }
     default:
@@ -75,17 +91,24 @@ function profileReducer(state = initialState, action) {
   }
 }
 
-export function addPostCreator() {
+export function addPost() {
   return {
     type: ADD_POST,
   };
 }
 
-export function updateTextCreator(inputText) {
+export function updateText(inputText) {
   return {
     type: GET_POST_MESSAGE,
     text: inputText,
   };
+}
+
+export function setProfileInfo(profileInfo) {
+  return {
+    type: "SET-PROFILE-INFO",
+    profileInfo: profileInfo
+  }
 }
 
 export default profileReducer;

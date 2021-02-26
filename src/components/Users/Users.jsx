@@ -1,11 +1,12 @@
 import React from "react";
 import scss from "./Users.module.scss";
 import unkownUser from "../../images/unknown-user.svg";
+import { NavLink } from "react-router-dom";
 
 function Users(props) {
   const pages = [];
   const numberOfPages = Math.ceil(
-    props.data.totalCount / props.data.usersPerPage
+    props.totalCount / props.usersPerPage
   );
   for (let i = 1; i <= numberOfPages; i++) {
     pages.push(i);
@@ -21,7 +22,7 @@ function Users(props) {
           {pages.map((p) => (
             <p
               className={
-                props.data.currentPage === p ? scss.activePage : scss.pageNumber
+                props.currentPage === p ? scss.activePage : scss.pageNumber
               }
               onClick={() => props.loadPage(p)}
             >
@@ -35,27 +36,22 @@ function Users(props) {
       </div>
 
       <div className={scss.usersArea}>
-        {props.data.users.map((user) => (
+        {props.users.map((user) => (
           <div className={scss.wrapper} key={user.id}>
             <div className={scss.avatar}>
-              {user.photos.large || user.photos.small ? (
-                <img
+               <NavLink to={`profile/${user.id}`}>
+                 <img
                   className={scss.photo}
-                  src={user.photos.large || user.photos.small}
+                  src={user.photos.small ? user.photos.small : unkownUser}
                   alt="user avatar"
                 />
-              ) : (
-                <img
-                  className={scss.photo}
-                  src={unkownUser}
-                  alt="user avatar"
-                />
-              )}
+                </NavLink>
+
               {user.followed ? (
                 <button
                   className={scss.unSubcribe}
                   onClick={() => {
-                    props.data.unSubscribe(user.id);
+                    props.unSubscribe(user.id);
                   }}
                 >
                   UNSUBSCRIBE
@@ -64,7 +60,7 @@ function Users(props) {
                 <button
                   className={scss.subcribe}
                   onClick={() => {
-                    props.data.subscribe(user.id);
+                    props.subscribe(user.id);
                   }}
                 >
                   SUBSCRIBE
