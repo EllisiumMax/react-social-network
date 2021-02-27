@@ -1,7 +1,7 @@
 import profileReducer from "./profileReducer";
 import messagesReducer from "./messagesReducer";
 import friendsReducer from "./friendsReducer";
-import findUsersReducer from "./findUsersReducer";
+import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 import { combineReducers, createStore } from "redux";
 
@@ -9,7 +9,7 @@ import { combineReducers, createStore } from "redux";
 const reducers = combineReducers({
   profilePage: profileReducer,
   messagesPage: messagesReducer,
-  findUsersPage: findUsersReducer,
+  usersPage: usersReducer,
   friendsSection: friendsReducer,
   auth: authReducer,
 });

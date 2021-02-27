@@ -1,3 +1,4 @@
+import DAL from "api/apiDAL";
 import axios from "axios";
 import Loader from "components/COMMON/Loader/Loader";
 import React from "react";
@@ -9,7 +10,7 @@ import {
   setTotalUsers,
   subscribe,
   unSubscribe,
-} from "redux/findUsersReducer";
+} from "redux/usersReducer";
 import Users from "./Users";
 
 class UsersAPIreq extends React.Component {
@@ -17,7 +18,10 @@ class UsersAPIreq extends React.Component {
     this.props.requestIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((result) => {
         this.props.requestIsFetching(false);
@@ -25,23 +29,17 @@ class UsersAPIreq extends React.Component {
         this.props.setTotalUsers(result.data.totalCount);
       });
   };
-
   loadPage = (page) => {
     if (page !== this.props.currentPage) {
       this.props.requestIsFetching(true);
-      axios
-        .get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPerPage}`
-        )
-        .then((result) => {
-          this.props.requestIsFetching(false);
-          this.props.getUsers(result.data.items);
-          this.props.setTotalUsers(result.data.totalCount);
-        });
+      DAL.users.loadPage(page, this.props.usersPerPage).then((result) => {
+        this.props.requestIsFetching(false);
+        this.props.getUsers(result.items);
+        this.props.setTotalUsers(result.totalCount);
+      });
       this.props.setCurrentPage(page);
     }
   };
-
   loadNextPage = () => {
     const numberOfPages = Math.ceil(
       this.props.totalCount / this.props.usersPerPage
@@ -49,14 +47,12 @@ class UsersAPIreq extends React.Component {
     const nextPage = this.props.currentPage + 1;
     if (nextPage <= numberOfPages) {
       this.props.requestIsFetching(true);
-      axios
-        .get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${nextPage}&count=${this.props.usersPerPage}`
-        )
+      DAL.users
+        .loadNextPage(nextPage, this.props.usersPerPage)
         .then((result) => {
           this.props.requestIsFetching(false);
-          this.props.getUsers(result.data.items);
-          this.props.setTotalUsers(result.data.totalCount);
+          this.props.getUsers(result.items);
+          this.props.setTotalUsers(result.totalCount);
           this.props.setCurrentPage(nextPage);
         });
     }
@@ -65,17 +61,25 @@ class UsersAPIreq extends React.Component {
     const prevPage = this.props.currentPage - 1;
     if (prevPage >= 1) {
       this.props.requestIsFetching(true);
-      axios
-        .get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${prevPage}&count=${this.props.usersPerPage}`
-        )
+      DAL.users
+        .loadPrevPage(prevPage, this.props.usersPerPage)
         .then((result) => {
-          this.props.getUsers(result.data.items);
-          this.props.setTotalUsers(result.data.totalCount);
+          this.props.getUsers(result.items);
+          this.props.setTotalUsers(result.totalCount);
           this.props.requestIsFetching(false);
           this.props.setCurrentPage(prevPage);
         });
     }
+  };
+  subscribeRequest = (id) => {
+    DAL.users.subscribeRequest(id).then((res) => {
+      if (res.resultCode === 0) this.props.subscribe(id);
+    });
+  };
+  uNsubscribeRequest = (id) => {
+    DAL.users.uNsubscribeRequest(id).then((res) => {
+      if (res.resultCode === 0) this.props.unSubscribe(id);
+    });
   };
 
   render() {
@@ -84,9 +88,12 @@ class UsersAPIreq extends React.Component {
         {this.props.isFetching ? <Loader /> : null}
         <Users
           {...this.props}
+          users={this.props.users}
           loadPage={this.loadPage}
           loadNextPage={this.loadNextPage}
           loadPrevPage={this.loadPrevPage}
+          subscribeRequest={this.subscribeRequest}
+          uNsubscribeRequest={this.uNsubscribeRequest}
         />
       </>
     );
@@ -95,11 +102,11 @@ class UsersAPIreq extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    users: state.findUsersPage.users,
-    currentPage: state.findUsersPage.currentPage,
-    totalCount: state.findUsersPage.totalCount,
-    usersPerPage: state.findUsersPage.usersPerPage,
-    isFetching: state.findUsersPage.isFetching,
+    users: state.usersPage.users,
+    currentPage: state.usersPage.currentPage,
+    totalCount: state.usersPage.totalCount,
+    usersPerPage: state.usersPage.usersPerPage,
+    isFetching: state.usersPage.isFetching,
   };
 }
 

@@ -3,11 +3,10 @@ import scss from "./Users.module.scss";
 import unkownUser from "../../images/unknown-user.svg";
 import { NavLink } from "react-router-dom";
 
+
 function Users(props) {
   const pages = [];
-  const numberOfPages = Math.ceil(
-    props.totalCount / props.usersPerPage
-  );
+  const numberOfPages = Math.ceil(props.totalCount / props.usersPerPage);
   for (let i = 1; i <= numberOfPages; i++) {
     pages.push(i);
   }
@@ -15,7 +14,10 @@ function Users(props) {
   return (
     <div>
       <div className={scss.controlsArea}>
-        <button className={scss.controlBtn} onClick={() => props.loadPrevPage()}>
+        <button
+          className={scss.controlBtn}
+          onClick={() => props.loadPrevPage()}
+        >
           PREV
         </button>
         <div className={scss.pages}>
@@ -30,7 +32,10 @@ function Users(props) {
             </p>
           ))}
         </div>
-        <button className={scss.controlBtn} onClick={() => props.loadNextPage()}>
+        <button
+          className={scss.controlBtn}
+          onClick={() => props.loadNextPage()}
+        >
           NEXT
         </button>
       </div>
@@ -39,19 +44,19 @@ function Users(props) {
         {props.users.map((user) => (
           <div className={scss.wrapper} key={user.id}>
             <div className={scss.avatar}>
-               <NavLink to={`profile/${user.id}`}>
-                 <img
+              <NavLink to={`profile/${user.id}`}>
+                <img
                   className={scss.photo}
                   src={user.photos.small ? user.photos.small : unkownUser}
                   alt="user avatar"
                 />
-                </NavLink>
+              </NavLink>
 
               {user.followed ? (
                 <button
                   className={scss.unSubcribe}
                   onClick={() => {
-                    props.unSubscribe(user.id);
+                    props.uNsubscribeRequest(user.id);
                   }}
                 >
                   UNSUBSCRIBE
@@ -60,7 +65,7 @@ function Users(props) {
                 <button
                   className={scss.subcribe}
                   onClick={() => {
-                    props.subscribe(user.id);
+                    props.subscribeRequest(user.id);
                   }}
                 >
                   SUBSCRIBE
@@ -81,6 +86,5 @@ function Users(props) {
     </div>
   );
 }
-
 
 export default Users;

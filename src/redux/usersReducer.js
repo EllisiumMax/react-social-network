@@ -8,7 +8,8 @@ const initialState = {
 };
 
 function findUsersReducer(state = initialState, action) {
-  let newState = { ...state };
+  let newState = { ...state};
+  newState.users = [...state.users];
   switch (action.type) {
     case "GET-USERS":
       newState.users = action.users;
