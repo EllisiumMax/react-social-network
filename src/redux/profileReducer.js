@@ -3,25 +3,25 @@ const GET_POST_MESSAGE = "GET-POST-MESSAGE";
 
 const initialState = {
   profileInfo: {
-    "aboutMe": "я круто чувак 1001%",
-    "contacts": {
-      "facebook": "facebook.com",
-      "website": null,
-      "vk": "vk.com/dimych",
-      "twitter": "https://twitter.com/@sdf",
-      "instagram": "instagra.com/sds",
-      "youtube": null,
-      "github": "github.com",
-      "mainLink": null
-    },
-    "lookingForAJob": true,
-    "lookingForAJobDescription": "не ищу, а дурачусь",
-    "fullName": "samurai dimych",
-    "userId": 2,
-    "photos": {
-      "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
-      "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
-    }
+    // "aboutMe": "",
+    // "contacts": {
+    //   "facebook": "",
+    //   "website": null,
+    //   "vk": "",
+    //   "twitter": "",
+    //   "instagram": "",
+    //   "youtube": "",
+    //   "github": "",
+    //   "mainLink": null
+    // },
+    // "lookingForAJob": true,
+    // "lookingForAJobDescription": "",
+    // "fullName": "",
+    // "userId": 1,
+    // "photos": {
+    //   "small": "",
+    //   "large": ""
+    // }
   },
   tempText: "",
   posts: [
@@ -54,6 +54,7 @@ const initialState = {
       likes: "23",
     },
   ],
+  isFetching: false
 };
 
 function profileReducer(state = initialState, action) {
@@ -86,6 +87,10 @@ function profileReducer(state = initialState, action) {
       newState.profileInfo = action.profileInfo;
       return newState;
     }
+    case "REQUEST-IS-FETCHING": {
+      newState.isFetching = action.fetching;
+      console.log('REQUEST IS ======>>>>>>>>>' + action.fetching);
+    }
     default:
       return state;
   }
@@ -108,6 +113,13 @@ export function setProfileInfo(profileInfo) {
   return {
     type: "SET-PROFILE-INFO",
     profileInfo: profileInfo
+  }
+}
+
+export function requestIsFetching(boolean) {
+  return {
+    type: "REQUEST-IS-FETCHING",
+    fetching: boolean
   }
 }
 

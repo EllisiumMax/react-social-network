@@ -9,7 +9,7 @@ import {
   setTotalUsers,
   subscribe,
   unSubscribe,
-} from "redux/findUsers";
+} from "redux/findUsersReducer";
 import Users from "./Users";
 
 class UsersAPIreq extends React.Component {

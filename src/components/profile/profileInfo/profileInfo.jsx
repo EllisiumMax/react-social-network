@@ -9,8 +9,13 @@ import yTubeLogo from "../../../images/youtube.svg";
 import gitLogo from "../../../images/github.svg";
 import mainLinkLogo from "../../../images/mainLink.svg";
 import unkownUser from "../../../images/unknown-user.svg";
+import Loader from "components/COMMON/Loader/Loader";
 
 function ProfileInfo(props) {
+  if(!props.userId) {
+   return <Loader />
+  }
+
   return (
     <div className={scss.mainWrapper}>
       <img
