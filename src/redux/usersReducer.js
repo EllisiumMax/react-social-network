@@ -1,15 +1,16 @@
-
 const initialState = {
   users: [],
   totalCount: 0,
   usersPerPage: 6,
   currentPage: 1,
   isFetching: true,
+  currentRequests: [],
 };
 
 function findUsersReducer(state = initialState, action) {
-  let newState = { ...state};
+  let newState = { ...state };
   newState.users = [...state.users];
+  newState.currentRequests = [...state.currentRequests];
   switch (action.type) {
     case "GET-USERS":
       newState.users = action.users;
@@ -32,6 +33,14 @@ function findUsersReducer(state = initialState, action) {
       return newState;
     case "REQUEST-IS-FETCHING":
       newState.isFetching = action.isFetching;
+      return newState;
+    case "ADD-FOLLOW-UNFOLLOW-REQUEST":
+      newState.currentRequests.push(action.id);
+      console.log(newState.currentRequests);
+      return newState;
+    case "REMOVE-FOLLOW-UNFOLLOW-REQUEST":
+      newState.currentRequests = newState.currentRequests.filter((id) => id !== action.id);
+      console.log(newState.currentRequests);
       return newState;
     default:
       return state;
@@ -77,6 +86,20 @@ export function requestIsFetching(boolean) {
   return {
     type: "REQUEST-IS-FETCHING",
     isFetching: boolean,
+  };
+}
+
+export function addFollowUnFollowRequest(id) {
+  return {
+    type: "ADD-FOLLOW-UNFOLLOW-REQUEST",
+    id,
+  };
+}
+
+export function removeFollowUnFollowRequest(id) {
+  return {
+    type: "REMOVE-FOLLOW-UNFOLLOW-REQUEST",
+    id,
   };
 }
 

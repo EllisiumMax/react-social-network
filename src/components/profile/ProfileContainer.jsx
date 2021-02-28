@@ -1,3 +1,4 @@
+import DAL from "api/apiDAL";
 import axios from "axios";
 import Loader from "components/COMMON/Loader/Loader";
 import React from "react";
@@ -16,10 +17,9 @@ class ProfileContainer extends React.Component {
     this.props.requestIsFetching(true);
     let userID = this.props.match.params.userId;
     if (!userID) userID = 15092;
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
+   DAL.profile.loadProfileInfo(userID)
       .then((result) => {
-        this.props.setProfileInfo(result.data);
+        this.props.setProfileInfo(result);
         this.props.requestIsFetching(false);
       });
   }

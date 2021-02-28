@@ -3,7 +3,6 @@ import scss from "./Users.module.scss";
 import unkownUser from "../../images/unknown-user.svg";
 import { NavLink } from "react-router-dom";
 
-
 function Users(props) {
   const pages = [];
   const numberOfPages = Math.ceil(props.totalCount / props.usersPerPage);
@@ -54,7 +53,8 @@ function Users(props) {
 
               {user.followed ? (
                 <button
-                  className={scss.unSubcribe}
+                disabled={props.currentRequests.some(id => id === user.id)}
+                  className={`${scss.btn} ${scss.unSubcribe}`}
                   onClick={() => {
                     props.uNsubscribeRequest(user.id);
                   }}
@@ -63,7 +63,8 @@ function Users(props) {
                 </button>
               ) : (
                 <button
-                  className={scss.subcribe}
+                  disabled={props.currentRequests.some(id => id === user.id)}
+                  className={`${scss.btn} ${scss.subcribe}`}
                   onClick={() => {
                     props.subscribeRequest(user.id);
                   }}

@@ -17,7 +17,6 @@
   justify-content: center;
   margin-bottom: 1.5em;
   user-select: none;
-
 }
 
 .pages {
@@ -87,14 +86,13 @@
   border-right: 3px solid rgb(2, 59, 97);
 }
 
-.subcribe {
+.btn {
   position: relative;
   top: -2.7em;
   left: 50%;
   transform: translateX(-50%);
-  border: 1px solid rgb(74, 163, 163);
+  border: 1px solid rgb(203, 214, 214);
   box-shadow: 0 0 5px white;
-  background-color: rgb(5, 80, 34);
   color: white;
   font-weight: 400;
   font-size: 0.9em;
@@ -103,24 +101,47 @@
   outline: none;
   padding: 0.3em 0.5em;
   cursor: pointer;
+  &:disabled {
+    animation: loading 2s infinite;
+    border: none;
+    background: rgb(108, 108, 108);
+    background: linear-gradient(
+      151deg,
+      rgba(108, 108, 108, 1) 0%,
+      rgba(204, 204, 204, 1) 100%
+    );
+    color: rgb(0, 0, 0);
+  }
+}
+
+@keyframes loading {
+  0% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0 0 12px 1px rgb(87, 87, 87);
+  }
+  100% {
+    box-shadow: none;
+  }
+}
+
+.subcribe {
+  background: rgb(168, 106, 53);
+  background: linear-gradient(
+    151deg,
+    rgba(168, 106, 53, 1) 31%,
+    rgba(195, 121, 29, 1) 59%
+  );
 }
 
 .unSubcribe {
-  position: relative;
-  top: -2.7em;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid rgb(74, 163, 163);
-  box-shadow: 0 0 5px white;
-  background-color: rgb(3, 53, 87);
-  color: white;
-  font-weight: 400;
-  font-size: 0.9em;
-  letter-spacing: 2px;
-  border-radius: 5px;
-  outline: none;
-  padding: 0.3em 0.5em;
-  cursor: pointer;
+  background: rgb(21, 63, 92);
+  background: linear-gradient(
+    151deg,
+    rgba(21, 63, 92, 1) 31%,
+    rgba(3, 58, 96, 1) 59%
+  );
 }
 
 .infoWrapper {

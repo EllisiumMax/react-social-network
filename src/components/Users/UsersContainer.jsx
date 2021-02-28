@@ -4,7 +4,9 @@ import Loader from "components/COMMON/Loader/Loader";
 import React from "react";
 import { connect } from "react-redux";
 import {
+  addFollowUnFollowRequest,
   getUsers,
+  removeFollowUnFollowRequest,
   requestIsFetching,
   setCurrentPage,
   setTotalUsers,
@@ -72,13 +74,17 @@ class UsersAPIreq extends React.Component {
     }
   };
   subscribeRequest = (id) => {
+    this.props.addFollowUnFollowRequest(id);
     DAL.users.subscribeRequest(id).then((res) => {
       if (res.resultCode === 0) this.props.subscribe(id);
+      this.props.removeFollowUnFollowRequest(id);
     });
   };
   uNsubscribeRequest = (id) => {
+    this.props.addFollowUnFollowRequest(id);
     DAL.users.uNsubscribeRequest(id).then((res) => {
       if (res.resultCode === 0) this.props.unSubscribe(id);
+      this.props.removeFollowUnFollowRequest(id);
     });
   };
 
@@ -107,6 +113,7 @@ function mapStateToProps(state) {
     totalCount: state.usersPage.totalCount,
     usersPerPage: state.usersPage.usersPerPage,
     isFetching: state.usersPage.isFetching,
+    currentRequests: state.usersPage.currentRequests,
   };
 }
 
@@ -117,4 +124,6 @@ export default connect(mapStateToProps, {
   setTotalUsers,
   setCurrentPage,
   requestIsFetching,
+  addFollowUnFollowRequest,
+  removeFollowUnFollowRequest,
 })(UsersAPIreq);

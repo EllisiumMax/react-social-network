@@ -40,7 +40,11 @@ const DAL = {
         .then((res) => res.data);
     },
   },
-  profile: {},
+  profile: {
+    loadProfileInfo(id) {
+      return axiosSamurai.get(`profile/${id}`).then(res => res.data);
+    }
+  },
 };
 
 export default DAL;
