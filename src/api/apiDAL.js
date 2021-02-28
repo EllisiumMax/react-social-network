@@ -14,6 +14,11 @@ const DAL = {
   security: {},
   auth: {},
   users: {
+    getUsers(currentPage, usersPerPage) {
+      return axiosSamurai
+      .get(
+        `users?page=${currentPage}&count=${usersPerPage}`).then(res => res.data);
+    },
     loadPage(page, usersPerPage) {
       return axiosSamurai
         .get(`users?page=${page}&count=${usersPerPage}`)

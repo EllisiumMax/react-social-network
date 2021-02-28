@@ -9,13 +9,18 @@ function Users(props) {
   for (let i = 1; i <= numberOfPages; i++) {
     pages.push(i);
   }
+  function loadTargetPage(p) {
+    if (props.currentPage !== p) props.loadPage(p);
+  }
 
   return (
     <div>
       <div className={scss.controlsArea}>
         <button
           className={scss.controlBtn}
-          onClick={() => props.loadPrevPage()}
+          onClick={() =>
+            props.loadPrevPage(props.currentPage, props.usersPerPage)
+          }
         >
           PREV
         </button>
@@ -25,7 +30,7 @@ function Users(props) {
               className={
                 props.currentPage === p ? scss.activePage : scss.pageNumber
               }
-              onClick={() => props.loadPage(p)}
+              onClick={() => loadTargetPage(p)}
             >
               {p}
             </p>
@@ -33,7 +38,13 @@ function Users(props) {
         </div>
         <button
           className={scss.controlBtn}
-          onClick={() => props.loadNextPage()}
+          onClick={() =>
+            props.loadNextPage(
+              props.totalCount,
+              props.usersPerPage,
+              props.currentPage
+            )
+          }
         >
           NEXT
         </button>
@@ -53,17 +64,17 @@ function Users(props) {
 
               {user.followed ? (
                 <button
-                disabled={props.currentRequests.some(id => id === user.id)}
+                  disabled={props.currentRequests.some((id) => id === user.id)}
                   className={`${scss.btn} ${scss.unSubcribe}`}
                   onClick={() => {
-                    props.uNsubscribeRequest(user.id);
+                    props.unSubscribeRequest(user.id);
                   }}
                 >
                   UNSUBSCRIBE
                 </button>
               ) : (
                 <button
-                  disabled={props.currentRequests.some(id => id === user.id)}
+                  disabled={props.currentRequests.some((id) => id === user.id)}
                   className={`${scss.btn} ${scss.subcribe}`}
                   onClick={() => {
                     props.subscribeRequest(user.id);
@@ -77,7 +88,7 @@ function Users(props) {
               <p className={scss.name}>{user.name}</p>
               <p className={scss.age}>Age: {user.age}</p>
               <p className={scss.location}>
-                From: {user.city}, {user.country}
+                From: {user.city} {user.country}
               </p>
               <p className={scss.status}>Status: {user.status}</p>
             </div>

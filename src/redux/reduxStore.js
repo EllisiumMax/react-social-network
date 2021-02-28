@@ -4,9 +4,11 @@ import friendsReducer from "./friendsReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 import { combineReducers, createStore } from "redux";
+import ReduxThunk from 'redux-thunk';
+import { applyMiddleware } from "redux";
 
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
   profilePage: profileReducer,
   messagesPage: messagesReducer,
   usersPage: usersReducer,
@@ -14,7 +16,7 @@ const reducers = combineReducers({
   auth: authReducer,
 });
 
-const store = createStore(reducers);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 window.store = store;
 
