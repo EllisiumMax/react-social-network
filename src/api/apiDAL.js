@@ -12,12 +12,16 @@ const DAL = {
   // DATA ACCESS LAYER
 
   security: {},
-  auth: {},
+  auth: {
+    loginRequest() {
+      return axiosSamurai.get("auth/me").then((res) => res.data);
+    },
+  },
   users: {
     getUsers(currentPage, usersPerPage) {
       return axiosSamurai
-      .get(
-        `users?page=${currentPage}&count=${usersPerPage}`).then(res => res.data);
+        .get(`users?page=${currentPage}&count=${usersPerPage}`)
+        .then((res) => res.data);
     },
     loadPage(page, usersPerPage) {
       return axiosSamurai
@@ -47,7 +51,13 @@ const DAL = {
   },
   profile: {
     loadProfileInfo(id) {
-      return axiosSamurai.get(`profile/${id}`).then(res => res.data);
+      return axiosSamurai.get(`profile/${id}`).then((res) => res.data);
+    },
+    getStatus(id) {
+      return axiosSamurai.get(`profile/status/${id}`).then(res => res.data);
+    },
+    setStatus(status) {
+      return axiosSamurai.put('profile/status', {status: status} ).then(res => res.data);
     }
   },
 };

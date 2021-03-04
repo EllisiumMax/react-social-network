@@ -1,6 +1,5 @@
 import profileReducer from "./profileReducer";
 import messagesReducer from "./messagesReducer";
-import friendsReducer from "./friendsReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 import { combineReducers, createStore } from "redux";
@@ -12,7 +11,6 @@ const rootReducer = combineReducers({
   profilePage: profileReducer,
   messagesPage: messagesReducer,
   usersPage: usersReducer,
-  friendsSection: friendsReducer,
   auth: authReducer,
 });
 

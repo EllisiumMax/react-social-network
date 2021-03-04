@@ -9,9 +9,6 @@ function Users(props) {
   for (let i = 1; i <= numberOfPages; i++) {
     pages.push(i);
   }
-  function loadTargetPage(p) {
-    if (props.currentPage !== p) props.loadPage(p);
-  }
 
   return (
     <div>
@@ -30,7 +27,9 @@ function Users(props) {
               className={
                 props.currentPage === p ? scss.activePage : scss.pageNumber
               }
-              onClick={() => loadTargetPage(p)}
+              onClick={() =>
+                props.loadPage(p, props.currentPage, props.usersPerPage)
+              }
             >
               {p}
             </p>

@@ -13,6 +13,7 @@ function CreatePost(props) {
 
   const userPosts = props.profilePage.posts.map((post) => (
     <Post
+      key={post.id}
       imgLink={post.imgLink}
       date={post.date}
       message={post.text}
@@ -26,7 +27,7 @@ function CreatePost(props) {
         <h3>Enter your message: </h3>
         <textarea
           name="post"
-          maxLength="500"
+          maxLength={500}
           placeholder="Maximum length 500 symbols."
           spellCheck="true"
           onChange={readSendText}

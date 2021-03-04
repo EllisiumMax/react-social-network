@@ -24,7 +24,7 @@ function Chat(props) {
 
   function onTextChange(e) {
     const text = e.target.value;
-    props.getText(text);
+    props.updateDialogsTempText(text);
   }
 
   function onSendMessage(e) {

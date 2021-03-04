@@ -37,8 +37,7 @@ textarea {
   display: grid;
   grid:
     "header header" 3.5em
-    "nav content" 
-    "friends content";
+    "nav content" calc(100vh - 3.5em); 
   grid-template-columns: 13% 87%;
 }
 

@@ -1,27 +1,22 @@
-import DAL from "api/apiDAL";
-import axios from "axios";
 import Loader from "components/COMMON/Loader/Loader";
+import withAuthRedirect from "hoc/withAuthRedirect";
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 import {
   addPost,
-  requestIsFetching,
-  setProfileInfo,
+  loadProfile,
+  setStatusRequest,
+  statusRequest,
   updateText,
 } from "redux/profileReducer";
 import Profile from "./Profile";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    this.props.requestIsFetching(true);
-    let userID = this.props.match.params.userId;
-    if (!userID) userID = 15092;
-   DAL.profile.loadProfileInfo(userID)
-      .then((result) => {
-        this.props.setProfileInfo(result);
-        this.props.requestIsFetching(false);
-      });
+    this.props.loadProfile(this.props.match.params.userId ?? this.props.id);
+    this.props.statusRequest(this.props.match.params.userId ?? this.props.id);
   }
   render() {
     return (
@@ -39,9 +34,14 @@ function mapStateToProps(state) {
   return { ...state.profilePage };
 }
 
-export default connect(mapStateToProps, {
-  addPost,
-  updateText,
-  setProfileInfo,
-  requestIsFetching,
-})(withRouter(ProfileContainer));
+export default compose(
+  connect(mapStateToProps, {
+    addPost,
+    updateText,
+    loadProfile,
+    statusRequest,
+    setStatusRequest,
+  }),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);

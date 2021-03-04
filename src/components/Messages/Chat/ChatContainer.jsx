@@ -1,14 +1,11 @@
 import { connect } from "react-redux";
+import { compose } from "redux";
 import {
-  updateDialogsTempTextCreator,
-  sendMessageCreator,
+  updateDialogsTempText,
+  sendMessage,
 } from "redux/messagesReducer";
 import Chat from "./Chat";
 
-const ChatInputContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Chat);
 
 function mapStateToProps(state) {
   return {
@@ -16,15 +13,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getText: (text) => {
-      dispatch(updateDialogsTempTextCreator(text));
-    },
-    sendMessage: () => {
-      dispatch(sendMessageCreator());
-    },
-  };
-}
-
-export default ChatInputContainer;
+export default compose(connect(mapStateToProps, {updateDialogsTempText, sendMessage}))(Chat);

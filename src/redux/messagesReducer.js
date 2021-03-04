@@ -93,14 +93,14 @@ function messagesReducer(state = initialState, action) {
   }
 }
 
-export function updateDialogsTempTextCreator(inputText) {
+export function updateDialogsTempText(inputText) {
   return {
     type: GET_MESSAGES_TEMP_TEXT,
     text: inputText,
   };
 }
 
-export function sendMessageCreator() {
+export function sendMessage() {
   return {
     type: SEND_MESSAGE,
   };

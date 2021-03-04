@@ -1,6 +1,7 @@
 import Loader from "components/COMMON/Loader/Loader";
 import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import {
   getUsers,
   loadPage,
@@ -36,11 +37,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
   getUsers,
   loadPage,
   loadNextPage,
   loadPrevPage,
   subscribeRequest,
   unSubscribeRequest,
-})(UsersAPIreq);
+}))(UsersAPIreq);

@@ -1,29 +1,15 @@
-import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import { loginRequest } from "redux/authReducer";
 import Login from "./Login";
 
 class LoginContainer extends React.Component {
-  loginRequest = () => {
-    axios
-      .get("https://social-network.samuraijs.com/api/1.0/auth/me", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.data.resultCode === 0) {
-          this.props.loginRequest(
-            res.data.data.login,
-            res.data.data.id,
-            res.data.data.email,
-            res.data.data.messages
-          );
-        }
-      });
-  };
+  componentDidMount() {
+    this.props.loginRequest();
+  }
 
   render() {
-    return <Login {...this.props} loginRequest={this.loginRequest} />;
+    return <Login {...this.props} />;
   }
 }
 

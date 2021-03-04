@@ -10,6 +10,7 @@ import gitLogo from "../../../images/github.svg";
 import mainLinkLogo from "../../../images/mainLink.svg";
 import unkownUser from "../../../images/unknown-user.svg";
 import Loader from "components/COMMON/Loader/Loader";
+import Status from "./Status/Status";
 
 function ProfileInfo(props) {
   if(!props.userId) {
@@ -27,7 +28,7 @@ function ProfileInfo(props) {
       <div className={scss.infoWrapper}>
         <div className={scss.userName}>
           <h1>{props.fullName}</h1>
-          <h3>{props.aboutMe}</h3>
+          <Status status={props.status} targetId={props.userId} setStatusRequest={props.setStatusRequest}/>
         </div>
 
         <div className={scss.contactsList}>
@@ -98,8 +99,9 @@ function ProfileInfo(props) {
         </div>
 
         <div className={scss.job}>
+          <h4>About me: {props.aboutMe}</h4>
           {props.lookingForAJob ? (
-            <h4>Looking for a job... {props.lookingForAJobDescription} </h4>
+            <h4>Looking for a job: {props.lookingForAJobDescription} </h4>
           ) : (
             <h4> Not looking for a job.</h4>
           )}

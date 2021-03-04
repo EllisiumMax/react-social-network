@@ -34,16 +34,11 @@
 .userName {
   grid-area: name;
   text-align: center;
+  display: flex;
+  flex-direction: column;
   h1 {
     margin-top: 0;
     padding: 0;
-  }
-  h3 {
-    padding: 0 0 0.5em 0;
-    margin: 0.4em;
-    font-style: italic;
-
-    border-bottom: 1px solid white;
   }
 }
 
