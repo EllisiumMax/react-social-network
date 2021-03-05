@@ -1,5 +1,30 @@
-.login {
-    color: black;
-    margin-left: auto;
-    margin-right: 2em;
+.loginName {
+  color: white;
+  margin-right: 1em;
+  margin: 0 1em 0.15em auto;
+  padding: 0;
+  font-weight: 300 !important;
+}
+
+.loginBtn {
+  box-shadow: inset 0px 0px 15px 3px #23395e;
+  background: linear-gradient(to bottom, #2e466e 5%, #415989 100%);
+  background-color: #2e466e;
+  border-radius: 0.5em;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 0.75em;
+  padding: 0 1.2em;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #263666;
+  outline: none;
+
+  &:hover {
+    background: linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+    background-color: #415989;
+  }
+  &:active {
+    padding: 0.1em 1em;
+  }
 }

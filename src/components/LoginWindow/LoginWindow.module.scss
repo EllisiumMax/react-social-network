@@ -1,23 +1,52 @@
 .window {
-    height: 100%;
-    width: 100%;
-    background-color: rgb(4,33,53);
-    border-left: 1px solid rgb(104, 104, 104);
+  height: 100%;
+  width: 100%;
+  background-color: rgb(4, 33, 53);
+  border-left: 1px solid rgb(3, 37, 82);
 }
 
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-content: flex-start;
-    width: 20em;
-    height: 20em;
-    border-radius: 7px;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    box-shadow: 0 0 5px  white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 2em;
+  width: 20em;
+  height: 20em;
+  border-radius: 7px;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-70%);
+  color: white;
+  box-shadow: 0 0 5px 2px rgb(116, 109, 109);
+  background-color: rgb(223, 226, 226);
+  h1 {
+    color: black;
+    align-self: center;
+    font-size: 2em;
+    font-weight: 300;
+    margin-bottom: auto;
+    margin-top: 0;
+    padding: 0;
+  }
+  div {
+    margin: 0.5em 0;
+  }
+  button {
+    align-self: center;
+    margin-top: 2em;
+    margin-bottom: auto;
+    padding: 0.2em 2em;
+  }
+  input:not([type="checkbox"]) {
+    text-align: center;
+    width: 14em;
+    height: 1.8em;
+  }
+}
+
+label {
+  color: black;
 }

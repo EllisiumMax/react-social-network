@@ -52,4 +52,26 @@ export function loginRequest() {
   };
 }
 
+export function login(loginData) {
+  return (dispatch) => {
+    DAL.auth.login(loginData).then((res) => {
+      console.log(res);
+      if(res.resultCode === 10) alert('wrong password');
+      if (res.resultCode === 0) {
+        loginRequest();
+        window.location.reload();
+      }
+    });
+  };
+}
+
+export function logout() {
+  return (dispatch) => {
+    DAL.auth.logout().then(res => {
+      console.log(res);
+      window.location.reload();
+    })
+  }
+}
+
 export default authReducer;

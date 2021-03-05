@@ -9,10 +9,25 @@ class Status extends React.Component {
     canEdit: false,
     tempText: this.props.status,
     editActive: false,
+    userID: this.props.targetId,
   };
 
   componentDidMount() {
     this.editMode();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        tempText: this.props.status,
+      });
+    }
+    if (prevProps.targetId !== this.props.targetId) {
+      this.setState({
+        userID: this.props.targetId,
+      });
+      this.editMode();
+    }
   }
 
   editMode() {
@@ -27,6 +42,12 @@ class Status extends React.Component {
 
   closeEdit() {
     this.setState({ editActive: false });
+  }
+  statusChangeOnEnter(e) {
+    if (e.keyCode === 13) {
+      this.props.setStatusRequest(this.props.status, this.state.tempText);
+      this.closeEdit();
+    }
   }
 
   render() {
@@ -47,20 +68,29 @@ class Status extends React.Component {
                 );
                 this.closeEdit();
               }}
+              onKeyDown={(e) => this.statusChangeOnEnter(e)}
             ></input>
           ) : (
             <div className={scss.wrapper}>
-              <h3 className={scss.statusText}>
+              <h3 className={`${scss.statusText} ${scss.editable}`}>
                 {this.props.status || "No status"}
               </h3>
-              <img className={scss.edit} src={editImg} onClick={() => this.setState({ editActive: true })} />
+              <img
+                className={scss.edit}
+                src={editImg}
+                onClick={() => this.setState({ editActive: true })}
+              />
             </div>
           )}
         </div>
       );
     if (!this.state.canEdit)
       return (
-        <h3 className={scss.statusText}>{this.props.status || "No status"}</h3>
+        <div className={scss.wrapper}>
+          <h3 className={scss.statusText}>
+            {this.props.status || "No status"}
+          </h3>
+        </div>
       );
   }
 }

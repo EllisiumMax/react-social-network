@@ -16,6 +16,12 @@ const DAL = {
     loginRequest() {
       return axiosSamurai.get("auth/me").then((res) => res.data);
     },
+    login(loginData) {
+      return axiosSamurai.post("auth/login", loginData).then((res) => res.data);
+    },
+    logout() {
+      return axiosSamurai.delete("/auth/login").then((res) => res.data);
+    },
   },
   users: {
     getUsers(currentPage, usersPerPage) {
@@ -54,11 +60,13 @@ const DAL = {
       return axiosSamurai.get(`profile/${id}`).then((res) => res.data);
     },
     getStatus(id) {
-      return axiosSamurai.get(`profile/status/${id}`).then(res => res.data);
+      return axiosSamurai.get(`profile/status/${id}`).then((res) => res.data);
     },
     setStatus(status) {
-      return axiosSamurai.put('profile/status', {status: status} ).then(res => res.data);
-    }
+      return axiosSamurai
+        .put("profile/status", { status: status })
+        .then((res) => res.data);
+    },
   },
 };
 
