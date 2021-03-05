@@ -1,14 +1,22 @@
 import { NavLink } from "react-router-dom";
-import c from "./User.module.scss";
+import scss from "./User.module.scss";
+import noAvatar from "../../../../images/unknown-user.svg";
+import newMessage from "../../../../images/newMessage.svg";
+import React from "react";
 
 function User(props) {
   const path = `/toucan/dialogs/${props.id}`;
   return (
-    <div className={c.wrapper}>
-      <NavLink to={path} activeClassName={c.active}>
-        <div className={c.container}>
-          <img className={c.avatar} src={props.avatarURL} alt="User avatar" />
+    <div className={scss.wrapper}>
+      <NavLink to={path} activeClassName={scss.active}>
+        <div className={scss.container}>
+          <img
+            className={scss.avatar}
+            src={props.photos.small || props.photos.large || noAvatar}
+            alt="User avatar"
+          />
           <p>{props.userName}</p>
+          {!props.hasNewMessages ? <img className={scss.newMessage} src={newMessage}/> : null }
         </div>
       </NavLink>
     </div>

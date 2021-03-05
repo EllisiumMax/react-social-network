@@ -1,11 +1,7 @@
 import { connect } from "react-redux";
 import { compose } from "redux";
-import {
-  updateDialogsTempText,
-  sendMessage,
-} from "redux/messagesReducer";
+import { sendMessage } from "redux/messagesReducer";
 import Chat from "./Chat";
-
 
 function mapStateToProps(state) {
   return {
@@ -13,4 +9,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default compose(connect(mapStateToProps, {updateDialogsTempText, sendMessage}))(Chat);
+export default compose(connect(mapStateToProps, { sendMessage }))(Chat);

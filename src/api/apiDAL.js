@@ -68,6 +68,54 @@ const DAL = {
         .then((res) => res.data);
     },
   },
+  messages: {
+    startChating(userId) {
+      return axiosSamurai.put(`dialogs/${userId}`).then((res) => res.data);
+    },
+    getAllDialogs() {
+      return axiosSamurai.get(`dialogs/`).then((res) => res.data);
+    },
+    getMessages(userId) {
+      return axiosSamurai
+        .get(`dialogs/${userId}/messages`)
+        .then((res) => res.data);
+    },
+    sendMessage(userId, messageString) {
+      return axiosSamurai
+        .post(`dialogs/${userId}/messages`, messageString)
+        .then((res) => res.data);
+    },
+    checkMessageViewed(messageId) {
+      return axiosSamurai
+        .get(`dialogs/messages/${messageId}/viewed`)
+        .then((res) => res.data);
+    },
+    markAsSpam(messageId) {
+      return axiosSamurai
+        .post(`dialogs/messages/${messageId}/spam`)
+        .then((res) => res.data);
+    },
+    deleteMessageForMe(messageId) {
+      return axiosSamurai
+        .delete(`dialogs/messages/${messageId}`)
+        .then((res) => res.data);
+    },
+    restoreMessage(messageId) {
+      return axiosSamurai
+        .put(`dialogs/messages/${messageId}/restore`)
+        .then((res) => res.data);
+    },
+    filterMessagesByDate(userId, dateString) {
+      return axiosSamurai
+        .get(`dialogs/${userId}/messages/new?newerThen=${dateString}`)
+        .then((res) => res.data);
+    },
+    listOfNewMessages() {
+      return axiosSamurai
+        .get("dialogs/messages/new/count")
+        .then((res) => res.data);
+    },
+  },
 };
 
 export default DAL;

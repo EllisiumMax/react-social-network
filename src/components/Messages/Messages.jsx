@@ -6,7 +6,7 @@ import UserList from "./UserList/UserList";
 function Messages(props) {
   return (
     <div className={scss.chatWrapper}>
-      <UserList userList={props.userList} />
+      <UserList {...props} />
       <ChatContainer />
     </div>
   );

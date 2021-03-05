@@ -4,7 +4,7 @@ import c from "./UserList.module.scss";
 
 function UserList(props) {
   const users = props.userList.map((user) => (
-    <User avatarURL={user.avatarURL} userName={user.userName} id={user.id} />
+    <User {...user}/>
   ));
 
   return <div className={c.users}>{users};</div>;

@@ -12,7 +12,6 @@ function LoginWindow(props) {
 const LoginForm = (props) => (
   <Form
     onSubmit={(obj) => {
-      console.log(obj);
       props.login(obj);
       <Redirect to={"/profile"} />;
     }}
@@ -21,29 +20,23 @@ const LoginForm = (props) => (
       <div className={scss.window}>
         <form onSubmit={handleSubmit} className={scss.container}>
           <h1>Login</h1>
+          <Field
+            name="email"
+            component="input"
+            type="email"
+            placeholder="Email"
+            autocomplete="off"
+          />
+          <Field
+            name="password"
+            component="input"
+            type="password"
+            placeholder="Password"
+          />
           <div>
-            <Field name="email">
-              {({ input }) => (
-                <input type="email" placeholder="Email" {...input} />
-              )}
-            </Field>
-          </div>
-
-          <div>
-            <Field name="password">
-              {({ input }) => (
-                <input type="password" placeholder="Password" {...input} />
-              )}
-            </Field>
-          </div>
-
-          <div>
-            <Field name="rememberMe" type="checkbox">
-              {({ input }) => <input type="checkbox" {...input} />}
-            </Field>
+            <Field name="rememberMe" component="input" type="checkbox" />
             <label> Remember me?</label>
           </div>
-
           <button type="submit" onClick={() => <Redirect to={"/profile"} />}>
             Submit
           </button>

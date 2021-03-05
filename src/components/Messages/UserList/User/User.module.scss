@@ -1,13 +1,10 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  margin-top: 2em;
-  margin-bottom: 4em;
-  margin-left: 2.5em;
+  margin-top: 1em;
+  margin-bottom: 3em;
+  margin-left: 3em;
   transition: all 200ms linear;
-  text-align: left;
-  max-width: 13em;
   user-select: none;
   a {
     font-weight: 500;
@@ -25,17 +22,19 @@
 .container {
   display: flex;
   align-items: center;
-  width: 16em;
+  justify-content: center;
   p {
-      margin-left: 1em;
-      width: 100%;
+    margin-left: 1em;
   }
 }
 
 .avatar {
-  width: 4em;
-  border-radius: 10em;
-  object-fit: cover;
+  width: 3.7em;
+  height: 3.7em;
+  padding: 0;
+  margin: 0;
+  border-radius: 1em;
+  object-fit: scale-down;
 }
 
 .active {
@@ -47,6 +46,12 @@
     border-bottom: 1px solid rgb(15, 114, 207);
   }
   img {
-    box-shadow: 0 0 6px 1px  rgb(15, 114, 207);
+    box-shadow: 0 0 6px 1px rgb(15, 114, 207);
   }
+}
+
+.newMessage {
+  margin-left: 1.5em;
+
+  width: 1.5em;
 }
