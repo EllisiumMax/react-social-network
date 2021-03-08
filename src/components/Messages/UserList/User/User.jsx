@@ -16,7 +16,12 @@ function User(props) {
             alt="User avatar"
           />
           <p>{props.userName}</p>
-          {!props.hasNewMessages ? <img className={scss.newMessage} src={newMessage}/> : null }
+          {props.hasNewMessages ? (
+            <div className={scss.newMessagesWrapper}>
+              <img className={scss.newMessage} src={newMessage} />
+              <p className={scss.newMessagesCount}>{props.newMessagesCount}</p>
+            </div>
+          ) : null}
         </div>
       </NavLink>
     </div>

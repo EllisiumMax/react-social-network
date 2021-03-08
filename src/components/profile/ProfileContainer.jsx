@@ -5,11 +5,9 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import {
-  addPost,
   loadProfile,
   setStatusRequest,
   statusRequest,
-  updateText,
 } from "redux/profileReducer";
 import Profile from "./Profile";
 
@@ -36,8 +34,6 @@ function mapStateToProps(state) {
 
 export default compose(
   connect(mapStateToProps, {
-    addPost,
-    updateText,
     loadProfile,
     statusRequest,
     setStatusRequest,

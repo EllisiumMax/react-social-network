@@ -1,16 +1,10 @@
 import c from "./CreatePost.module.scss";
 import React from "react";
 import Post from "./Post/Post";
+import { Field, Form } from "react-final-form";
+import moment from "moment";
 
 function CreatePost(props) {
-  function readSendText(e) {
-    let text = e.target.value;
-    props.readSendText(text);
-  }
-  function onPost(e) {
-    props.savePost();
-  }
-
   const userPosts = props.profilePage.posts.map((post) => (
     <Post
       key={post.id}
@@ -25,15 +19,27 @@ function CreatePost(props) {
     <div>
       <div className={c.postForm}>
         <h3>Enter your message: </h3>
-        <textarea
-          name="post"
-          maxLength={500}
-          placeholder="Maximum length 500 symbols."
-          spellCheck="true"
-          onChange={readSendText}
-          value={props.profilePage.tempText}
+        <Form
+          onSubmit={(obj) => {
+            if (obj.post && obj.post.length <= 500) {
+              const timeStamp = moment().format("MM.DD.YY, HH:mm:ss");
+              props.addPost(obj.post, timeStamp);
+            }
+          }}
+          validate={() => {}}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <Field
+                component="textarea"
+                name="post"
+                maxLength={500}
+                placeholder="Maximum length 500 symbols."
+                spellCheck="true"
+              />
+              <button>POST</button>
+            </form>
+          )}
         />
-        <button onClick={onPost}>POST</button>
       </div>
       <div>{userPosts}</div>;
     </div>

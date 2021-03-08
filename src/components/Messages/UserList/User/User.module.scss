@@ -1,11 +1,13 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  margin-top: 1em;
-  margin-bottom: 3em;
-  margin-left: 3em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  margin-left: 0;
   transition: all 200ms linear;
   user-select: none;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgb(197, 197, 197);
   a {
     font-weight: 500;
     font-size: 1em;
@@ -23,18 +25,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: 2em;
   p {
     margin-left: 1em;
   }
 }
 
 .avatar {
-  width: 3.7em;
-  height: 3.7em;
+  width: 3.5em;
+  height: 3.5em;
   padding: 0;
   margin: 0;
-  border-radius: 1em;
-  object-fit: scale-down;
+  border-radius: 0.2em;
+  object-fit: contain;
 }
 
 .active {
@@ -50,8 +53,19 @@
   }
 }
 
-.newMessage {
-  margin-left: 1.5em;
+.newMessagesWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 2em;
+  user-select: none;
+}
 
-  width: 1.5em;
+.newMessage {
+  width: 1.45em;
+}
+
+.newMessagesCount {
+  font-size: 0.8em;
 }
