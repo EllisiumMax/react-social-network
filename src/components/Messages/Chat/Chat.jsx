@@ -1,20 +1,20 @@
 import scss from "./Chat.module.scss";
 import React from "react";
-import AnotherUserMessage from "./AnotherUserMessage/AnotherUserMessage";
-import SelfMessage from "./SelfMessage/SelfMessage";
+import Message from "./Message/Message";
 import { Field, Form } from "react-final-form";
 import moment from "moment";
 
 function Chat(props) {
   const messages = props.messagesPage.messages.map((message) =>
     message.userName ? (
-      <AnotherUserMessage
+      <Message
         userName={message.userName}
         text={message.text}
         timeStamp={message.timeStamp}
+        self={false}
       />
     ) : (
-      <SelfMessage text={message.text} timeStamp={message.timeStamp} />
+      <Message text={message.text} timeStamp={message.timeStamp} self={true} />
     )
   );
 
