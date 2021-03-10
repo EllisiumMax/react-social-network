@@ -14,7 +14,8 @@
   align-content: center;
   padding: 2em;
   width: 20em;
-  height: 20em;
+  min-height: 20em;
+  max-height: 35em;
   border-radius: 7px;
   margin: auto;
   top: 50%;
@@ -57,7 +58,6 @@ label {
 
 .serverErrors {
   animation: background 1.5s infinite;
-  position: absolute;
   font-weight: 400;
   color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -66,11 +66,31 @@ label {
   text-align: center;
   background-color: red;
   min-width: 15em;
-  max-width: 30em;
-  bottom: 0;
-  margin-bottom: 2em;
+  max-width: 20em;
+  margin-top: 1em;
   padding: 0 1.2em;
   line-height: 1.5em;
+}
+
+.captchaContainer {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  input {
+    margin-top: 0.7em;
+    font-size: 1.1em;
+    width: 6em !important;
+    border: 2px solid yellowgreen !important;
+  }
+}
+
+.captcha {
+  margin-top: 1em;
+  border: 2px solid yellowgreen;
 }
 
 @keyframes background {

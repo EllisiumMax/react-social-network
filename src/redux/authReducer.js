@@ -1,6 +1,7 @@
 import DAL from "api/apiDAL";
 
 const SERVER_ERROR = "SERVER-ERROR";
+const CAPTCHA = "CAPTCHA";
 
 const initialState = {
   isLogged: false,
@@ -10,6 +11,8 @@ const initialState = {
   messages: [],
   isFetching: false,
   serverErrors: null,
+  errorCodes: null,
+  captcha: null,
 };
 
 function authReducer(state = initialState, action) {
@@ -23,7 +26,14 @@ function authReducer(state = initialState, action) {
       return newState;
     case SERVER_ERROR:
       newState.serverErrors = action.messages;
-      setTimeout(() => newState.serverErrors = [], 10000);
+      newState.errorCodes = action.code;
+
+      return newState;
+    case CAPTCHA:
+      newState.captcha = action.url;
+      setTimeout(() => {
+        newState.captcha = newState.serverErrors = newState.errorCodes = null;
+      }, 0);
       return newState;
     default:
       return state;
@@ -41,10 +51,18 @@ export function setLogin(login, id, email, messages, isLogged) {
   };
 }
 
-export function serverError(messages) {
+function serverError(messages, code) {
   return {
     type: SERVER_ERROR,
     messages,
+    code,
+  };
+}
+
+function captcha(url) {
+  return {
+    type: CAPTCHA,
+    url,
   };
 }
 
@@ -84,9 +102,11 @@ export function login(loginData) {
             );
           }
         });
+      } else if (res.resultCode === 10) {
+        dispatch(serverError(res.messages, res.resultCode));
+        DAL.auth.getCaptcha().then((res) => dispatch(captcha(res.url)));
       } else {
-        console.log(res.messages);
-        dispatch(serverError(res.messages));
+        dispatch(serverError(res.messages, res.resultCode));
       }
     });
   };

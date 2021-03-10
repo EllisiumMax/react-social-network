@@ -34,14 +34,22 @@ const LoginForm = (props) => (
             <Field name="rememberMe" component="input" type="checkbox" />
             <label> Remember me?</label>
           </div>
+
+          {props.serverErrors
+            ? props.serverErrors.map((msg) => (
+                <div className={scss.serverErrors}>{msg}</div>
+              ))
+            : null}
+          {props.captcha ? (
+            <div className={scss.captchaContainer}>
+              <img className={scss.captcha} src={props.captcha}></img>
+              <Field component="input" type="input" name="captcha" autoComplete="off" placeholder="CAPTCHA" maxLength={6}/>
+            </div>
+          ) : null}
+
           <button type="submit" disabled={submitting || pristine}>
             Submit
           </button>
-          {props.serverErrors
-            ? props.serverErrors.map((msg) => (
-                <div className={scss.serverErrors}>Login failed: {msg} </div>
-              ))
-            : null}
         </form>
       </div>
     )}
@@ -51,6 +59,8 @@ const LoginForm = (props) => (
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
   serverErrors: state.auth.serverErrors,
+  errorCodes: state.auth.errorCodes,
+  captcha: state.auth.captcha,
 });
 
 export default connect(mapStateToProps, { login })(LoginWindow);

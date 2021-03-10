@@ -22,6 +22,11 @@ const DAL = {
     logout() {
       return axiosSamurai.delete("/auth/login").then((res) => res.data);
     },
+    getCaptcha() {
+      return axiosSamurai
+        .get("/security/get-captcha-url")
+        .then((res) => res.data);
+    },
   },
   users: {
     getUsers(currentPage, usersPerPage) {
