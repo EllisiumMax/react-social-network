@@ -1,24 +1,29 @@
 import DAL from "api/apiDAL";
 
+const SERVER_ERROR = "SERVER-ERROR";
+
 const initialState = {
   isLogged: false,
   id: null,
-  login: "guest",
+  login: null,
   email: null,
   messages: [],
   isFetching: false,
+  serverErrors: null,
 };
 
 function authReducer(state = initialState, action) {
   const newState = { ...state };
-  newState.messages = [...state.messages];
-
   switch (action.type) {
     case "LOGIN-REQ":
       newState.isLogged = action.isLogged;
       newState.login = action.login;
       newState.id = action.id;
       newState.email = action.email;
+      return newState;
+    case SERVER_ERROR:
+      newState.serverErrors = action.messages;
+      setTimeout(() => newState.serverErrors = [], 10000);
       return newState;
     default:
       return state;
@@ -33,6 +38,13 @@ export function setLogin(login, id, email, messages, isLogged) {
     email,
     messages,
     isLogged,
+  };
+}
+
+export function serverError(messages) {
+  return {
+    type: SERVER_ERROR,
+    messages,
   };
 }
 
@@ -57,11 +69,8 @@ export function loginRequest() {
 export function login(loginData) {
   return (dispatch) => {
     DAL.auth.login(loginData).then((res) => {
-      console.log(res);
-      if (res.resultCode === 10) alert("wrong password");
       if (res.resultCode === 0) {
         loginRequest();
-        window.location.reload();
         DAL.auth.loginRequest().then((res) => {
           if (res.resultCode === 0) {
             dispatch(
@@ -75,6 +84,9 @@ export function login(loginData) {
             );
           }
         });
+      } else {
+        console.log(res.messages);
+        dispatch(serverError(res.messages));
       }
     });
   };
@@ -84,7 +96,7 @@ export function logout() {
   return (dispatch) => {
     DAL.auth.logout().then((res) => {
       if (res.resultCode === 0) {
-        dispatch(setLogin("guest", null, null, [], false));
+        dispatch(setLogin(null, null, null, [], false));
       }
     });
   };

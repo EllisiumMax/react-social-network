@@ -54,3 +54,28 @@
 label {
   color: black;
 }
+
+.serverErrors {
+  animation: background 1.5s infinite;
+  position: absolute;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 0 10px 1px red;
+  font-size: 1em;
+  text-align: center;
+  background-color: red;
+  min-width: 15em;
+  max-width: 30em;
+  bottom: 0;
+  margin-bottom: 2em;
+  padding: 0 1.2em;
+  line-height: 1.5em;
+}
+
+@keyframes background {
+  50% {
+    background-color: rgb(255, 81, 0);
+    box-shadow: 0 0 5px rgb(255, 72, 0);
+  }
+}

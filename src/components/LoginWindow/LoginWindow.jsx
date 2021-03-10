@@ -35,9 +35,13 @@ const LoginForm = (props) => (
             <label> Remember me?</label>
           </div>
           <button type="submit" disabled={submitting || pristine}>
-            {" "}
-            Submit{" "}
+            Submit
           </button>
+          {props.serverErrors
+            ? props.serverErrors.map((msg) => (
+                <div className={scss.serverErrors}>Login failed: {msg} </div>
+              ))
+            : null}
         </form>
       </div>
     )}
@@ -46,6 +50,7 @@ const LoginForm = (props) => (
 
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
+  serverErrors: state.auth.serverErrors,
 });
 
 export default connect(mapStateToProps, { login })(LoginWindow);
