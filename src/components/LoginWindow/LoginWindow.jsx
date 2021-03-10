@@ -1,13 +1,14 @@
 import React from "react";
 import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 import { login } from "redux/authReducer";
 import { InputEmail, InputPassword } from "utils/forms/fieldComponents";
 import { composeValidators, email, required } from "utils/forms/fieldValidator";
 import scss from "./LoginWindow.module.scss";
 
 function LoginWindow(props) {
-  return <LoginForm {...props} />;
+  return props.isLogged ? <Redirect to="profile" /> : <LoginForm {...props} />;
 }
 
 const LoginForm = (props) => (
@@ -43,4 +44,8 @@ const LoginForm = (props) => (
   />
 );
 
-export default connect(null, { login })(LoginWindow);
+const mapStateToProps = (state) => ({
+  isLogged: state.auth.isLogged,
+});
+
+export default connect(mapStateToProps, { login })(LoginWindow);

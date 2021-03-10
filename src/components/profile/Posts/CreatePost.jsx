@@ -3,9 +3,7 @@ import React from "react";
 import Post from "./Post/Post";
 import { Field, Form } from "react-final-form";
 import moment from "moment";
-import {
-  maxLength,
-} from "utils/forms/fieldValidator";
+import { maxLength } from "utils/forms/fieldValidator";
 import { TextArea } from "utils/forms/fieldComponents";
 
 function CreatePost(props) {
@@ -32,15 +30,12 @@ function CreatePost(props) {
             form.reset();
           }
         }}
-        render={({ handleSubmit }) => (
+        render={({ handleSubmit, submitting, pristine }) => (
           <form onSubmit={handleSubmit}>
-            <Field
-              component={TextArea}
-              name="post"
-              spellCheck="true"
-              validate={maxLength500}
-            />
-            <button>POST</button>
+            <Field component={TextArea} name="post" validate={maxLength500} />
+            <button type="submit" disabled={submitting || pristine}>
+              POST
+            </button>
           </form>
         )}
       />

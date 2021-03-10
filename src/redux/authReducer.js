@@ -15,7 +15,7 @@ function authReducer(state = initialState, action) {
 
   switch (action.type) {
     case "LOGIN-REQ":
-      newState.isLogged = true;
+      newState.isLogged = action.isLogged;
       newState.login = action.login;
       newState.id = action.id;
       newState.email = action.email;
@@ -25,13 +25,14 @@ function authReducer(state = initialState, action) {
   }
 }
 
-export function setLogin(login, id, email, messages) {
+export function setLogin(login, id, email, messages, isLogged) {
   return {
     type: "LOGIN-REQ",
-    login: login,
-    id: id,
-    email: email,
-    messages: messages,
+    login,
+    id,
+    email,
+    messages,
+    isLogged,
   };
 }
 
@@ -44,7 +45,8 @@ export function loginRequest() {
             res.data.login,
             res.data.id,
             res.data.email,
-            res.data.messages
+            res.data.messages,
+            true
           )
         );
       }
@@ -56,10 +58,23 @@ export function login(loginData) {
   return (dispatch) => {
     DAL.auth.login(loginData).then((res) => {
       console.log(res);
-      if(res.resultCode === 10) alert('wrong password');
+      if (res.resultCode === 10) alert("wrong password");
       if (res.resultCode === 0) {
         loginRequest();
         window.location.reload();
+        DAL.auth.loginRequest().then((res) => {
+          if (res.resultCode === 0) {
+            dispatch(
+              setLogin(
+                res.data.login,
+                res.data.id,
+                res.data.email,
+                res.data.messages,
+                true
+              )
+            );
+          }
+        });
       }
     });
   };
@@ -67,11 +82,12 @@ export function login(loginData) {
 
 export function logout() {
   return (dispatch) => {
-    DAL.auth.logout().then(res => {
-      console.log(res);
-      window.location.reload();
-    })
-  }
+    DAL.auth.logout().then((res) => {
+      if (res.resultCode === 0) {
+        dispatch(setLogin("guest", null, null, [], false));
+      }
+    });
+  };
 }
 
 export default authReducer;

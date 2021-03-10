@@ -6,7 +6,7 @@ export const TextArea = ({ input, meta }) => (
     <div className={scss.inputWrapper}>
       <textarea {...input} placeholder="Please enter your text here" />
       {meta.error && meta.touched && (
-          <span className={scss.errorMessage}> &#9888; {meta.error}</span>
+        <span className={scss.errorMessage}> &#9888; {meta.error}</span>
       )}
     </div>
   </div>
@@ -15,9 +15,9 @@ export const TextArea = ({ input, meta }) => (
 export const InputEmail = ({ input, meta }) => (
   <div>
     <div className={scss.inputWrapper}>
-      <input {...input} type="email" placeholder="Email" />
+      <input {...input} type="email" placeholder="Email" autoComplete="off" />
       {meta.error && meta.touched && (
-          <span className={scss.errorMessage}> &#9888; {meta.error}</span>
+        <span className={scss.errorMessage}> &#9888; {meta.error}</span>
       )}
     </div>
   </div>
@@ -28,7 +28,7 @@ export const InputPassword = ({ input, meta }) => (
     <div className={scss.inputWrapper}>
       <input {...input} type="password" placeholder="Password" />
       {meta.error && meta.touched && (
-          <span className={scss.errorMessage}> &#9888; {meta.error}</span>
+        <span className={scss.errorMessage}> &#9888; {meta.error}</span>
       )}
     </div>
   </div>
