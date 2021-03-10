@@ -1,8 +1,9 @@
 import React from "react";
 import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
-import { Redirect } from "react-router";
 import { login } from "redux/authReducer";
+import { InputEmail, InputPassword } from "utils/forms/fieldComponents";
+import { composeValidators, email, required } from "utils/forms/fieldValidator";
 import scss from "./LoginWindow.module.scss";
 
 function LoginWindow(props) {
@@ -11,34 +12,30 @@ function LoginWindow(props) {
 
 const LoginForm = (props) => (
   <Form
-    onSubmit={(obj) => {
+    onSubmit={async (obj) => {
       props.login(obj);
-      <Redirect to={"/profile"} />;
     }}
-    validate={(obj) => {}}
-    render={({ handleSubmit }) => (
+    render={({ handleSubmit, submitting, pristine }) => (
       <div className={scss.window}>
         <form onSubmit={handleSubmit} className={scss.container}>
           <h1>Login</h1>
           <Field
             name="email"
-            component="input"
-            type="email"
-            placeholder="Email"
-            autocomplete="off"
+            component={InputEmail}
+            validate={composeValidators(required, email)}
           />
           <Field
             name="password"
-            component="input"
-            type="password"
-            placeholder="Password"
+            component={InputPassword}
+            validate={required}
           />
           <div>
             <Field name="rememberMe" component="input" type="checkbox" />
             <label> Remember me?</label>
           </div>
-          <button type="submit" onClick={() => <Redirect to={"/profile"} />}>
-            Submit
+          <button type="submit" disabled={submitting || pristine}>
+            {" "}
+            Submit{" "}
           </button>
         </form>
       </div>

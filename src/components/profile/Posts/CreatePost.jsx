@@ -4,10 +4,7 @@ import Post from "./Post/Post";
 import { Field, Form } from "react-final-form";
 import moment from "moment";
 import {
-  composeValidators,
   maxLength,
-  mustBeNumber,
-  required,
 } from "utils/forms/fieldValidator";
 import { TextArea } from "utils/forms/fieldComponents";
 
@@ -41,7 +38,7 @@ function CreatePost(props) {
               component={TextArea}
               name="post"
               spellCheck="true"
-              validate={composeValidators(maxLength500)}
+              validate={maxLength500}
             />
             <button>POST</button>
           </form>

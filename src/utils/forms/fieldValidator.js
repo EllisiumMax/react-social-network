@@ -1,7 +1,8 @@
 export const composeValidators = (...validators) => (value) =>
   validators.reduce((error, validator) => error || validator(value), undefined);
 
-export const required = (value) => (value ? undefined : "This field can't be empty");
+export const required = (value) =>
+  value ? undefined : "This field can't be empty";
 
 export const mustBeNumber = (value) =>
   isNaN(value) ? "Must contain only numbers" : undefined;
@@ -21,3 +22,6 @@ export const minLength = (length) => (value) =>
 
 export const onlyLetters = (value) =>
   value.match(/[a-zA-Z\s]+/gim) ? undefined : "Must be not a number";
+
+export const email = (value) =>
+  value.match(/^\S+@\S+\.\S+$/gi) ? undefined : "Email not valid";

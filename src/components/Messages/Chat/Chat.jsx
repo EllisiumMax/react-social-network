@@ -28,12 +28,14 @@ function Chat(props) {
 
 const ChatInput = (props) => (
   <Form
-    onSubmit={(obj) => {
-      const timeStamp = moment().format("MM.DD.YY, HH:mm:ss");
-      props.sendMessage(obj.message, timeStamp);
+    onSubmit={(obj, form) => {
+      if (obj.message) {
+        const timeStamp = moment().format("MM.DD.YY, HH:mm:ss");
+        props.sendMessage(obj.message, timeStamp);
+        form.reset();
+      }
     }}
-    validate={(obj) => {}}
-    render={({ handleSubmit }) => (
+    render={({ handleSubmit, submitting}) => (
       <form onSubmit={handleSubmit}>
         <div className={scss.inputWindow}>
           <Field
@@ -44,7 +46,7 @@ const ChatInput = (props) => (
             placeholder="Input your message.."
             autocomplete="off"
           />
-          <button>SEND</button>
+          <button disabled={submitting}>SEND</button>
         </div>
       </form>
     )}
