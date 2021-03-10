@@ -1,8 +1,15 @@
-import c from "./CreatePost.module.scss";
+import scss from "./CreatePost.module.scss";
 import React from "react";
 import Post from "./Post/Post";
 import { Field, Form } from "react-final-form";
 import moment from "moment";
+import {
+  composeValidators,
+  maxLength,
+  mustBeNumber,
+  required,
+} from "utils/forms/fieldValidator";
+import { TextArea } from "utils/forms/fieldComponents";
 
 function CreatePost(props) {
   const userPosts = props.profilePage.posts.map((post) => (
@@ -15,32 +22,37 @@ function CreatePost(props) {
     />
   ));
 
+  const maxLength500 = maxLength(500);
+
+  const PostInput = () => (
+    <div className={scss.postForm}>
+      <h3>Enter your message: </h3>
+      <Form
+        onSubmit={(obj, form) => {
+          const timeStamp = moment().format("MM.DD.YY, HH:mm:ss");
+          if (obj.post) {
+            props.addPost(obj.post, timeStamp);
+            form.reset();
+          }
+        }}
+        render={({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <Field
+              component={TextArea}
+              name="post"
+              spellCheck="true"
+              validate={composeValidators(maxLength500)}
+            />
+            <button>POST</button>
+          </form>
+        )}
+      />
+    </div>
+  );
+
   return (
     <div>
-      <div className={c.postForm}>
-        <h3>Enter your message: </h3>
-        <Form
-          onSubmit={(obj) => {
-            if (obj.post && obj.post.length <= 500) {
-              const timeStamp = moment().format("MM.DD.YY, HH:mm:ss");
-              props.addPost(obj.post, timeStamp);
-            }
-          }}
-          validate={() => {}}
-          render={({ handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
-              <Field
-                component="textarea"
-                name="post"
-                maxLength={500}
-                placeholder="Maximum length 500 symbols."
-                spellCheck="true"
-              />
-              <button>POST</button>
-            </form>
-          )}
-        />
-      </div>
+      <PostInput />
       <div>{userPosts}</div>;
     </div>
   );

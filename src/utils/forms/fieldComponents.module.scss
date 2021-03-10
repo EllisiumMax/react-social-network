@@ -1,0 +1,42 @@
+.errorWrapper {
+  position: relative;
+}
+
+.error {
+    animation: background 1s infinite;
+    font-weight: 500;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 0 8px red;
+  vertical-align: middle;
+  font-size: 1em;
+  width: 28em;
+  text-align: end;
+  word-wrap: break-word;
+  padding: 0.3em 1em 0.4em 0;
+  background-color: rgb(255, 0, 0);
+  left: 68.5%;
+  top: 35%;
+  transform: translate(-50%);
+  &::after {
+    content: "\26A0";
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 5px rgb(255, 217, 0);
+    margin-left: 1em;
+    font-size: 1.2em;
+    line-height: 0;
+  }
+}
+
+@keyframes background {
+  0% {
+      background-color: red;
+  }
+  50% {
+      background-color: rgb(235, 67, 15);
+  }
+  100% {
+      background-color: red;
+  }
+}
