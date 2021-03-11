@@ -5,7 +5,7 @@ import { Field, Form } from "react-final-form";
 import moment from "moment";
 
 function Chat(props) {
-  const messages = props.messagesPage.messages.map((message) =>
+  const messages = props.messages.map((message) =>
     message.userName ? (
       <Message
         userName={message.userName}

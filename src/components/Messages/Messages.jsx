@@ -1,13 +1,13 @@
 import React from "react";
-import ChatContainer from "./Chat/ChatContainer";
+import Chat from "./Chat/Chat";
 import scss from "./Messages.module.scss";
 import UserList from "./UserList/UserList";
 
 function Messages(props) {
   return (
     <div className={scss.chatWrapper}>
-      <UserList {...props} />
-      <ChatContainer />
+      <UserList userList={props.userList} />
+      <Chat messages={props.messages} />
     </div>
   );
 }

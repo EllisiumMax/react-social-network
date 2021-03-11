@@ -2,7 +2,9 @@ import withAuthRedirect from "hoc/withAuthRedirect";
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { getDialogs } from "redux/messagesReducer";
+import { getisLoggedSel } from "redux/loginSelectors";
+import { getDialogs, sendMessage } from "redux/messagesReducer";
+import { getMessagesSel, getUserListSel } from "redux/messagesSelectors";
 import Messages from "./Messages";
 
 class MessagesContainer extends React.Component {
@@ -15,10 +17,13 @@ class MessagesContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { ...state.messagesPage, isLogged: state.auth.isLogged};
+  return {
+    userList: getUserListSel(state),
+    messages: getMessagesSel(state),
+  };
 }
 
 export default compose(
-  connect(mapStateToProps, { getDialogs }),
+  connect(mapStateToProps, { getDialogs, sendMessage }),
   withAuthRedirect
 )(MessagesContainer);
