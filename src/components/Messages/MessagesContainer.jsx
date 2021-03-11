@@ -2,7 +2,6 @@ import withAuthRedirect from "hoc/withAuthRedirect";
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { getisLoggedSel } from "redux/loginSelectors";
 import { getDialogs, sendMessage } from "redux/messagesReducer";
 import { getMessagesSel, getUserListSel } from "redux/messagesSelectors";
 import Messages from "./Messages";

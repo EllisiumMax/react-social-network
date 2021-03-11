@@ -7,7 +7,7 @@ function Messages(props) {
   return (
     <div className={scss.chatWrapper}>
       <UserList userList={props.userList} />
-      <Chat messages={props.messages} />
+      <Chat messages={props.messages} sendMessage={props.sendMessage} />
     </div>
   );
 }
