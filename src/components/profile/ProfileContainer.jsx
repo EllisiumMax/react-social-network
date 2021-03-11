@@ -16,15 +16,9 @@ class ProfileContainer extends React.Component {
     this.props.loadProfile(this.props.match.params.userId ?? this.props.id);
     this.props.statusRequest(this.props.match.params.userId ?? this.props.id);
   }
+
   render() {
-    return (
-      <>
-        {this.props.isFetching ? <Loader /> : null}
-        <div>
-          <Profile {...this.props} />
-        </div>
-      </>
-    );
+    return this.props.isFetching ? <Loader /> : <Profile {...this.props} />;
   }
 }
 

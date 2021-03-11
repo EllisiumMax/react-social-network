@@ -13,7 +13,7 @@ const DAL = {
 
   security: {},
   auth: {
-    loginRequest() {
+    authRequest() {
       return axiosSamurai.get("auth/me").then((res) => res.data);
     },
     login(loginData) {

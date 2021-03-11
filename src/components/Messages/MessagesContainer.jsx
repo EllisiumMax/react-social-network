@@ -15,7 +15,7 @@ class MessagesContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { ...state.messagesPage };
+  return { ...state.messagesPage, isLogged: state.auth.isLogged};
 }
 
 export default compose(

@@ -27,7 +27,9 @@ function authReducer(state = initialState, action) {
     case SERVER_ERROR:
       newState.serverErrors = action.messages;
       newState.errorCodes = action.code;
-
+      setTimeout(() => {
+        newState.serverErrors = newState.errorCodes = null;
+      }, 0);
       return newState;
     case CAPTCHA:
       newState.captcha = action.url;
@@ -66,9 +68,9 @@ function captcha(url) {
   };
 }
 
-export function loginRequest() {
+export function authRequest() {
   return (dispatch) => {
-    DAL.auth.loginRequest().then((res) => {
+    return DAL.auth.authRequest().then((res) => {
       if (res.resultCode === 0) {
         dispatch(
           setLogin(
@@ -88,8 +90,8 @@ export function login(loginData) {
   return (dispatch) => {
     DAL.auth.login(loginData).then((res) => {
       if (res.resultCode === 0) {
-        loginRequest();
-        DAL.auth.loginRequest().then((res) => {
+        authRequest();
+        DAL.auth.authRequest().then((res) => {
           if (res.resultCode === 0) {
             dispatch(
               setLogin(

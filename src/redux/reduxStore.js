@@ -5,6 +5,7 @@ import authReducer from "./authReducer";
 import { combineReducers, createStore } from "redux";
 import ReduxThunk from 'redux-thunk';
 import { applyMiddleware } from "redux";
+import appReducer from "./appReducer";
 
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   messagesPage: messagesReducer,
   usersPage: usersReducer,
   auth: authReducer,
+  app: appReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

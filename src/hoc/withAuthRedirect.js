@@ -9,14 +9,14 @@ function withAuthRedirect(Component) {
       return <Component {...this.props} />;
     }
   }
-  const connectedComponent = connect(mapStateToProps, {})(AuthComponent);
-  return connectedComponent;
+
+  return connect(mapStateToProps, {})(AuthComponent);
 }
 
 function mapStateToProps(state) {
   return {
     isLogged: state.auth.isLogged,
-    id: state.auth.id
+    id: state.auth.id,
   };
 }
 
