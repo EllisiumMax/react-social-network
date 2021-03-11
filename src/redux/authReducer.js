@@ -10,7 +10,7 @@ const initialState = {
   email: null,
   messages: [],
   isFetching: false,
-  serverErrors: null,
+  errorMessages: null,
   errorCodes: null,
   captcha: null,
 };
@@ -25,16 +25,16 @@ function authReducer(state = initialState, action) {
       newState.email = action.email;
       return newState;
     case SERVER_ERROR:
-      newState.serverErrors = action.messages;
+      newState.errorMessages = action.messages;
       newState.errorCodes = action.code;
       setTimeout(() => {
-        newState.serverErrors = newState.errorCodes = null;
+        newState.errorMessages = newState.errorCodes = null;
       }, 0);
       return newState;
     case CAPTCHA:
       newState.captcha = action.url;
       setTimeout(() => {
-        newState.captcha = newState.serverErrors = newState.errorCodes = null;
+        newState.captcha = newState.errorMessages = newState.errorCodes = null;
       }, 0);
       return newState;
     default:

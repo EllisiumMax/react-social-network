@@ -6,7 +6,11 @@ function Login(props) {
   return props.isLogged ? (
     <p className={scss.loginName}>{props.login}</p>
   ) : (
-    <NavLink to={"/login"} className={scss.loginBtn} onClick={() => props.loginRequest()}>
+    <NavLink
+      to={"/login"}
+      className={scss.loginBtn}
+      onClick={() => props.authRequest()}
+    >
       Login
     </NavLink>
   );

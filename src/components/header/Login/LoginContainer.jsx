@@ -1,8 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { authRequest } from "redux/authReducer";
+import {
+  getIsFetchingSel,
+  getisLoggedSel,
+  getLogingSel,
+} from "redux/loginSelectors";
 import Login from "./Login";
-
 
 class LoginContainer extends React.Component {
   render() {
@@ -12,13 +16,10 @@ class LoginContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    isLogged: state.auth.isLogged,
-    id: state.auth.id,
-    login: state.auth.login,
-    email: state.auth.email,
-    messages: state.auth.messages,
-    isFetching: state.auth.isFetching,
+    isLogged: getisLoggedSel(state),
+    login: getLogingSel(state),
+    isFetching: getIsFetchingSel(state),
   };
 }
 
-export default connect(mapStateToProps, { loginRequest: authRequest })(LoginContainer);
+export default connect(mapStateToProps, { authRequest })(LoginContainer);

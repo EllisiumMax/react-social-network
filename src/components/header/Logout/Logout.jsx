@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { logout } from "redux/authReducer";
+import { getisLoggedSel } from "redux/loginSelectors";
 import scss from "./Logout.module.scss";
 
 function LogoutContainer(props) {
@@ -10,14 +11,14 @@ function LogoutContainer(props) {
 const Logout = (props) => {
   return (
     <button className={scss.logout} onClick={() => props.logout()}>
-      LOG <br/> OUT
+      LOG <br /> OUT
     </button>
   );
 };
 
 function mapStateToProps(state) {
   return {
-    isLogged: state.auth.isLogged,
+    isLogged: getisLoggedSel(state),
   };
 }
 

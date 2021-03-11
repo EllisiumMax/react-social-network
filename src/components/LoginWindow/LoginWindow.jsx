@@ -3,6 +3,12 @@ import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { login } from "redux/authReducer";
+import {
+  getCaptchaSel,
+  getErrorCodesSel,
+  getErrorMessagesSel,
+  getisLoggedSel,
+} from "redux/loginSelectors";
 import { InputEmail, InputPassword } from "utils/forms/fieldComponents";
 import { composeValidators, email, required } from "utils/forms/fieldValidator";
 import scss from "./LoginWindow.module.scss";
@@ -35,15 +41,22 @@ const LoginForm = (props) => (
             <label> Remember me?</label>
           </div>
 
-          {props.serverErrors
-            ? props.serverErrors.map((msg) => (
+          {props.errorMessages
+            ? props.errorMessages.map((msg) => (
                 <div className={scss.serverErrors}>{msg}</div>
               ))
             : null}
           {props.captcha ? (
             <div className={scss.captchaContainer}>
               <img className={scss.captcha} src={props.captcha}></img>
-              <Field component="input" type="input" name="captcha" autoComplete="off" placeholder="CAPTCHA" maxLength={6}/>
+              <Field
+                component="input"
+                type="input"
+                name="captcha"
+                autoComplete="off"
+                placeholder="CAPTCHA"
+                maxLength={7}
+              />
             </div>
           ) : null}
 
@@ -57,10 +70,10 @@ const LoginForm = (props) => (
 );
 
 const mapStateToProps = (state) => ({
-  isLogged: state.auth.isLogged,
-  serverErrors: state.auth.serverErrors,
-  errorCodes: state.auth.errorCodes,
-  captcha: state.auth.captcha,
+  isLogged: getisLoggedSel(state),
+  errorMessages: getErrorMessagesSel(state),
+  errorCodes: getErrorCodesSel(state),
+  captcha: getCaptchaSel(state),
 });
 
 export default connect(mapStateToProps, { login })(LoginWindow);
