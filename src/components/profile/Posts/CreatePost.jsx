@@ -7,7 +7,7 @@ import { maxLength } from "utils/forms/fieldValidator";
 import { TextArea } from "utils/forms/fieldComponents";
 
 function CreatePost(props) {
-  const userPosts = props.profilePage.posts.map((post) => (
+  const userPosts = props.posts.map((post) => (
     <Post
       key={post.id}
       imgLink={post.imgLink}

@@ -13,8 +13,9 @@ import Loader from "components/COMMON/Loader/Loader";
 import Status from "./Status/Status";
 
 function ProfileInfo(props) {
-  if(!props.userId) {
-   return <Loader />
+
+  if (!props.userId && !props.status) {
+    return <Loader />;
   }
 
   return (
@@ -28,39 +29,32 @@ function ProfileInfo(props) {
       <div className={scss.infoWrapper}>
         <div className={scss.userName}>
           <h1>{props.fullName}</h1>
-          <Status status={props.status} targetId={props.userId} setStatusRequest={props.setStatusRequest}/>
+          <Status
+            status={props.status}
+            targetId={props.userId}
+            setStatusRequest={props.setStatusRequest}
+            loggedUserID={props.loggedUserId}
+          />
         </div>
 
         <div className={scss.contactsList}>
           {props.contacts.facebook ? (
-            <a
-              className={scss.contactCell}
-              href={`${props.contacts.facebook}`}
-            >
+            <a className={scss.contactCell} href={`${props.contacts.facebook}`}>
               <img src={fbLogo} alt="Facebook Logo" />
             </a>
           ) : null}
           {props.contacts.website ? (
-            <a
-              className={scss.contactCell}
-              href={`${props.contacts.website}`}
-            >
+            <a className={scss.contactCell} href={`${props.contacts.website}`}>
               <img src={wwwLogo} alt="Website Logo" />
             </a>
           ) : null}
           {props.contacts.vk ? (
-            <a
-              className={scss.contactCell}
-              href={`${props.contacts.vk}`}
-            >
+            <a className={scss.contactCell} href={`${props.contacts.vk}`}>
               <img src={vkLogo} alt="Vkontakte Logo" />
             </a>
           ) : null}
           {props.contacts.twitter ? (
-            <a
-              className={scss.contactCell}
-              href={`${props.contacts.twitter}`}
-            >
+            <a className={scss.contactCell} href={`${props.contacts.twitter}`}>
               <img src={twitterLogo} alt="Twitter Logo" />
             </a>
           ) : null}
@@ -73,26 +67,17 @@ function ProfileInfo(props) {
             </a>
           ) : null}
           {props.contacts.youtube ? (
-            <a
-              className={scss.contactCell}
-              href={`${props.contacts.youtube}`}
-            >
+            <a className={scss.contactCell} href={`${props.contacts.youtube}`}>
               <img src={yTubeLogo} alt="YoutTube Logo" />
             </a>
           ) : null}
           {props.contacts.github ? (
-            <a
-              className={scss.contactCell}
-              href={`${props.contacts.github}`}
-            >
+            <a className={scss.contactCell} href={`${props.contacts.github}`}>
               <img src={gitLogo} alt="GitHub Logo" />
             </a>
           ) : null}
           {props.contacts.mainLink ? (
-            <a
-              className={scss.contactCell}
-              href={`${props.contacts.mainLink}`}
-            >
+            <a className={scss.contactCell} href={`${props.contacts.mainLink}`}>
               <img src={mainLinkLogo} alt="Main Link Logo" />
             </a>
           ) : null}

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { getisLoggedSel, getUserIdSel } from "redux/loginSelectors";
 
 function withAuthRedirect(Component) {
   class AuthComponent extends React.Component {
@@ -15,8 +16,8 @@ function withAuthRedirect(Component) {
 
 function mapStateToProps(state) {
   return {
-    isLogged: state.auth.isLogged,
-    id: state.auth.id,
+    isLogged: getisLoggedSel(state),
+    id: getUserIdSel(state),
   };
 }
 

@@ -8,7 +8,7 @@ const REQUEST_IS_FETCHING = "REQUEST-IS-FETCHING";
 
 const initialState = {
   profileInfo: {},
-  status: "",
+  status: '',
   posts: [
     {
       imgLink:

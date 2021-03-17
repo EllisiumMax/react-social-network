@@ -1,14 +1,18 @@
 import React from "react";
-import CreatePostContainer from "./Posts/CreatePostContainer";
-import c from "./Profile.module.scss";
+import CreatePost from "./Posts/CreatePost";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 function Profile(props) {
   return (
     <main className="app-wrapper-content">
-      <ProfileInfo {...props.profileInfo} setStatusRequest={props.setStatusRequest} status={props.status} />
+      <ProfileInfo
+        {...props.profileInfo}
+        setStatusRequest={props.setStatusRequest}
+        status={props.status}
+        loggedUserId={props.id}
+      />
       <div>
-        <CreatePostContainer />
+        <CreatePost posts={props.posts} addPost={props.addPost} />
       </div>
     </main>
   );

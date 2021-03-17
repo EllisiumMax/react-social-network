@@ -4,11 +4,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
+import { getUserIdSel } from "redux/loginSelectors";
 import {
+  addPost,
   loadProfile,
   setStatusRequest,
   statusRequest,
 } from "redux/profileReducer";
+import {
+  getFetchingSel,
+  getPostsSel,
+  getProfileInfoSel,
+  getStatusSel,
+} from "redux/profileSelectors";
 import Profile from "./Profile";
 
 class ProfileContainer extends React.Component {
@@ -23,14 +31,19 @@ class ProfileContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { ...state.profilePage };
+  return {
+    profileInfo: getProfileInfoSel(state),
+    posts: getPostsSel(state),
+    status: getStatusSel(state),
+    isFetching: getFetchingSel(state),
+  };
 }
-
 export default compose(
   connect(mapStateToProps, {
     loadProfile,
     statusRequest,
     setStatusRequest,
+    addPost,
   }),
   withRouter,
   withAuthRedirect

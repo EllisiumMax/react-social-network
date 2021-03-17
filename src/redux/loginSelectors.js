@@ -9,3 +9,5 @@ export const getErrorCodesSel = (state) => state.auth.errorCodes;
 export const getErrorMessagesSel = (state) => state.auth.errorMessages;
 
 export const getCaptchaSel = (state) => state.auth.captcha;
+
+export const getUserIdSel = (state) => state.auth.id;
