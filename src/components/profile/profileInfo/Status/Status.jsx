@@ -1,18 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import scss from "./Status.module.scss";
 import editImg from "../../../../images/edit.svg";
 
 function Status(props) {
-  let [editMode, modifyEditMode] = useState(
+  const [editMode, modifyEditMode] = useState(
     props.loggedUserID === props.targetId ? true : false
   );
-  let [tempText, editTempText] = useState(props.status);
-  let [editActive, modifyEditActive] = useState(false);
+  const [tempText, editTempText] = useState(props.status);
+  const [editActive, modifyEditActive] = useState(false);
+
+  useEffect(() => {
+    editTempText(props.status);
+  }, [props.status]);
+
+  useEffect(() => {
+   if(props.loggedUserID === props.targetId) {
+    modifyEditMode(true);
+    modifyEditActive(false);
+   } else modifyEditMode(false);
+
+  }, [props.status]);
 
   function statusChangeOnEnter(e) {
     if (e.keyCode === 13) {
       props.setStatusRequest(props.status, tempText);
-      modifyEditActive(false);
+      onStatusChange();
+    }
+  }
+
+  function onStatusChange() {
+    if (props.status !== tempText) {
+      modifyEditMode(false);
     }
   }
 
@@ -29,6 +47,7 @@ function Status(props) {
             onBlur={() => {
               props.setStatusRequest(props.status, tempText);
               modifyEditActive(false);
+              onStatusChange();
             }}
             onKeyDown={(e) => statusChangeOnEnter(e)}
           ></input>

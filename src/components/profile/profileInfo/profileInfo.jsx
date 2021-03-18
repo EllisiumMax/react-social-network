@@ -14,7 +14,7 @@ import Status from "./Status/Status";
 
 function ProfileInfo(props) {
 
-  if (!props.userId && !props.status) {
+  if (!props.userId) {
     return <Loader />;
   }
 
