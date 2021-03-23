@@ -14,11 +14,10 @@ function Status(props) {
   }, [props.status]);
 
   useEffect(() => {
-   if(props.loggedUserID === props.targetId) {
-    modifyEditMode(true);
-    modifyEditActive(false);
-   } else modifyEditMode(false);
-
+    if (props.loggedUserID === props.targetId) {
+      modifyEditMode(true);
+      modifyEditActive(false);
+    } else modifyEditMode(false);
   }, [props.status]);
 
   function statusChangeOnEnter(e) {

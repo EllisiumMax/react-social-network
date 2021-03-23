@@ -3,9 +3,10 @@ import messagesReducer from "./messagesReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 import { combineReducers, createStore } from "redux";
-import ReduxThunk from 'redux-thunk';
+import ReduxThunk from "redux-thunk";
 import { applyMiddleware } from "redux";
 import appReducer from "./appReducer";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const rootReducer = combineReducers({
@@ -14,9 +15,12 @@ const rootReducer = combineReducers({
   usersPage: usersReducer,
   auth: authReducer,
   app: appReducer,
-});
+}); 
 
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(ReduxThunk))
+);
 
 window.store = store;
 

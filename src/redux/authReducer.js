@@ -1,5 +1,6 @@
 import DAL from "api/apiDAL";
 
+const LOGIN_REQ = "LOGIN-REQ";
 const SERVER_ERROR = "SERVER-ERROR";
 const CAPTCHA = "CAPTCHA";
 
@@ -18,11 +19,12 @@ const initialState = {
 function authReducer(state = initialState, action) {
   const newState = { ...state };
   switch (action.type) {
-    case "LOGIN-REQ":
+    case LOGIN_REQ:
       newState.isLogged = action.isLogged;
       newState.login = action.login;
       newState.id = action.id;
       newState.email = action.email;
+      newState.messages = action.messages;
       return newState;
     case SERVER_ERROR:
       newState.errorMessages = action.messages;
@@ -53,7 +55,7 @@ export function setLogin(login, id, email, messages, isLogged) {
   };
 }
 
-function serverError(messages, code) {
+export function serverError(messages, code) {
   return {
     type: SERVER_ERROR,
     messages,
@@ -61,7 +63,7 @@ function serverError(messages, code) {
   };
 }
 
-function captcha(url) {
+export function captcha(url) {
   return {
     type: CAPTCHA,
     url,

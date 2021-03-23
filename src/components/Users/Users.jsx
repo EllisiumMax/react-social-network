@@ -2,17 +2,13 @@ import React from "react";
 import scss from "./Users.module.scss";
 import unkownUser from "../../images/unknown-user.svg";
 import { NavLink } from "react-router-dom";
+import Paginator from "components/COMMON/Paginator/Paginator";
 
 function Users(props) {
-  const pages = [];
-  const numberOfPages = Math.ceil(props.totalCount / props.usersPerPage);
-  for (let i = 1; i <= numberOfPages; i++) {
-    pages.push(i);
-  }
 
   return (
     <div>
-      <div className={scss.controlsArea}>
+      {/* <div className={scss.controlsArea}>
         <button
           className={scss.controlBtn}
           onClick={() =>
@@ -47,7 +43,11 @@ function Users(props) {
         >
           NEXT
         </button>
-      </div>
+      </div> */}
+
+      {props.totalCount ? <Paginator totalCount={props.totalCount} itemsPerPage={props.usersPerPage} currentPage={props.currentPage} loadPage={props.loadPage} /> : null }
+
+      
 
       <div className={scss.usersArea}>
         {props.users.map((user) => (
