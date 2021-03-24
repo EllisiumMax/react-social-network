@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import scss from "./Paginator.module.scss";
 
 function Paginator({
@@ -14,27 +14,24 @@ function Paginator({
 
   let [currentPortion, setCurrentPortion] = useState(1);
 
-  const [portion, changePortion] = useState(pages.slice(0, 10));
+  const [portion, changePortion] = useState(pages.slice(0, portionSize));
 
-  const setPortion = () =>
-    changePortion(
-      pages
-        .slice(currentPortion - 1, currentPortion * portionSize)
-        .slice(-portionSize)
-    );
+  useEffect(() => {
+    const page = Math.ceil(currentPortion * portionSize);
+    changePortion(pages.slice(page - portionSize, page));
+  }, [currentPortion]);
+
+  useEffect(() => {
+    changePortion(pages.slice(currentPage - 1, currentPage + portionSize - 1));
+    setCurrentPortion(Math.ceil(currentPage / portionSize));
+  }, [currentPage]);
 
   function nextPage() {
-    if (currentPortion < numberOfPortions) {
-      setCurrentPortion(++currentPortion);
-      setPortion();
-    }
+    setCurrentPortion(++currentPortion);
   }
 
   function prevPage() {
-    if (currentPortion > 1) {
-      setCurrentPortion(--currentPortion);
-      setPortion();
-    }
+    setCurrentPortion(--currentPortion);
   }
 
   let pagesComponents = portion.map((p) => (

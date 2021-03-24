@@ -37,11 +37,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default compose(connect(mapStateToProps, {
-  getUsers,
-  loadPage,
-  loadNextPage,
-  loadPrevPage,
-  subscribeRequest,
-  unSubscribeRequest,
-}))(UsersAPIreq);
+export default compose(
+  connect(mapStateToProps, {
+    getUsers,
+    loadPage,
+    loadNextPage,
+    loadPrevPage,
+    subscribeRequest,
+    unSubscribeRequest,
+  })
+)(UsersAPIreq);
