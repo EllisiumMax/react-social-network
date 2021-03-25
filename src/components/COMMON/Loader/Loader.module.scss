@@ -1,4 +1,3 @@
-
 .loaderWrapper {
   display: flex;
   align-items: center;
@@ -11,10 +10,23 @@
   z-index: 500;
   padding: 0;
   user-select: none;
+
 }
 
 .loader {
-    transform: translate(-70%, -20%);
-    width: 10em;
-    user-select: none;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-100%, -40%);
+  width: 10em;
+  user-select: none;
+}
+
+.fullScreenLoader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 13em;
+  user-select: none;
 }

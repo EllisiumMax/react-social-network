@@ -28,7 +28,7 @@ class App extends React.Component {
     this.props.initializeApp();
   }
   render() {
-    if (!this.props.appReady) return <Loader />;
+    if (!this.props.appReady) return <Loader fullscreen={true}/>;
     return (
       <BrowserRouter basename="/toucan/">
         <div className="app-wrapper">
