@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import Music from "./components/Music/Music";
@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import Loader from "components/COMMON/Loader/Loader";
 import { initializeApp } from "redux/appReducer";
 import withSuspense from "hoc/withSuspense";
+
 
 const UsersContainer = React.lazy(() =>
   import("components/Users/UsersContainer")
@@ -29,22 +30,24 @@ class App extends React.Component {
   render() {
     if (!this.props.appReady) return <Loader />;
     return (
-      <div className="app-wrapper">
-        <Header />
-        <Navbar />
-        <div className="app-wrapper-content">
-          <Route
-            path="/profile/:userId?"
-            render={() => withSuspense(ProfileContainer)}
-          />
-          <Route path="/messages" render={() => <MessagesContainer />} />
-          <Route path="/users" render={() => withSuspense(UsersContainer)} />
-          <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/settings" render={() => withSuspense(Settings)} />
-          <Route path="/login" render={() => withSuspense(LoginWindow)} />
+      <BrowserRouter basename="/toucan/">
+        <div className="app-wrapper">
+          <Header />
+          <Navbar />
+          <div className="app-wrapper-content">
+            <Route
+              path="/profile/:userId?"
+              render={() => withSuspense(ProfileContainer)}
+            />
+            <Route path="/messages" render={() => <MessagesContainer />} />
+            <Route path="/users" render={() => withSuspense(UsersContainer)} />
+            <Route path="/news" render={() => <News />} />
+            <Route path="/music" render={() => <Music />} />
+            <Route path="/settings" render={() => withSuspense(Settings)} />
+            <Route path="/login" render={() => withSuspense(LoginWindow)} />
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
@@ -54,5 +57,6 @@ const mapStateToProps = (state) => {
     appReady: state.app.appReady,
   };
 };
+
 
 export default connect(mapStateToProps, { initializeApp })(App);
