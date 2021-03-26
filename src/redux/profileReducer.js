@@ -5,10 +5,16 @@ const SET_PROFILE_INFO = "SET-PROFILE-INFO";
 const GET_STATUS = "GET-STATUS";
 const SET_STATUS = "SET-STATUS";
 const REQUEST_IS_FETCHING = "REQUEST-IS-FETCHING";
+const UPPLOAD_PHOTO = "UPPLOAD-PHOTO";
 
 const initialState = {
-  profileInfo: {},
-  status: '',
+  profileInfo: {
+    photos: {
+      small: null,
+      large: null
+    }
+  },
+  status: "",
   posts: [
     {
       imgLink:
@@ -49,6 +55,7 @@ const initialState = {
 function profileReducer(state = initialState, action) {
   let newState = { ...state };
   newState.profileInfo = { ...state.profileInfo };
+  newState.profileInfo.photos = {...state.profileInfo.photos}
   newState.posts = [...state.posts];
 
   switch (action.type) {
@@ -77,6 +84,11 @@ function profileReducer(state = initialState, action) {
     }
     case SET_STATUS: {
       newState.status = action.status;
+      return newState;
+    }
+    case UPPLOAD_PHOTO: {
+      newState.profileInfo.photos.small = action.small;
+      newState.profileInfo.photos.large = action.large;
       return newState;
     }
     default:
@@ -120,6 +132,14 @@ export function setStatus(status) {
   };
 }
 
+export function photoChanged(photos) {
+  return {
+    type: UPPLOAD_PHOTO,
+    small: photos.small,
+    large: photos.large,
+  };
+}
+
 export function loadProfile(id) {
   return (dispatch) => {
     dispatch(requestIsFetching(true));
@@ -149,6 +169,17 @@ export function setStatusRequest(oldStatus, newStatus) {
         if (res.resultCode === 0) dispatch(setStatus(newStatus));
       });
     } else dispatch(setStatus(oldStatus));
+  };
+}
+
+export function uploadPhoto(photo) {
+  return (dispatch) => {
+    DAL.profile.uploadPhoto(photo).then((res) => {
+      if (res.resultCode === 0) {
+        console.log(res.data.photos);
+        dispatch(photoChanged(res.data.photos));
+      }
+    });
   };
 }
 

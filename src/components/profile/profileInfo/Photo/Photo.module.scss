@@ -1,0 +1,41 @@
+.photoContainer {
+  position: relative;
+}
+
+.hiddenUpload {
+  display: none;
+}
+
+.loadPhoto {
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+
+  cursor: pointer;
+  .upploadIco {
+    height: 3.5em;
+    width: 3.5em;
+    border-radius: 1.3em;
+    background-color: rgba(102, 102, 102, 0.356);
+    padding: 0.8em;
+    filter: saturate(2);
+    transition: all 0.2s;
+    &:hover {
+      box-shadow: 0 0 4px 1px rgb(253, 253, 253);
+      background-color: rgba(148, 148, 148, 0.514);
+      filter: saturate(7);
+      transform: scale(1.15);
+      margin-top: -0.7em;
+      margin-left: -0.4em;
+    }
+  }
+}
+
+.userPhoto {
+  height: 21.3em;
+  margin-left: 0;
+  background-color: rgb(4, 33, 53);
+  padding-left: 0em;
+  object-fit: contain;
+}

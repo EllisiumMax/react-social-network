@@ -2,22 +2,12 @@
   display: flex;
   margin-bottom: 3em;
   align-items: center;
-}
-
-.userPhoto {
-  height: 21em;
-  margin-left: 0;
-  background-color: rgb(4, 33, 53);
-  padding-left: 0em;
+  height: 20em;
 }
 
 .infoWrapper {
-  display: grid;
-  grid-template:
-    "name" 30%
-    "job" 10%
-    "contacts" 60%;
-  grid-template-columns: 100%;
+  display: flex;
+  flex-direction: column;
   height: 21em;
   background-color: rgb(4, 33, 53);
   width: 100%;
@@ -32,53 +22,11 @@
 }
 
 .userName {
-  grid-area: name;
   text-align: center;
   display: flex;
   flex-direction: column;
   h1 {
     margin-top: 0;
-    padding: 0;
-  }
-}
-
-.job {
-  grid-area: job;
-  padding: 0;
-}
-
-.contactsList {
-  grid-area: contacts;
-  display: flex;
-  flex-wrap: wrap;
-  flex-shrink: 2;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.contactsHeader {
-  font-size: 1.2em;
-}
-
-.contactCell {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  text-decoration: none;
-  padding: 0;
-  margin-right: 2em;
-  img {
-    width: 2.5em;
-    border-radius: 5em;
-    &:hover {
-      box-shadow: 0 0 7px 0 rgb(4, 122, 168),
-       inset 0 0 7px 0  rgb(111, 155, 255);
-    }
-    padding: 0.3em;
-  }
-  h4 {
-    font-size: 0.9em;
-    font-weight: 100;
     padding: 0;
   }
 }

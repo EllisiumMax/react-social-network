@@ -72,6 +72,17 @@ const DAL = {
         .put("profile/status", { status: status })
         .then((res) => res.data);
     },
+    uploadPhoto(photo) {
+      const formData = new FormData();
+      formData.append("image", photo.files[0]);
+      return axiosSamurai
+        .put("profile/photo", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => res.data);
+    },
   },
   messages: {
     startChating(userId) {

@@ -10,6 +10,8 @@ function Profile(props) {
         setStatusRequest={props.setStatusRequest}
         status={props.status}
         loggedUserId={props.id}
+        uploadPhoto={props.uploadPhoto}
+        editMode={props.editMode}
       />
       <div>
         <CreatePost posts={props.posts} addPost={props.addPost} />

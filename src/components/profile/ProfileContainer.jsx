@@ -1,15 +1,15 @@
 import Loader from "components/COMMON/Loader/Loader";
 import withAuthRedirect from "hoc/withAuthRedirect";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import { getUserIdSel } from "redux/loginSelectors";
 import {
   addPost,
   loadProfile,
   setStatusRequest,
   statusRequest,
+  uploadPhoto,
 } from "redux/profileReducer";
 import {
   getFetchingSel,
@@ -19,14 +19,25 @@ import {
 } from "redux/profileSelectors";
 import Profile from "./Profile";
 
+function ProfileContainer(props) {
+  const targetId = props.match.params.userId;
+  const [editMode, modifyEditMode] = useState(
+    props.id === targetId ? true : false
+  );
 
-function ProfileContainer (props) {
-  useEffect( () => {
-    props.loadProfile(props.match.params.userId ?? props.id);
-    props.statusRequest(props.match.params.userId ?? props.id);
-  },[props.location.key])
+  useEffect(() => {
+    props.loadProfile(targetId ?? props.id);
+    props.statusRequest(targetId ?? props.id);
 
-  return props.isFetching ? <Loader /> : <Profile {...props} />;
+    if (!targetId || props.id == targetId) modifyEditMode(true);
+    else modifyEditMode(false);
+  }, [props.location.key]);
+
+  return props.isFetching ? (
+    <Loader />
+  ) : (
+    <Profile {...props} editMode={editMode} />
+  );
 }
 
 function mapStateToProps(state) {
@@ -38,13 +49,13 @@ function mapStateToProps(state) {
   };
 }
 
-
 export default compose(
   connect(mapStateToProps, {
     loadProfile,
     statusRequest,
     setStatusRequest,
     addPost,
+    uploadPhoto,
   }),
   withRouter,
   withAuthRedirect

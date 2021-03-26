@@ -3,9 +3,6 @@ import scss from "./Status.module.scss";
 import editImg from "../../../../images/edit.svg";
 
 function Status(props) {
-  const [editMode, modifyEditMode] = useState(
-    props.loggedUserID === props.targetId ? true : false
-  );
   const [tempText, editTempText] = useState(props.status);
   const [editActive, modifyEditActive] = useState(false);
 
@@ -13,27 +10,14 @@ function Status(props) {
     editTempText(props.status);
   }, [props.status]);
 
-  useEffect(() => {
-    if (props.loggedUserID === props.targetId) {
-      modifyEditMode(true);
-      modifyEditActive(false);
-    } else modifyEditMode(false);
-  }, [props.status]);
 
   function statusChangeOnEnter(e) {
     if (e.keyCode === 13) {
       props.setStatusRequest(props.status, tempText);
-      onStatusChange();
     }
   }
 
-  function onStatusChange() {
-    if (props.status !== tempText) {
-      modifyEditMode(false);
-    }
-  }
-
-  if (editMode) {
+  if (props.editMode) {
     return (
       <div>
         {editActive ? (
@@ -46,7 +30,6 @@ function Status(props) {
             onBlur={() => {
               props.setStatusRequest(props.status, tempText);
               modifyEditActive(false);
-              onStatusChange();
             }}
             onKeyDown={(e) => statusChangeOnEnter(e)}
           ></input>

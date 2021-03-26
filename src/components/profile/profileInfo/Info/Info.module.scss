@@ -1,0 +1,39 @@
+.job {
+  grid-area: job;
+  padding: 0;
+}
+
+.contactsList {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 2;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2.5em;
+}
+
+.contactsHeader {
+  font-size: 1.2em;
+}
+
+.contactCell {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+  padding: 0;
+  margin-right: 2em;
+  img {
+    width: 2.5em;
+    border-radius: 5em;
+    &:hover {
+      box-shadow: 0 0 7px 0 rgb(4, 122, 168), inset 0 0 7px 0 rgb(111, 155, 255);
+    }
+    padding: 0.3em;
+  }
+  h4 {
+    font-size: 0.9em;
+    font-weight: 100;
+    padding: 0;
+  }
+}
