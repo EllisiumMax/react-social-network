@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.scss";
 import Header from "./components/Header/Header";
@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import Loader from "components/COMMON/Loader/Loader";
 import { initializeApp } from "redux/appReducer";
 import withSuspense from "hoc/withSuspense";
+import SettingsContainer from "./components/Settings/SettingsContainer";
 
 
 const UsersContainer = React.lazy(() =>
@@ -21,7 +22,7 @@ const LoginWindow = React.lazy(() =>
 const ProfileContainer = React.lazy(() =>
   import("components/Profile/ProfileContainer")
 );
-const Settings = React.lazy(() => import("./components/Settings/Settings"));
+const Settings = React.lazy(() => import("./components/Settings/SettingsContainer"));
 
 class App extends React.Component {
   componentDidMount() {
@@ -43,7 +44,7 @@ class App extends React.Component {
             <Route path="/users" render={() => withSuspense(UsersContainer)} />
             <Route path="/news" render={() => <News />} />
             <Route path="/music" render={() => <Music />} />
-            <Route path="/settings" render={() => withSuspense(Settings)} />
+            <Route path="/settings" render={() => withSuspense(SettingsContainer)} />
             <Route path="/login" render={() => withSuspense(LoginWindow)} />
           </div>
         </div>

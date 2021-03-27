@@ -69,7 +69,7 @@ const DAL = {
     },
     setStatus(status) {
       return axiosSamurai
-        .put("profile/status", { status: status })
+        .put("profile/status", { status })
         .then((res) => res.data);
     },
     uploadPhoto(photo) {
@@ -130,6 +130,11 @@ const DAL = {
       return axiosSamurai
         .get("dialogs/messages/new/count")
         .then((res) => res.data);
+    },
+  },
+  settings: {
+    changeProfileInfo(info) {
+      return axiosSamurai.put("profile", { ...info }).then((res) => res.data);
     },
   },
 };

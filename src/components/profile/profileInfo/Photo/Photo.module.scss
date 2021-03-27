@@ -8,7 +8,7 @@
 
 .loadPhoto {
   position: absolute;
-  top: 90%;
+  top: 89%;
   left: 90%;
   transform: translate(-50%, -50%);
 
@@ -16,18 +16,17 @@
   .upploadIco {
     height: 3.5em;
     width: 3.5em;
-    border-radius: 1.3em;
-    background-color: rgba(102, 102, 102, 0.356);
-    padding: 0.8em;
+    border-radius: .3em;
+    background-color: rgba(26, 26, 26, 0.589);
+    padding: 0.5em;
     filter: saturate(2);
     transition: all 0.2s;
     &:hover {
-      box-shadow: 0 0 4px 1px rgb(253, 253, 253);
-      background-color: rgba(148, 148, 148, 0.514);
+      border-radius: 2em;
       filter: saturate(7);
       transform: scale(1.15);
       margin-top: -0.7em;
-      margin-left: -0.4em;
+
     }
   }
 }

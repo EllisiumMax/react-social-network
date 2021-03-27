@@ -176,7 +176,6 @@ export function uploadPhoto(photo) {
   return (dispatch) => {
     DAL.profile.uploadPhoto(photo).then((res) => {
       if (res.resultCode === 0) {
-        console.log(res.data.photos);
         dispatch(photoChanged(res.data.photos));
       }
     });

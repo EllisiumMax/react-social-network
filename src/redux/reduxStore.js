@@ -7,6 +7,7 @@ import ReduxThunk from "redux-thunk";
 import { applyMiddleware } from "redux";
 import appReducer from "./appReducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
+import settingsReducer from "./settingsReducer";
 
 
 const rootReducer = combineReducers({
@@ -15,13 +16,12 @@ const rootReducer = combineReducers({
   usersPage: usersReducer,
   auth: authReducer,
   app: appReducer,
+  settingsPage: settingsReducer,
 }); 
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(ReduxThunk))
 );
-
-window.store = store;
 
 export default store;
