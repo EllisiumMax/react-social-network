@@ -27,7 +27,12 @@ function ProfileInfo(props) {
             editMode={props.editMode}
           />
         </div>
-        <Info contacts={props.contacts} />
+        <Info
+          contacts={props.contacts}
+          aboutMe={props.aboutMe}
+          lookingForAJob={props.lookingForAJob}
+          lookingForAJobDescription={props.lookingForAJobDescription}
+        />
       </div>
     </div>
   );

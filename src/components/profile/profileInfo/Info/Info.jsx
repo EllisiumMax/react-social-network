@@ -10,6 +10,27 @@ import gitLogo from "../../../../images/github.svg";
 import mainLinkLogo from "../../../../images/mainLink.svg";
 
 function Info(props) {
+  const logosArray = [
+    fbLogo,
+    wwwLogo,
+    vkLogo,
+    twitterLogo,
+    instaLogo,
+    yTubeLogo,
+    gitLogo,
+    mainLinkLogo,
+  ];
+
+  const contacts = Object.entries(props.contacts).map((val, i) => {
+    if (val[1]) {
+      return (
+        <a className={scss.contactCell} href={val[1]}>
+          <img src={logosArray[i]} alt={val[0]} />
+        </a>
+      );
+    }
+  });
+  
   return (
     <div>
       <div className={scss.job}>
@@ -20,48 +41,7 @@ function Info(props) {
           <h4> Not looking for a job.</h4>
         )}
       </div>
-      <div className={scss.contactsList}>
-        {props.contacts.facebook ? (
-          <a className={scss.contactCell} href={`${props.contacts.facebook}`}>
-            <img src={fbLogo} alt="Facebook Logo" />
-          </a>
-        ) : null}
-        {props.contacts.website ? (
-          <a className={scss.contactCell} href={`${props.contacts.website}`}>
-            <img src={wwwLogo} alt="Website Logo" />
-          </a>
-        ) : null}
-        {props.contacts.vk ? (
-          <a className={scss.contactCell} href={`${props.contacts.vk}`}>
-            <img src={vkLogo} alt="Vkontakte Logo" />
-          </a>
-        ) : null}
-        {props.contacts.twitter ? (
-          <a className={scss.contactCell} href={`${props.contacts.twitter}`}>
-            <img src={twitterLogo} alt="Twitter Logo" />
-          </a>
-        ) : null}
-        {props.contacts.instagram ? (
-          <a className={scss.contactCell} href={`${props.contacts.instagram}`}>
-            <img src={instaLogo} alt="Instagramm Logo" />
-          </a>
-        ) : null}
-        {props.contacts.youtube ? (
-          <a className={scss.contactCell} href={`${props.contacts.youtube}`}>
-            <img src={yTubeLogo} alt="YoutTube Logo" />
-          </a>
-        ) : null}
-        {props.contacts.github ? (
-          <a className={scss.contactCell} href={`${props.contacts.github}`}>
-            <img src={gitLogo} alt="GitHub Logo" />
-          </a>
-        ) : null}
-        {props.contacts.mainLink ? (
-          <a className={scss.contactCell} href={`${props.contacts.mainLink}`}>
-            <img src={mainLinkLogo} alt="Main Link Logo" />
-          </a>
-        ) : null}
-      </div>
+      <div className={scss.contactsList}>{contacts}</div>
     </div>
   );
 }
