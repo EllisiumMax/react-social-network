@@ -1,8 +1,10 @@
+import Loader from "components/COMMON/Loader/Loader";
 import React from "react";
 import { Field, Form } from "react-final-form";
 import scss from "./UserInfo.module.scss";
 
 function UserInfo(props) {
+  if(!props.profileInfo.fullName) return <Loader />;
   return (
     <div>
       <Form
@@ -20,12 +22,13 @@ function UserInfo(props) {
                   name="fullName"
                   component="input"
                   type="text"
-                  placeholder="Your full name"
+                  defaultValue={props.profileInfo.fullName}
+                  
                 />
               </div>
               <div>
                 <label>About me: </label>
-                <Field name="aboutMe" component="input" type="text" />
+                <Field name="aboutMe" component="input" type="text" defaultValue={props.profileInfo.aboutMe}/>
               </div>
               <div>
                 <label>Looking for a job?</label>
@@ -33,6 +36,7 @@ function UserInfo(props) {
                   name="lookingForAJob"
                   component="input"
                   type="checkbox"
+                  checked={props.profileInfo.lookingForAJob ? "checked" : null}
                 />
               </div>
               <div>
@@ -41,7 +45,7 @@ function UserInfo(props) {
                   name="lookingForAJobDescription"
                   component="input"
                   type="text"
-                  placeholder="Job description"
+                  defaultValue={props.profileInfo.lookingForAJobDescription}
                 />
               </div>
 
@@ -53,7 +57,7 @@ function UserInfo(props) {
                     name="contacts.github"
                     component="input"
                     type="text"
-                    placeholder="github"
+                    defaultValue={props.profileInfo.contacts.github}
                   />
                 </label>
                 <label>
@@ -62,7 +66,8 @@ function UserInfo(props) {
                     name="contacts.vk"
                     component="input"
                     type="text"
-                    placeholder="vk"
+                    defaultValue={props.profileInfo.contacts.vk}
+
                   />
                 </label>
                 <label>
@@ -71,7 +76,7 @@ function UserInfo(props) {
                     name="contacts.facebook"
                     component="input"
                     type="text"
-                    placeholder="facebook"
+                    defaultValue={props.profileInfo.contacts.facebook}
                   />
                 </label>
                 <label>
@@ -80,7 +85,7 @@ function UserInfo(props) {
                     name="contacts.instagram"
                     component="input"
                     type="text"
-                    placeholder="instagram"
+                    defaultValue={props.profileInfo.contacts.instagram}
                   />
                 </label>
                 <label>
@@ -89,7 +94,7 @@ function UserInfo(props) {
                     name="contacts.twitter"
                     component="input"
                     type="text"
-                    placeholder="twitter"
+                    defaultValue={props.profileInfo.contacts.twitter}
                   />
                 </label>
                 <label>
@@ -98,7 +103,7 @@ function UserInfo(props) {
                     name="contacts.website"
                     component="input"
                     type="text"
-                    placeholder="website"
+                    defaultValue={props.profileInfo.contacts.website}
                   />
                 </label>
                 <label>
@@ -107,16 +112,16 @@ function UserInfo(props) {
                     name="contacts.youtube"
                     component="input"
                     type="text"
-                    placeholder="youtube"
+                    defaultValue={props.profileInfo.contacts.youtube}
                   />
                 </label>
                 <label>
                   Main Link:
                   <Field
-                    name="contacts.fullmainLinkName"
+                    name="contacts.mainLink"
                     component="input"
                     type="text"
-                    placeholder="mainLink"
+                    defaultValue={props.profileInfo.contacts.mainLink}
                   />
                 </label>
                 <button type="submit" disabled={submitting} className={scss.submit}>
