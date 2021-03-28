@@ -1,5 +1,7 @@
+import withAuthRedirect from "hoc/withAuthRedirect";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import { getUserIdSel } from "redux/loginSelectors";
 import { loadProfile } from "redux/profileReducer";
 import { getProfileInfoSel } from "redux/profileSelectors";
@@ -7,7 +9,6 @@ import { changeProfileInfo } from "redux/settingsReducer";
 import UserInfo from "./UserInfo/UserInfo";
 
 function SettingsContainer(props) {
-
   useEffect(() => props.loadProfile(props.id), []);
   return (
     <div>
@@ -26,6 +27,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { changeProfileInfo, loadProfile })(
-  SettingsContainer
-);
+export default compose(
+  connect(mapStateToProps, { changeProfileInfo, loadProfile }),
+  withAuthRedirect
+)(SettingsContainer);
