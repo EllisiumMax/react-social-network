@@ -12,7 +12,7 @@ const REMOVE_FOLLOW_UNFOLLOW_REQUEST = "REMOVE-FOLLOW-UNFOLLOW-REQUEST";
 const initialState = {
   users: [],
   totalCount: 0,
-  usersPerPage: 6,
+  usersPerPage: 8,
   currentPage: 1,
   isFetching: true,
   currentRequests: [],

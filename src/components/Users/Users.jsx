@@ -95,11 +95,7 @@ function User(props) {
       </div>
       <div className={scss.infoWrapper}>
         <p className={scss.name}>{user.name}</p>
-        <p className={scss.age}>Age: {user.age}</p>
-        <p className={scss.location}>
-          From: {user.city} {user.country}
-        </p>
-        <p className={scss.status}>Status: {user.status}</p>
+        {user.status ? <p className={scss.status}>Status: {user.status}</p> : null} 
       </div>
     </div>
   ));

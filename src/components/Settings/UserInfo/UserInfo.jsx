@@ -5,6 +5,7 @@ import scss from "./UserInfo.module.scss";
 
 function UserInfo(props) {
   if (!props.profileInfo.fullName) return <Loader />;
+
   return (
     <div>
       <Form
@@ -45,7 +46,7 @@ function UserInfo(props) {
                     name="lookingForAJob"
                     component="input"
                     type="checkbox"
-                    checked={
+                    defaultValue={
                       props.profileInfo.lookingForAJob ? "checked" : null
                     }
                   />

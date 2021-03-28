@@ -1,5 +1,5 @@
 import React from "react";
-import userWithoutPhoto from "../../../../images/unknown-user.svg";
+import userWithoutPhoto from "../../../../images/unknown-user-big.svg";
 import upploadImg from "../../../../images/upload.svg";
 import scss from "./Photo.module.scss";
 

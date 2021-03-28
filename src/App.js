@@ -42,8 +42,6 @@ class App extends React.Component {
             />
             <Route path="/messages" render={() => <MessagesContainer />} />
             <Route path="/users" render={() => withSuspense(UsersContainer)} />
-            <Route path="/news" render={() => <News />} />
-            <Route path="/music" render={() => <Music />} />
             <Route path="/settings" render={() => withSuspense(SettingsContainer)} />
             <Route path="/login" render={() => withSuspense(LoginWindow)} />
           </div>
