@@ -7,6 +7,7 @@ import { changeProfileInfo } from "redux/settingsReducer";
 import UserInfo from "./UserInfo/UserInfo";
 
 function SettingsContainer(props) {
+
   useEffect(() => props.loadProfile(props.id), []);
   return (
     <div>
@@ -17,6 +18,9 @@ function SettingsContainer(props) {
 
 function mapStateToProps(state) {
   return {
+    isFetching: state.settingsPage.isFetching,
+    messages: state.settingsPage.messages,
+    sentSucessfully: state.settingsPage.sentSucessfully,
     profileInfo: getProfileInfoSel(state),
     id: getUserIdSel(state),
   };

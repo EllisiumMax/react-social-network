@@ -3,7 +3,8 @@
   grid-template:
     "personal contacts" 12.5em
     "job contacts" 15em
-    "submit submit" 4em;
+    "submit submit" 4em
+    "submitResult submitResult" 4em;
   grid-gap: 2em;
   justify-items: center;
   align-items: center;
@@ -105,4 +106,28 @@
     position: relative;
     top: 1px;
   }
+}
+
+.loading {
+  grid-area: submit;
+}
+
+.responseResult {
+  padding: 0.6em 2em;
+  margin: auto;
+  grid-area: submitResult;
+  border-radius: 1em;
+
+  color: rgb(255, 255, 255);
+  font-weight: 300;
+}
+
+.error {
+  background-color: rgb(73, 13, 3);
+  box-shadow: 0 0 14px rgb(194, 2, 2);
+}
+
+.sucess {
+  background-color: rgb(8, 66, 58);
+  box-shadow: 0 0 10px rgb(98, 160, 6);
 }

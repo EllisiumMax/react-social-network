@@ -2,12 +2,18 @@ import Loader from "components/COMMON/Loader/Loader";
 import React from "react";
 import { Field, Form } from "react-final-form";
 import scss from "./UserInfo.module.scss";
+import loading from "../../../images/puff.svg";
 
 function UserInfo(props) {
   if (!props.profileInfo.fullName) return <Loader />;
-
   return (
     <div>
+      <img
+        src={loading}
+        className={scss.loading}
+        alt="request is loading"
+        style={{ display: "none" }}
+      />
       <Form
         onSubmit={(form) => {
           form.userId = props.id;
@@ -46,9 +52,7 @@ function UserInfo(props) {
                     name="lookingForAJob"
                     component="input"
                     type="checkbox"
-                    defaultValue={
-                      props.profileInfo.lookingForAJob ? "checked" : null
-                    }
+                    defaultValue={props.profileInfo.lookingForAJob}
                   />
                 </div>
                 <div className={scss.job}>
@@ -142,13 +146,32 @@ function UserInfo(props) {
                   />
                 </div>
               </div>
-              <button
-                type="submit"
-                disabled={submitting}
-                className={scss.submit}
-              >
-                Submit
-              </button>
+
+              {props.isFetching ? (
+                <img
+                  src={loading}
+                  className={scss.loading}
+                  alt="request is loading"
+                />
+              ) : (
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className={scss.submit}
+                >
+                  Submit
+                </button>
+              )}
+              {props.sentSucessfully ? (
+                <div className={`${scss.responseResult} ${scss.sucess}`}>
+                  Profile info has been updated
+                </div>
+              ) : null}
+              {props.messages.length && props.messages.length >= 1 ? (
+                <div className={`${scss.responseResult} ${scss.error}`}>
+                  Error: {props.messages}
+                </div>
+              ) : null}
             </div>
           </form>
         )}
