@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import Loader from "components/COMMON/Loader/Loader";
 import { initializeApp } from "redux/appReducer";
 import withSuspense from "hoc/withSuspense";
-import SettingsContainer from "./components/Settings/SettingsContainer";
 
 const UsersContainer = React.lazy(() =>
   import("components/Users/UsersContainer")
@@ -19,7 +18,7 @@ const LoginWindow = React.lazy(() =>
 const ProfileContainer = React.lazy(() =>
   import("components/Profile/ProfileContainer")
 );
-const Settings = React.lazy(() =>
+const SettingsContainer = React.lazy(() =>
   import("./components/Settings/SettingsContainer")
 );
 

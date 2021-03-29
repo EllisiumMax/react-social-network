@@ -18,7 +18,7 @@ function User(props) {
           <p>{props.userName}</p>
           {props.hasNewMessages ? (
             <div className={scss.newMessagesWrapper}>
-              <img className={scss.newMessage} src={newMessage} />
+              <img className={scss.newMessage} src={newMessage} alt="new message"/>
               <p className={scss.newMessagesCount}>{props.newMessagesCount}</p>
             </div>
           ) : null}

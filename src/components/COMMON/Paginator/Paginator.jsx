@@ -34,8 +34,9 @@ function Paginator({
     setCurrentPortion(--currentPortion);
   }
 
-  let pagesComponents = portion.map((p) => (
+  let pagesComponents = portion.map((p, i) => (
     <p
+      key={`page${i}`}
       className={currentPage === p ? scss.activePage : scss.pageNumber}
       onClick={() => loadPage(p, currentPage, itemsPerPage)}
     >

@@ -29,7 +29,7 @@ function ProfileContainer(props) {
     props.loadProfile(targetId ?? props.id);
     props.statusRequest(targetId ?? props.id);
 
-    if (!targetId || props.id == targetId) modifyEditMode(true);
+    if (!targetId || props.id === +targetId) modifyEditMode(true);
     else modifyEditMode(false);
   }, [props.location.key]);
 

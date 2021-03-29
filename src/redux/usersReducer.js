@@ -28,12 +28,12 @@ function findUsersReducer(state = initialState, action) {
       return newState;
     case SET_SUBSCRIBE:
       newState.users.forEach((user) => {
-        if (user.id == action.userID) user.followed = true;
+        if (user.id === action.userID) user.followed = true;
       });
       return newState;
     case SET_UN_SUBSCRIBE:
       newState.users.forEach((user) => {
-        if (user.id == action.userID) user.followed = false;
+        if (user.id === action.userID) user.followed = false;
       });
       return newState;
     case SET_TOTAL_USERS:

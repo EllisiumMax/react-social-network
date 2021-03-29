@@ -77,7 +77,6 @@ export function sendMessage(message, dateTime) {
 export function getDialogs() {
   return (dispatch) => {
     DAL.messages.getAllDialogs().then((res) => {
-      console.log(res);
       dispatch(getAllDialogsAC(res));
     });
   };

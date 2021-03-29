@@ -42,6 +42,7 @@ function Status(props) {
               className={scss.edit}
               src={editImg}
               onClick={() => modifyEditActive(true)}
+              alt="edit"
             />
           </div>
         )}

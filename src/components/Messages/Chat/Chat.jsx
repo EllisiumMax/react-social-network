@@ -5,16 +5,22 @@ import { Field, Form } from "react-final-form";
 import moment from "moment";
 
 function Chat(props) {
-  const messages = props.messages.map((message) =>
+  const messages = props.messages.map((message, i) =>
     message.userName ? (
       <Message
+        key={`message${i}`}
         userName={message.userName}
         text={message.text}
         timeStamp={message.timeStamp}
         self={false}
       />
     ) : (
-      <Message text={message.text} timeStamp={message.timeStamp} self={true} />
+      <Message
+        key={`message${i}`}
+        text={message.text}
+        timeStamp={message.timeStamp}
+        self={true}
+      />
     )
   );
 
@@ -35,7 +41,7 @@ const ChatInput = (props) => (
         form.reset();
       }
     }}
-    render={({ handleSubmit, submitting}) => (
+    render={({ handleSubmit, submitting }) => (
       <form onSubmit={handleSubmit}>
         <div className={scss.inputWindow}>
           <Field
@@ -44,7 +50,7 @@ const ChatInput = (props) => (
             type="text"
             maxLength={5000}
             placeholder="Input your message.."
-            autocomplete="off"
+            autoComplete="off"
           />
           <button disabled={submitting}>SEND</button>
         </div>

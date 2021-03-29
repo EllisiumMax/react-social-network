@@ -8,7 +8,7 @@ function Photo(props) {
     <div className={scss.photoContainer}>
       <img
         src={props.imgLarge || props.imgSmall || userWithoutPhoto}
-        alt="User profile image"
+        alt="User profile"
         className={scss.userPhoto}
       />
       {props.editMode ? (
@@ -23,7 +23,7 @@ function Photo(props) {
           <input type="file" className={scss.hiddenUpload} />
           <img
             src={upploadImg}
-            alt="uppload image"
+            alt="uppload"
             className={scss.upploadIco}
           />
         </label>

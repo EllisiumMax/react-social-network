@@ -48,7 +48,7 @@ const LoginForm = (props) => (
             : null}
           {props.captcha ? (
             <div className={scss.captchaContainer}>
-              <img className={scss.captcha} src={props.captcha}></img>
+              <img className={scss.captcha} src={props.captcha} alt="CAPTCHA"></img>
               <Field
                 component="input"
                 type="input"

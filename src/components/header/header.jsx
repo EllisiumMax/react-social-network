@@ -7,7 +7,7 @@ import LogoutContainer from "./Logout/Logout";
 function Header() {
   return (
     <header className={scss.header}>
-      <img src={toucanLogo}></img>
+      <img src={toucanLogo} alt="toucan"></img>
       <p>Toucan Social Network</p>
       <div className={scss.logInOutWrapper}>
         <LoginContainer className={scss.logIn}/>

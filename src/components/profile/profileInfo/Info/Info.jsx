@@ -21,16 +21,22 @@ function Info(props) {
     mainLinkLogo,
   ];
 
-  const contacts = Object.entries(props.contacts).map((val, i) => {
-    if (val[1]) {
-      return (
-        <a className={scss.contactCell} href={`//${val[1]}`} target="_blank">
-          <img src={logosArray[i]} alt={val[0]} />
-        </a>
-      );
-    }
-  });
-  
+
+
+  const contacts = Object.entries(props.contacts)
+    .filter((val) => val[1])
+    .map((val, i) => (
+      <a
+        key={`contact${i}`}
+        className={scss.contactCell}
+        href={`//${val[1]}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img src={logosArray[i]} alt={val[0]} />
+      </a>
+    ));
+
   return (
     <div>
       <div className={scss.job}>
