@@ -5,9 +5,15 @@ import newMessage from "../../../../images/newMessage.svg";
 import React from "react";
 
 function User(props) {
-  const path = `/toucan/dialogs/${props.id}`;
+  const path = `/messages/${props.id}`;
   return (
-    <div className={scss.wrapper}>
+    <div
+      className={scss.wrapper}
+      onClick={() => {
+        props.setFriendIdAC(props.id);
+        props.getMessages(props.id);
+      }}
+    >
       <NavLink to={path} activeClassName={scss.active}>
         <div className={scss.container}>
           <img
@@ -18,7 +24,11 @@ function User(props) {
           <p>{props.userName}</p>
           {props.hasNewMessages ? (
             <div className={scss.newMessagesWrapper}>
-              <img className={scss.newMessage} src={newMessage} alt="new message"/>
+              <img
+                className={scss.newMessage}
+                src={newMessage}
+                alt="new message"
+              />
               <p className={scss.newMessagesCount}>{props.newMessagesCount}</p>
             </div>
           ) : null}

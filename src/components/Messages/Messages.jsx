@@ -6,8 +6,17 @@ import UserList from "./UserList/UserList";
 function Messages(props) {
   return (
     <div className={scss.chatWrapper}>
-      <UserList userList={props.userList} />
-      <Chat messages={props.messages} sendMessage={props.sendMessage} />
+      <UserList
+        userList={props.userList}
+        getMessages={props.getMessages}
+        setFriendIdAC={props.setFriendIdAC}
+      />
+      <Chat
+        messages={props.messages}
+        sendMessage={props.sendMessage}
+        friendId={props.friendId}
+        loggedId={props.id}
+      />
     </div>
   );
 }

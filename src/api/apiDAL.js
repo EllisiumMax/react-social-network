@@ -98,7 +98,11 @@ const DAL = {
     },
     sendMessage(userId, messageString) {
       return axiosSamurai
-        .post(`dialogs/${userId}/messages`, messageString)
+        .post(`dialogs/${userId}/messages`, JSON.stringify(messageString), {
+          headers: {
+            "content-type": "application/json; charset=utf-8",
+          },
+        })
         .then((res) => res.data);
     },
     checkMessageViewed(messageId) {

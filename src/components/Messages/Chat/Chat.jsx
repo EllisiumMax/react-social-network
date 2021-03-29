@@ -2,28 +2,32 @@ import scss from "./Chat.module.scss";
 import React from "react";
 import Message from "./Message/Message";
 import { Field, Form } from "react-final-form";
-import moment from "moment";
 
 function Chat(props) {
-  const messages = props.messages.map((message, i) =>
-    message.userName ? (
-      <Message
-        key={`message${i}`}
-        userName={message.userName}
-        text={message.text}
-        timeStamp={message.timeStamp}
-        self={false}
-      />
-    ) : (
-      <Message
-        key={`message${i}`}
-        text={message.text}
-        timeStamp={message.timeStamp}
-        self={true}
-      />
-    )
-  );
-
+  let messages = <p className={scss.noMessages}>No messages yet..</p>;
+  if (props.messages.length > 0) {
+    messages = props.messages.map((message, i) =>
+      message.senderId !== props.loggedId ? (
+        <Message
+          key={message.id}
+          userName={message.senderName}
+          text={message.body}
+          timeStamp={message.addedAt}
+          self={false}
+          viewed={message.viewed}
+        />
+      ) : (
+        <Message
+          key={message.id}
+          userName="You"
+          text={message.body}
+          timeStamp={message.addedAt}
+          self={true}
+          viewed={message.viewed}
+        />
+      )
+    );
+  }
   return (
     <div>
       <div className={scss.chat}>{messages}</div>
@@ -36,8 +40,7 @@ const ChatInput = (props) => (
   <Form
     onSubmit={(obj, form) => {
       if (obj.message) {
-        const timeStamp = moment().format("MM.DD.YY, HH:mm:ss");
-        props.sendMessage(obj.message, timeStamp);
+        props.sendMessage(props.friendId, { body: obj.message });
         form.reset();
       }
     }}
