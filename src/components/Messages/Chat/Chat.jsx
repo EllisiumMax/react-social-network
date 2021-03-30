@@ -4,12 +4,17 @@ import Message from "./Message/Message";
 import { Field, Form } from "react-final-form";
 
 function Chat(props) {
-  let messages = <p className={scss.noMessages}>No messages yet..</p>;
+  let messages = <p className={scss.welcomeMessage}>No messages yet..</p>;
+  if (!props.friendId)
+    return (
+      <div className={scss.welcomeMessage}> Select user to start chat</div>
+    );
   if (props.messages.length > 0) {
     messages = props.messages.map((message, i) =>
       message.senderId !== props.loggedId ? (
         <Message
           key={message.id}
+          id={message.id}
           userName={message.senderName}
           text={message.body}
           timeStamp={message.addedAt}
@@ -19,6 +24,7 @@ function Chat(props) {
       ) : (
         <Message
           key={message.id}
+          id={message.id}
           userName="You"
           text={message.body}
           timeStamp={message.addedAt}
@@ -40,7 +46,7 @@ const ChatInput = (props) => (
   <Form
     onSubmit={(obj, form) => {
       if (obj.message) {
-        props.sendMessage(props.friendId, { body: obj.message });
+        props.sendMessage(+props.friendId, { body: obj.message });
         form.reset();
       }
     }}

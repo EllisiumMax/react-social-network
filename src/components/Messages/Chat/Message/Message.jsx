@@ -4,7 +4,7 @@ import scss from "./Message.module.scss";
 import viewed from "../../../../images/viewed.svg";
 import notViewed from "../../../../images/not_viewed.svg";
 
-function SelfMessage(props) {
+function Message(props) {
   const time = moment
     .utc(props.timeStamp)
     .local()
@@ -30,4 +30,4 @@ function SelfMessage(props) {
   );
 }
 
-export default SelfMessage;
+export default Message;

@@ -1,34 +1,57 @@
 import withAuthRedirect from "hoc/withAuthRedirect";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { compose } from "redux";
 import {
   getDialogs,
   getMessages,
   sendMessage,
-  setFriendIdAC,
+  checkIfViewed,
+  startChating,
 } from "redux/messagesReducer";
-import {
-  getFriendIdSel,
-  getMessagesSel,
-  getUserListSel,
-} from "redux/messagesSelectors";
+import { getMessagesSel, getUserListSel } from "redux/messagesSelectors";
 import Messages from "./Messages";
+function MessagesContainer(props) {
+  let [timer, setTimer] = useState(1);
+  let [timerState, setTimerState] = useState(true);
 
-class MessagesContainer extends React.Component {
-  componentDidMount() {
-    this.props.getDialogs();
-  }
-  render() {
-    return <Messages {...this.props} />;
-  }
+  useEffect(() => {
+    props.getDialogs();
+    if (props.match.params.userId !== undefined) {
+      props.startChating(props.match.params.userId);
+      props.getMessages(props.match.params.userId);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    setTimerState(true);
+    let interval = null;
+    if (timerState) {
+      interval = setInterval(() => {
+        setTimer(++timer);
+      }, 5000);
+    }
+    return () => {
+      clearInterval(interval);
+      setTimerState(false);
+    };
+  });
+
+  useEffect(() => {
+    if (props.match.params.userId !== undefined) {
+      props.getMessages(props.match.params.userId);
+    }
+  }, [timer]);
+
+  return <Messages {...props} />;
 }
 
 function mapStateToProps(state) {
   return {
     userList: getUserListSel(state),
     messages: getMessagesSel(state),
-    friendId: getFriendIdSel(state),
   };
 }
 
@@ -37,7 +60,9 @@ export default compose(
     getDialogs,
     getMessages,
     sendMessage,
-    setFriendIdAC,
+    checkIfViewed,
+    startChating,
   }),
-  withAuthRedirect
+  withAuthRedirect,
+  withRouter
 )(MessagesContainer);

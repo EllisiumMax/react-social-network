@@ -9,12 +9,11 @@ function Messages(props) {
       <UserList
         userList={props.userList}
         getMessages={props.getMessages}
-        setFriendIdAC={props.setFriendIdAC}
       />
       <Chat
         messages={props.messages}
         sendMessage={props.sendMessage}
-        friendId={props.friendId}
+        friendId={props.match.params.userId}
         loggedId={props.id}
       />
     </div>

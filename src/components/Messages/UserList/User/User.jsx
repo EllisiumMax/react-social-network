@@ -10,7 +10,6 @@ function User(props) {
     <div
       className={scss.wrapper}
       onClick={() => {
-        props.setFriendIdAC(props.id);
         props.getMessages(props.id);
       }}
     >

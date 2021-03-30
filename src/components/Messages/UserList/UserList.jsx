@@ -4,15 +4,10 @@ import c from "./UserList.module.scss";
 
 function UserList(props) {
   const users = props.userList.map((user, i) => (
-    <User
-      key={`user${i}`}
-      {...user}
-      getMessages={props.getMessages}
-      setFriendIdAC={props.setFriendIdAC}
-    />
+    <User key={`user${i}`} {...user} getMessages={props.getMessages} />
   ));
 
-  return <div className={c.users}>{users};</div>;
+  return <div className={c.users}>{users}</div>;
 }
 
 export default UserList;
