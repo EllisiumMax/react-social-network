@@ -64,8 +64,10 @@
 
 .newMessage {
   width: 1.45em;
+  box-shadow: none !important;
 }
 
 .newMessagesCount {
-  font-size: 0.8em;
+  box-shadow: none !important;
+  border-bottom: none !important;
 }

@@ -91,9 +91,9 @@ const DAL = {
     getAllDialogs() {
       return axiosSamurai.get(`dialogs/`).then((res) => res.data);
     },
-    getMessages(userId) {
+    getMessages(userId, page = 1, count = 20) {
       return axiosSamurai
-        .get(`dialogs/${userId}/messages`)
+        .get(`dialogs/${userId}/messages?page=${page}&count=${count}`)
         .then((res) => res.data);
     },
     sendMessage(userId, messageString) {

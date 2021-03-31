@@ -11,6 +11,10 @@
   box-shadow: 0 0 6px 0 rgb(65, 64, 64);
 }
 
+.messageWrapper:first-of-type {
+  margin-top: 4em;
+}
+
 .user {
   font-size: 0.9em;
   margin-bottom: 0.1em;

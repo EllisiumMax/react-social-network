@@ -40,6 +40,7 @@ function MessagesContainer(props) {
   });
 
   useEffect(() => {
+    props.getDialogs();
     if (props.match.params.userId !== undefined) {
       props.getMessages(props.match.params.userId);
     }

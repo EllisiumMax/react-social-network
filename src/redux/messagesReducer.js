@@ -1,4 +1,6 @@
 import DAL from "api/apiDAL";
+import _ from "lodash";
+import moment from "moment";
 
 const SEND_MESSAGE = "SEND-MESSAGE";
 const GET_DIALOGS_LIST = "GET-DIALOGS-LIST";
@@ -11,6 +13,7 @@ const initialState = {
   messages: {
     items: [],
   },
+  targetUserId: null,
 };
 
 function messagesReducer(state = initialState, action) {
@@ -35,7 +38,19 @@ function messagesReducer(state = initialState, action) {
       return newState;
 
     case GET_MESSAGES:
-      newState.messages = action.messages;
+      if (newState.targetUserId != action.targetUserId) {
+        newState.targetUserId = action.targetUserId;
+        newState.messages.items = action.messages.items;
+      } else {
+        newState.messages.items = _.unionWith(
+          newState.messages.items,
+          action.messages.items,
+          _.isEqual
+        ).sort((a, b) => moment(a.addedAt) - moment(b.addedAt));
+      }
+
+      newState.messages.totalCount = action.messages.totalCount;
+
       return newState;
 
     default:
@@ -50,10 +65,11 @@ function getAllDialogsAC(users) {
   };
 }
 
-function getMessagesAC(messages) {
+function getMessagesAC(messages, targetUserId) {
   return {
     type: GET_MESSAGES,
     messages,
+    targetUserId,
   };
 }
 
@@ -86,11 +102,11 @@ export function getDialogs() {
   };
 }
 
-export function getMessages(id) {
+export function getMessages(id, page, ammount) {
   return (dispatch) => {
     return DAL.messages
-      .getMessages(id)
-      .then((res) => dispatch(getMessagesAC(res)));
+      .getMessages(id, page, ammount)
+      .then((res) => dispatch(getMessagesAC(res, id)));
   };
 }
 

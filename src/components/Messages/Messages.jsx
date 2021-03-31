@@ -4,6 +4,7 @@ import scss from "./Messages.module.scss";
 import UserList from "./UserList/UserList";
 
 function Messages(props) {
+
   return (
     <div className={scss.chatWrapper}>
       <UserList
@@ -17,6 +18,7 @@ function Messages(props) {
         loggedId={props.id}
         deleteMessage={props.deleteMessage}
         markAsSpam={props.markAsSpam}
+        getMessages={props.getMessages}
       />
     </div>
   );

@@ -3,7 +3,7 @@ import User from "./User/User";
 import c from "./UserList.module.scss";
 
 function UserList(props) {
-  const users = props.userList.map((user, i) => (
+  let users = props.userList.map((user, i) => (
     <User key={`user${i}`} {...user} getMessages={props.getMessages} />
   ));
 
