@@ -19,7 +19,8 @@ function Chat(props) {
           text={message.body}
           timeStamp={message.addedAt}
           self={false}
-          viewed={message.viewed}
+          deleteMessage={props.deleteMessage}
+          markAsSpam={props.markAsSpam}
         />
       ) : (
         <Message
@@ -30,6 +31,8 @@ function Chat(props) {
           timeStamp={message.addedAt}
           self={true}
           viewed={message.viewed}
+          deleteMessage={props.deleteMessage}
+          markAsSpam={props.markAsSpam}
         />
       )
     );

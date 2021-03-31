@@ -3,7 +3,8 @@ import DAL from "api/apiDAL";
 const SEND_MESSAGE = "SEND-MESSAGE";
 const GET_DIALOGS_LIST = "GET-DIALOGS-LIST";
 const GET_MESSAGES = "GET-MESSAGES";
-const CHECK_IF_VIEWED = "CHECK-IF-VIEWED";
+const DELETE_MESSAGE = "DELETE-MESSAGE";
+const MARK_SPAM = "MARK-SPAM";
 
 const initialState = {
   userList: [],
@@ -19,15 +20,24 @@ function messagesReducer(state = initialState, action) {
     case SEND_MESSAGE:
       newState.messages.items.push(action.message);
       return newState;
-    case CHECK_IF_VIEWED:
+
+    case DELETE_MESSAGE:
+      newState.messages.items = newState.messages.items.filter(
+        (el) => el.id !== action.messageId
+      );
+      return newState;
+
+    case MARK_SPAM:
       return newState;
 
     case GET_DIALOGS_LIST:
       newState.userList = [...action.users];
       return newState;
+
     case GET_MESSAGES:
       newState.messages = action.messages;
       return newState;
+
     default:
       return newState;
   }
@@ -54,10 +64,17 @@ function sendMessageAC(message) {
   };
 }
 
-function checkIfViewedAC(messageId) {
+function deleteMessageAC(messageId) {
   return {
-    type: CHECK_IF_VIEWED,
+    type: DELETE_MESSAGE,
     messageId,
+  };
+}
+
+function markAsSpamAC(messageID) {
+  return {
+    type: MARK_SPAM,
+    messageID,
   };
 }
 
@@ -83,17 +100,29 @@ export function startChating(id) {
   };
 }
 
-export function sendMessage(id, message) {
+export function sendMessage(userId, text) {
   return (dispatch) => {
-    DAL.messages.sendMessage(id, message).then((res) => {
+    return DAL.messages.sendMessage(userId, text).then((res) => {
       if (res.resultCode === 0) dispatch(sendMessageAC(res.data.message));
     });
   };
 }
 
-export function checkIfViewed(messageId) {
+export function deleteMessage(messageId) {
   return (dispatch) => {
-    DAL.messages.checkMessageViewed(messageId).then((res) => {});
+    DAL.messages.deleteMessage(messageId).then((res) => {
+      console.log(res);
+      if (res.resultCode === 0) dispatch(deleteMessageAC(messageId));
+    });
+  };
+}
+
+export function markAsSpam(messageId) {
+  return (dispatch) => {
+    DAL.messages.markAsSpam(messageId).then((res) => {
+      console.log(res);
+      if (res.resultCode === 0) dispatch(markAsSpamAC(messageId));
+    });
   };
 }
 

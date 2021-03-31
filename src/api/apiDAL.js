@@ -115,7 +115,7 @@ const DAL = {
         .post(`dialogs/messages/${messageId}/spam`)
         .then((res) => res.data);
     },
-    deleteMessageForMe(messageId) {
+    deleteMessage(messageId) {
       return axiosSamurai
         .delete(`dialogs/messages/${messageId}`)
         .then((res) => res.data);

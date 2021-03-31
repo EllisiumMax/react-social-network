@@ -7,8 +7,9 @@ import {
   getDialogs,
   getMessages,
   sendMessage,
-  checkIfViewed,
+  deleteMessage,
   startChating,
+  markAsSpam,
 } from "redux/messagesReducer";
 import { getMessagesSel, getUserListSel } from "redux/messagesSelectors";
 import Messages from "./Messages";
@@ -24,14 +25,13 @@ function MessagesContainer(props) {
     }
   }, []);
 
-
   useEffect(() => {
     setTimerState(true);
     let interval = null;
     if (timerState) {
       interval = setInterval(() => {
         setTimer(++timer);
-      }, 5000);
+      }, 8000);
     }
     return () => {
       clearInterval(interval);
@@ -60,8 +60,9 @@ export default compose(
     getDialogs,
     getMessages,
     sendMessage,
-    checkIfViewed,
     startChating,
+    deleteMessage,
+    markAsSpam,
   }),
   withAuthRedirect,
   withRouter

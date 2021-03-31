@@ -15,6 +15,8 @@ function Messages(props) {
         sendMessage={props.sendMessage}
         friendId={props.match.params.userId}
         loggedId={props.id}
+        deleteMessage={props.deleteMessage}
+        markAsSpam={props.markAsSpam}
       />
     </div>
   );
