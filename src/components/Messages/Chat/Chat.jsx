@@ -17,12 +17,17 @@ function Chat(props) {
       blankSpace.current.scrollIntoView({ behavior: "smooth" });
   }, [props.messages.totalCount]);
 
+  useEffect(() => {
+    if (blankSpace.current)
+      blankSpace.current.scrollIntoView({ behavior: "smooth" });
+  }, [props.friendId]);
+
   function loadPage(e) {
-    if (e.target.scrollTop == 0) {
+    if (e.target.scrollTop < 1) {
       if (counter < numberOfPages) {
         setCounter(++counter);
-        console.log(counter);
         props.getMessages(props.friendId, counter, messagesPerPage);
+        e.target.scrollTop = 200;
       } else setCounter(--counter);
     }
   }

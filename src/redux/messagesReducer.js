@@ -45,7 +45,7 @@ function messagesReducer(state = initialState, action) {
         newState.messages.items = _.unionWith(
           newState.messages.items,
           action.messages.items,
-          _.isEqual
+          (a, b) => (a.id == b.id)
         ).sort((a, b) => moment(a.addedAt) - moment(b.addedAt));
       }
 
