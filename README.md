@@ -1,15 +1,22 @@
 
-# Social Network Project
+# Toucan Social Network Project
+# Visit build at: http://ellisium.com.ua/toucan
 ####  Build with React.js
 
-Author: Khaiuk Maksym
 
 
-------------
+#### Author: Khaiuk Maksym
+#### Based on https://social-network.samuraijs.com/ API.
+#### API-Docs: https://docs.google.com/document/d/1ZSXmTzkgq_Kj1VbWuq8fTv_DPD95GFDvPZgqFeIYGoM/edit#
+
+**Test account info**
+: login - free@samuraijs.com
+: password - free
 
 
+---
+## Changelog:
 
+- 01.04.2021 - Project completed, v.1.0
 
-
-
-Works in progress...
+--
