@@ -153,7 +153,7 @@
 .name {
   font-size: 1.2em;
   font-weight: 600;
-  margin-top: auto;
+  margin-top: 1.5em;
   margin-bottom: auto;
 
 }
@@ -162,4 +162,19 @@
   margin-top:-2em;
   margin-bottom: auto;
   font-size: 1em;
+}
+
+
+.sendMessage {
+  position: relative;
+
+  left:40%;
+  border: none;
+  background: none;
+  img {
+    width: 1.6em;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 }

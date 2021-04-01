@@ -3,8 +3,10 @@ import scss from "./Users.module.scss";
 import unkownUser from "../../images/unknown-user.svg";
 import { NavLink } from "react-router-dom";
 import Paginator from "components/COMMON/Paginator/Paginator";
+import sendMessage from "../../images/envelope.svg";
 
 function Users(props) {
+
   return (
     <div>
       {props.totalCount ? (
@@ -60,6 +62,7 @@ function Users(props) {
 }
 
 function User(props) {
+    const path = `/messages/${props.id}`;
   return props.users.map((user) => (
     <div className={scss.wrapper} key={user.id}>
       <div className={scss.avatar}>
@@ -94,8 +97,14 @@ function User(props) {
         )}
       </div>
       <div className={scss.infoWrapper}>
+        <NavLink to={`messages/${user.id}`} className={scss.sendMessage}>
+          <img src={sendMessage} alt="send message" />
+        </NavLink>
         <p className={scss.name}>{user.name}</p>
-        {user.status ? <p className={scss.status}>Status: {user.status}</p> : null} 
+
+        {user.status ? (
+          <p className={scss.status}>Status: {user.status}</p>
+        ) : null}
       </div>
     </div>
   ));
