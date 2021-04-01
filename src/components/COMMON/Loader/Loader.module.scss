@@ -25,5 +25,8 @@
 .fullScreenLoader {
   position: absolute;
   width: 13em;
+  top: 48%;
+  left: 53%;
+  transform: translate(-50%, -50%);
   user-select: none;
 }

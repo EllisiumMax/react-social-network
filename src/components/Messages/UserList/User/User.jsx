@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import scss from "./User.module.scss";
 import noAvatar from "../../../../images/unknown-user.svg";
 import newMessage from "../../../../images/newMessage.svg";
-import React, { useRef } from "react";
+import React from "react";
 
 function User(props) {
   const path = `/messages/${props.id}`;

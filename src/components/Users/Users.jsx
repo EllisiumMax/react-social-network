@@ -62,7 +62,6 @@ function Users(props) {
 }
 
 function User(props) {
-    const path = `/messages/${props.id}`;
   return props.users.map((user) => (
     <div className={scss.wrapper} key={user.id}>
       <div className={scss.avatar}>
