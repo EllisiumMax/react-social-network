@@ -1,5 +1,6 @@
 .photoContainer {
   position: relative;
+  height: 21.5em;
 }
 
 .hiddenUpload {
@@ -11,7 +12,6 @@
   top: 89%;
   left: 90%;
   transform: translate(-50%, -50%);
-
   cursor: pointer;
   .upploadIco {
     height: 3.5em;

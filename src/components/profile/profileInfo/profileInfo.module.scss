@@ -1,15 +1,18 @@
 .mainWrapper {
   display: flex;
-  margin-bottom: 3em;
-  align-items: center;
-  height: 20em;
+  margin-bottom: 0;
+  height: calc(100% - 1em);
+  justify-content: center;
+  align-content: center;
+  background-color: rgb(4, 33, 53);
+  padding-top: 1em;
+  overflow-y: hidden;
 }
 
 .infoWrapper {
   display: flex;
   flex-direction: column;
   height: 21em;
-  background-color: rgb(4, 33, 53);
   width: 100%;
   margin-left: 0;
 }

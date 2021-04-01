@@ -10,8 +10,8 @@ function Header() {
       <img src={toucanLogo} alt="toucan"></img>
       <p>Toucan Social Network</p>
       <div className={scss.logInOutWrapper}>
-        <LoginContainer className={scss.logIn}/>
-        <LogoutContainer className={scss.logOut}/>
+        <LoginContainer className={scss.logIn} />
+        <LogoutContainer className={scss.logOut} />
       </div>
     </header>
   );
