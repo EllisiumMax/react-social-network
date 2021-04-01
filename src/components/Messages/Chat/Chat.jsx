@@ -2,6 +2,7 @@ import scss from "./Chat.module.scss";
 import React, { useEffect, useRef, useState } from "react";
 import Message from "./Message/Message";
 import { Field, Form } from "react-final-form";
+import loader from "../../../images/puff_color.svg";
 
 function Chat(props) {
   const messagesPerPage = 20;
@@ -64,13 +65,21 @@ function Chat(props) {
       )
     );
   }
+
   return (
-    <div>
-      <div onScroll={(e) => loadPage(e)} className={scss.chat}>
-        {messages}
-        <div ref={blankSpace} className={scss.blankSpace}></div>
-      </div>
-      <ChatInput {...props} />
+    <div className={scss.mainWrapper}>
+      <img src={loader} alt="loader" style={{ display: "none" }} />
+      {props.isFetching ? (
+        <img className={scss.preload} src={loader} alt="loader" />
+      ) : (
+        <div>
+          <div onScroll={(e) => loadPage(e)} className={scss.chat}>
+            {messages}
+            <div ref={blankSpace} className={scss.blankSpace}></div>
+          </div>
+          <ChatInput {...props} blankSpace={blankSpace.current} />
+        </div>
+      )}
     </div>
   );
 }
@@ -81,6 +90,11 @@ const ChatInput = (props) => (
       if (obj.message) {
         props.sendMessage(+props.friendId, { body: obj.message });
         form.reset();
+        if (props.blankSpace)
+          props.blankSpace.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+          });
       }
     }}
     render={({ handleSubmit, submitting }) => (

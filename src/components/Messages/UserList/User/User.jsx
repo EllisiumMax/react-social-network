@@ -11,6 +11,7 @@ function User(props) {
     <div
       className={scss.wrapper}
       onClick={() => {
+        props.startChating(props.id);
         props.getMessages(props.id);
       }}
     >

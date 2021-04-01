@@ -1,5 +1,6 @@
 .chatWrapper {
-    display: grid;
-    grid-template-columns: 25% 75%;
-    overflow: hidden;
+  display: grid;
+  grid-template: "list chat";
+  grid-template-columns: 25% 75%;
+  overflow: hidden;
 }

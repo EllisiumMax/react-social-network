@@ -11,7 +11,11 @@ import {
   startChating,
   markAsSpam,
 } from "redux/messagesReducer";
-import { getMessagesSel, getUserListSel } from "redux/messagesSelectors";
+import {
+  getMessagesFetchingSel,
+  getMessagesSel,
+  getUserListSel,
+} from "redux/messagesSelectors";
 import Messages from "./Messages";
 function MessagesContainer(props) {
   let [timer, setTimer] = useState(1);
@@ -53,6 +57,7 @@ function mapStateToProps(state) {
   return {
     userList: getUserListSel(state),
     messages: getMessagesSel(state),
+    isFetching: getMessagesFetchingSel(state),
   };
 }
 

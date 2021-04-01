@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="puff_color.svg"
+   id="svg2172"
+   version="1.1"
+   stroke="#fff"
+   viewBox="0 0 44 44"
+   height="44"
+   width="44">
+  <metadata
+     id="metadata2178">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2176" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg2172"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:cy="22"
+     inkscape:cx="22"
+     inkscape:zoom="19.318182"
+     showgrid="false"
+     id="namedview2174"
+     inkscape:window-height="1017"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <g
+     style="stroke:#8bbbd8;stroke-opacity:0.6064257"
+     id="g2170"
+     stroke-width="2"
+     fill-rule="evenodd"
+     fill="none">
+    <circle
+       style="stroke:#8bbbd8;stroke-opacity:0.6064257"
+       id="circle2166"
+       r="1"
+       cy="22"
+       cx="22">
+      <animate
+         repeatCount="indefinite"
+         keySplines="0.165, 0.84, 0.44, 1"
+         keyTimes="0; 1"
+         calcMode="spline"
+         values="1; 20"
+         dur="1.8s"
+         begin="0s"
+         attributeName="r" />
+      <animate
+         repeatCount="indefinite"
+         keySplines="0.3, 0.61, 0.355, 1"
+         keyTimes="0; 1"
+         calcMode="spline"
+         values="1; 0"
+         dur="1.8s"
+         begin="0s"
+         attributeName="stroke-opacity" />
+    </circle>
+    <circle
+       style="stroke:#8bbbd8;stroke-opacity:0.6064257"
+       id="circle2168"
+       r="1"
+       cy="22"
+       cx="22">
+      <animate
+         repeatCount="indefinite"
+         keySplines="0.165, 0.84, 0.44, 1"
+         keyTimes="0; 1"
+         calcMode="spline"
+         values="1; 20"
+         dur="1.8s"
+         begin="-0.9s"
+         attributeName="r" />
+      <animate
+         repeatCount="indefinite"
+         keySplines="0.3, 0.61, 0.355, 1"
+         keyTimes="0; 1"
+         calcMode="spline"
+         values="1; 0"
+         dur="1.8s"
+         begin="-0.9s"
+         attributeName="stroke-opacity" />
+    </circle>
+  </g>
+</svg>

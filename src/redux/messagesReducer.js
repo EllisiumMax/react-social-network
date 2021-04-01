@@ -7,8 +7,10 @@ const GET_DIALOGS_LIST = "GET-DIALOGS-LIST";
 const GET_MESSAGES = "GET-MESSAGES";
 const DELETE_MESSAGE = "DELETE-MESSAGE";
 const MARK_SPAM = "MARK-SPAM";
+const IS_MESSAGES_FETCHING = "IS-MESSAGES-FETCHING";
 
 const initialState = {
+  isMessagesFetch: false,
   userList: [],
   messages: {
     items: [],
@@ -45,14 +47,14 @@ function messagesReducer(state = initialState, action) {
         newState.messages.items = _.unionWith(
           newState.messages.items,
           action.messages.items,
-          (a, b) => (a.id == b.id)
+          (a, b) => a.id == b.id
         ).sort((a, b) => moment(a.addedAt) - moment(b.addedAt));
       }
-
       newState.messages.totalCount = action.messages.totalCount;
-
       return newState;
-
+    case IS_MESSAGES_FETCHING:
+      newState.isMessagesFetch = action.boolean;
+      return newState;
     default:
       return newState;
   }
@@ -94,6 +96,13 @@ function markAsSpamAC(messageID) {
   };
 }
 
+function isFetching(boolean) {
+  return {
+    type: IS_MESSAGES_FETCHING,
+    boolean,
+  };
+}
+
 export function getDialogs() {
   return (dispatch) => {
     DAL.messages.getAllDialogs().then((res) => {
@@ -104,15 +113,18 @@ export function getDialogs() {
 
 export function getMessages(id, page, ammount) {
   return (dispatch) => {
-    return DAL.messages
-      .getMessages(id, page, ammount)
-      .then((res) => dispatch(getMessagesAC(res, id)));
+    return DAL.messages.getMessages(id, page, ammount).then((res) => {
+      dispatch(getMessagesAC(res, id));
+    });
   };
 }
 
 export function startChating(id) {
   return (dispatch) => {
-    return DAL.messages.startChating(id);
+    dispatch(isFetching(true));
+    return DAL.messages
+      .startChating(id)
+      .then(() => dispatch(isFetching(false)));
   };
 }
 

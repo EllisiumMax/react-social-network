@@ -4,7 +4,12 @@ import c from "./UserList.module.scss";
 
 function UserList(props) {
   let users = props.userList.map((user, i) => (
-    <User key={`user${i}`} {...user} getMessages={props.getMessages} />
+    <User
+      key={`user${i}`}
+      {...user}
+      getMessages={props.getMessages}
+      startChating={props.startChating}
+    />
   ));
 
   return <div className={c.users}>{users}</div>;

@@ -1,7 +1,8 @@
 .loaderWrapper {
+  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   position: fixed;
   width: 100%;
@@ -10,23 +11,18 @@
   z-index: 500;
   padding: 0;
   user-select: none;
-
+  border-right: 2px solid red;
 }
 
 .loader {
   position: absolute;
-  top: 40%;
-  left: 45%;
-  transform: translate(-50%, -40%);
+  top: 35%;
   width: 10em;
   user-select: none;
 }
 
 .fullScreenLoader {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 13em;
   user-select: none;
 }

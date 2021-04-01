@@ -1,3 +1,9 @@
+.mainWrapper {
+  position: relative;
+  width: 100%;
+  grid-area: chat;
+}
+
 .chat {
   display: flex;
   flex-direction: column;
@@ -7,11 +13,10 @@
   overflow-x: hidden;
 }
 
-.welcomeMessage{
+.welcomeMessage {
   margin: auto;
   font-size: 1.2em;
 }
-
 
 .inputWindow {
   display: flex;
@@ -47,4 +52,12 @@
 .blankSpace {
   width: 100%;
   padding: 5em;
+}
+
+.preload {
+  width: 20em;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
