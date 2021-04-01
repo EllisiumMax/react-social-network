@@ -30,17 +30,18 @@ const LoginForm = (props) => (
             name="email"
             component={InputEmail}
             validate={composeValidators(required, email)}
+            defaultValue="free@samuraijs.com"
           />
           <Field
             name="password"
             component={InputPassword}
             validate={required}
+            defaultValue="free"
           />
           <div>
             <Field name="rememberMe" component="input" type="checkbox" />
             <label> Remember me?</label>
           </div>
-
           {props.errorMessages
             ? props.errorMessages.map((msg) => (
                 <div className={scss.serverErrors}>{msg}</div>
@@ -48,22 +49,30 @@ const LoginForm = (props) => (
             : null}
           {props.captcha ? (
             <div className={scss.captchaContainer}>
-              <img className={scss.captcha} src={props.captcha} alt="CAPTCHA"></img>
+              <img
+                className={scss.captcha}
+                src={props.captcha}
+                alt="CAPTCHA"
+              ></img>
               <Field
                 component="input"
                 type="input"
                 name="captcha"
                 autoComplete="off"
                 placeholder="CAPTCHA"
-                maxLength={7}
+                maxLength={8}
               />
             </div>
           ) : null}
-
           <button type="submit" disabled={submitting || pristine}>
             Submit
           </button>
         </form>
+        <div className={scss.testInfo}>
+          <h4>Test account</h4>
+          <p> Login: free@samuraijs.com </p>
+          <p>Passwrod: free</p>
+        </div>
       </div>
     )}
   />

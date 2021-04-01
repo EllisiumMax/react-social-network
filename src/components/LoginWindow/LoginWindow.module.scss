@@ -99,3 +99,13 @@ label {
     box-shadow: 0 0 5px rgb(255, 72, 0);
   }
 }
+
+
+.testInfo {
+  position: absolute;
+  text-align: center;
+  color: white;
+  left: 56%;
+  top: 15%;
+  transform: translate(-50%, -50%);
+}
