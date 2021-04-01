@@ -35,13 +35,14 @@ function MessagesContainer(props) {
     if (timerState) {
       interval = setInterval(() => {
         setTimer(++timer);
-      }, 8000);
+      }, 3000);
     }
     return () => {
       clearInterval(interval);
       setTimerState(false);
     };
   });
+
 
   useEffect(() => {
     props.getDialogs();

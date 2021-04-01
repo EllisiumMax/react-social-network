@@ -21,8 +21,6 @@ function Info(props) {
     mainLinkLogo,
   ];
 
-
-
   const contacts = Object.entries(props.contacts)
     .filter((val) => val[1])
     .map((val, i) => (
@@ -40,7 +38,7 @@ function Info(props) {
   return (
     <div>
       <div className={scss.job}>
-        <h4>About me: {props.aboutMe}</h4>
+        {props.aboutMe && <h4>About me: {props.aboutMe}</h4>}
         {props.lookingForAJob ? (
           <h4>Looking for a job: {props.lookingForAJobDescription} </h4>
         ) : (
