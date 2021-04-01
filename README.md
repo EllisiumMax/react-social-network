@@ -3,7 +3,7 @@
 # Toucan Social Network Project
 
 ## Please turn off adblock, otherwise app will not work!
-# Visit build at: https://ellisium.com.ua/toucan
+# Visit build at: www.ellisium.com.ua/toucan
 ####  Build with React.js
 
 
