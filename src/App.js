@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import Loader from "components/COMMON/Loader/Loader";
 import { initializeApp } from "redux/appReducer";
 import withSuspense from "hoc/withSuspense";
+import Page404 from "components/Page_404/Page_404";
 
 const UsersContainer = React.lazy(() =>
   import("components/Users/UsersContainer")
@@ -34,20 +35,29 @@ class App extends React.Component {
           <Header />
           <Navbar />
           <div className="app-wrapper-content">
-            <Route
-              path="/profile/:userId?"
-              render={() => withSuspense(ProfileContainer)}
-            />
-            <Route
-              path="/messages/:userId?"
-              render={() => <MessagesContainer />}
-            />
-            <Route path="/users" render={() => withSuspense(UsersContainer)} />
-            <Route
-              path="/settings"
-              render={() => withSuspense(SettingsContainer)}
-            />
-            <Route path="/login" render={() => withSuspense(LoginWindow)} />
+            <Switch>
+              <Route exact path="/">
+                <Redirect to="/profile" />
+              </Route>
+              <Route
+                path="/profile/:userId?"
+                render={() => withSuspense(ProfileContainer)}
+              />
+              <Route
+                path="/messages/:userId?"
+                render={() => <MessagesContainer />}
+              />
+              <Route
+                path="/users"
+                render={() => withSuspense(UsersContainer)}
+              />
+              <Route
+                path="/settings"
+                render={() => withSuspense(SettingsContainer)}
+              />
+              <Route path="/login" render={() => withSuspense(LoginWindow)} />
+              <Route path="*" render={() => <Page404 />} />
+            </Switch>
           </div>
         </div>
       </BrowserRouter>
